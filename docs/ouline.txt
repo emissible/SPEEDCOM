@@ -1,0 +1,26 @@
+Bypass ab inito requirements with ML.
+
+(UI)
+Read in geometry
+  As XY coords? --> for learning use 
+Display molecule
+Communicate to database
+Guess the absorption/emission spectrum
+Communicate back to client
+Display the resulting spectrum
+
+(Backend)
+--learning--
+Read in experimental spectra
+  from folder
+
+Determine energy/intensity of peaks
+  Set intensity into units?
+
+Learn intensities/ excitation energies
+
+
+--Normal operation--
+Retrieve geometry from client
+guess spectrum
+return spectrum

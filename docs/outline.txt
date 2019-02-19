@@ -2,7 +2,8 @@ Bypass ab inito requirements with ML.
 
 (UI)
 Read in geometry
-  As XY coords? --> for learning use 
+  As SMILES string ? --> for learning use
+	(or IN CHE strings???)  
 Display molecule
 Communicate to database
 Guess the absorption/emission spectrum
@@ -19,6 +20,8 @@ Determine energy/intensity of peaks
 
 Learn intensities/ excitation energies
 
+Validation section
+	Pseudo-random breaking up of dataset
 
 --Normal operation--
 Retrieve geometry from client

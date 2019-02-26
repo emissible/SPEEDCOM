@@ -14,7 +14,9 @@ dependencies:
   - h5py=2.9.0=py36h3134771_0
   - hdf5=1.10.4=hfa1e0ec_0
   - intel-openmp=2019.1=144
+  - keras=2.2.4=0
   - keras-applications=1.0.6=py36_0
+  - keras-base=2.2.4=py36_0
   - keras-preprocessing=1.0.5=py36_0
   - libcxx=4.0.1=hcfea43d_1
   - libcxxabi=4.0.1=hcfea43d_1
@@ -33,6 +35,7 @@ dependencies:
   - pip=19.0.1=py36_0
   - protobuf=3.6.1=py36h0a44026_0
   - python=3.6.8=haf84260_0
+  - pyyaml=3.13=py36h1de35cc_0
   - readline=7.0=h1de35cc_5
   - scikit-learn=0.20.2=py36h27c97d8_0
   - scipy=1.2.1=py36h1410ff5_0
@@ -47,6 +50,7 @@ dependencies:
   - werkzeug=0.14.1=py36_0
   - wheel=0.32.3=py36_0
   - xz=5.2.4=h1de35cc_4
+  - yaml=0.1.7=hc338f04_2
   - zlib=1.2.11=h1de35cc_3
 prefix: /Users/joe.abbott/miniconda3/envs/speedcom
 

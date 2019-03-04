@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/emissible/SPEEDCOM/doc/source/_static/simpleLogoAcronym.png" alt="SPEEDCOM" title="SPEEDCOM"/></p>
+<p align="center"><img src="https://github.com/emissible/SPEEDCOM/tree/master/doc/source/logos/simpleLogoAcronym.png" alt="SPEEDCOM" title="SPEEDCOM"/></p>
 
 # SPEEDCOM 
 

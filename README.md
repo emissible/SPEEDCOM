@@ -18,4 +18,4 @@ Any contributions to the project are warmly welcomed! If you discover any bugs, 
 
 ## License
 
-SPEEDCOM is licensed under the [MIT license] (https://github.com/emissible/SPEEDCOM/blob/master/LICENSE).
+SPEEDCOM is licensed under the [MIT license](https://github.com/emissible/SPEEDCOM/blob/master/LICENSE).

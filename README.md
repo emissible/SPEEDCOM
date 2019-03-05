@@ -13,7 +13,7 @@ _SPEEDCOM_ is an open source python package that aims to predict the fluorescenc
 
 ## Contributions
 
-Any contributions to the project are warmly welcomed! If you discover any bugs, please report them in the [issues section] (https://github.com/emissible/SPEEDCOM/issues) of this repository. 
+Any contributions to the project are warmly welcomed! If you discover any bugs, please report them in the [issues section](https://github.com/emissible/SPEEDCOM/issues) of this repository. 
 
 
 ## License

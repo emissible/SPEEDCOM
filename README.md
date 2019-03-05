@@ -1,5 +1,6 @@
-<p align="center"><img src="doc/source/logos/simpleLogoAcronym.png" alt="SPEEDCOM" title="SPEEDCOM"/></p>
+<p align="center"><img src="doc/source/logos/simpleLogo.png" alt="SPEEDCOM" title="SPEEDCOM"/></p>
 
+_**S**pectra **P**rediction for the **E**xcitation and **E**mission of **D**yes and other **C**onjugated **O**rganic **M**olecules_
 
 #### Authors: **J. Abbott**, **R. Beck**, **H. Hu**, **Y. Liu**, **L. Lu**.
 

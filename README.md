@@ -1,8 +1,8 @@
-<p align="center"><img src="doc/source/logos/simpleLogoAcronym.png" alt="SPEEDCOM" title="SPEEDCOM"/></p>
+<p align="center"><img src="doc/source/_static/simpleLogoAcronym.png" alt="SPEEDCOM" title="SPEEDCOM"/></p>
 
 [//]: comment (_**S**pectra **P**rediction for the **E**xcitation and **E**mission of **D**yes and other **C**onjugated **O**rganic **M**olecules_)
 
-<center> Authors: **Joseph Abbott**, **Ryan Beck**, **Hang Hu**, **Yang Liu**, **Lixin Lu**. </center>
+Authors: **Joseph Abbott**, **Ryan Beck**, **Hang Hu**, **Yang Liu**, **Lixin Lu**.
 
 ## Overview
 
@@ -10,6 +10,7 @@ _SPEEDCOM_ is an open source python package that aims to predict the fluorescenc
 
 
 ## Configuration
+
 
 ## Contributions
 

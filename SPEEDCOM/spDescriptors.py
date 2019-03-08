@@ -5,7 +5,7 @@ from rdkit.Chem import AllChem
 from rdkit.Chem import ChemicalFeatures
 from rdkit import RDConfig
 
-class spDescriptor:
+class spDescriptors:
     """
     A Class to generate the descpritors for specrtra prediciton
     """
@@ -30,12 +30,23 @@ class spDescriptor:
         self.Molecule = Chem.MolFromSmiles(SMILEs)
         return
 
-    def get_properties(self):
+    def get_properties(self, feature_name = None):
         """  """
 
         assert type(self.Molecule) == Chem.rdchem.Mol
-        return dict(zip(Properties().GetPropertyNames(),\
+        f_dict = dict(zip(Properties().GetPropertyNames(),\
                     Properties().ComputeProperties(self.Molecule)))
+
+        if(feature_name is None):
+            return f_dict
+        else:
+            if type(feature_name) == str:
+                return f_dict[feature_name]
+            elif type(feature_name) == list:
+                f_dict2 = {}
+                for i in range(len(feature_name)):
+                    f_dict2[feature_name[i]] = f_dict[feature_name[i]]
+                return f_dict2
 
     def get_features(self):
         if(self.feat_factory is None):
@@ -58,9 +69,13 @@ class spDescriptor:
     def get_Morgan_fingerprint(self, radius=2, nBits=2048, use_features=False):
         """  """
         assert type(self.Molecule) == Chem.rdchem.Mol
-        fp = AllChem.GetMorganFingerprintAsBitVect(self.Molecule, raduis, nBits=nBits,
+        fp = AllChem.GetMorganFingerprintAsBitVect(self.Molecule, radius, nBits=nBits,
                                                    useFeatures=use_features)
-        return list(fp)
+        return list(fp.ToBinary())
+
+    def get_coulomb_matrix(self):
+        """ """
+        
 
     def config_feature_factory(self):
         fdefName = os.path.join(RDConfig.RDDataDir,'BaseFeatures.fdef')

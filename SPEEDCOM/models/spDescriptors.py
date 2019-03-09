@@ -123,7 +123,7 @@ class spDescriptors:
 
         # Creating a list of the atomic numbers
         atomic_nums = []
-        for atom in benz_H.GetAtoms():
+        for atom in molecule.GetAtoms():
             atomic_nums.append(atom.GetAtomicNum())
 
         # Creating lists of the cartesian coordinates of the atoms
@@ -137,14 +137,14 @@ class spDescriptors:
 
         # Building a DF with predictors
         molecule_df = pd.DataFrame()
-        molecule_df['charge'] = benz_type
+        molecule_df['charge'] = atomic_nums
         molecule_df['x'] = x
         molecule_df['y'] = y
         molecule_df['z'] = z
 
         return molecule_df
 
-    def get_coulomb_matrix(self):
+    def get_coulomb_matrix(self, eig_sort=True):
         """
         Generates the coulomb matrix for a given molecule from its
             SMILES string, of size MxM, where M is the number of
@@ -165,8 +165,8 @@ class spDescriptors:
         molecule_df = self.get_charges_coords()
         num_atoms = len(molecule_df)
         coulomb_matrix = np.zeros(shape=(num_atoms,num_atoms))
-        for indexi, rowi in benz_df.iterrows():
-            for indexj, rowj in benz_df.iterrows():
+        for indexi, rowi in molecule_df.iterrows():
+            for indexj, rowj in molecule_df.iterrows():
                 Zi = rowi.charge
                 xi = rowi.x
                 yi = rowi.y
@@ -181,5 +181,15 @@ class spDescriptors:
                     norm_diff = math.sqrt(math.pow((xi-xj),2) + math.pow((yi-yj),2) + math.pow((zi-zj),2))
                     element = Zi * Zj / norm_diff
                 coulomb_matrix[indexi][indexj] = element
+
+        if eig_sort:
+            eig = np.linalg.eig(coulomb_matrix)[0]
+            eig_idx = np.argsort(eig)
+            sorted_matrix = np.zeros(shape=(num_atoms,num_atoms))
+            for i in range(num_atoms):
+                sorted_matrix[i] = coulomb_matrix[eig_idx[i]]
+            return sorted_matrix
+        else:
+            pass
 
         return coulomb_matrix

@@ -6,8 +6,8 @@ from itertools import zip_longest
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import AllChem
-from rdkit.ForceField.rdForceField import MMFFMolProperties as properties
-import rdkit.Chem.Draw as draw
+# from rdkit.ForceField.rdForceField import MMFFMolProperties as properties
+# import rdkit.Chem.Draw as draw
 
 
 def get_largest_num_atoms(train_df):

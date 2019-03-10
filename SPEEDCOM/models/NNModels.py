@@ -1,17 +1,14 @@
+from itertools import zip_longest
 import math
 import numpy as np
 import os
 import pandas as pd
-from itertools import zip_longest
-
 
 from rdkit import Chem
 from rdkit.Chem.rdMolDescriptors import Properties
 from rdkit.Chem import AllChem
 from rdkit.Chem import ChemicalFeatures
 from rdkit import RDConfig
-
-
 
 class Descriptors:
     """

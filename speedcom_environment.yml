@@ -9,15 +9,15 @@ dependencies:
   - appnope=0.1.0
   - astor=0.7.1
   - backcall=0.1.0
-  - blas=1.0
+  - blas=1.0=mkl
   - bleach=3.1.0
   - boost=1.68.0
   - boost-cpp=1.68.0
   - bzip2=1.0.6
   - c-ares=1.15.0
-  - ca-certificates=2019.1.2
+  - ca-certificates=2019.3.9
   - cairo=1.16.0
-  - certifi=2018.11.29
+  - certifi=2019.3.9
   - cycler=0.10.0
   - decorator=4.3.2
   - entrypoints=0.3
@@ -44,9 +44,9 @@ dependencies:
   - keras-applications=1.0.4
   - keras-preprocessing=1.0.2
   - kiwisolver=1.0.1
-  - libcxx=7.0.0=h2d50403_1
-  - libffi=3.2.1=h0a44026_1005
-  - libgfortran=3.0.1=0
+  - libcxx=7.0.0
+  - libffi=3.2.1
+  - libgfortran=3.0.
   - libgpuarray=0.7.6
   - libiconv=1.15
   - libpng=1.6.36
@@ -69,11 +69,12 @@ dependencies:
   - nbconvert=5.3.1
   - nbformat=4.4.0
   - ncurses=6.1
+  - nodejs=11.11.0
   - notebook=5.7.4
   - numpy=1.16.2
   - numpy-base=1.16.2
   - olefile=0.46
-  - openssl=1.1.1
+  - openssl=1.1.1b
   - pandas=0.24.1
   - pandoc=2.2.3.
   - pandocfilters=1.4.2

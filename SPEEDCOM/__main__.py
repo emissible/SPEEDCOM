@@ -1,6 +1,8 @@
 # Core.py below
 
-from SPEEDCOM.data_clean import *
+#from models import utilities
+from data_clean import data_clean
+#from data_extract import data_extract
 
 #Location (relative) for the `DATA` directory
 DATA_DIR = "../DATA"
@@ -23,3 +25,8 @@ class Molecule:
     self.smiles = smiles
     self.weight = weight
     self.Descriptors = models.Descriptors(smiles)
+
+  def predict_spectra():
+    pass
+
+  data_extract.initate_molecules()

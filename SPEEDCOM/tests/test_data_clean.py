@@ -17,7 +17,7 @@ class remove_deliminators(unittest.TestCase):
   # Assert that number without deliminators returns same number
   def test_nondeliminated_number(self):
     """
-    Tests to ensure a number without will return.
+    Tests to ensure a number without a separator will return.
     """
     assert remove_deliminators(['42'])[0] == 42, \
       "remove_deliminators unable to handle non-deliminated numbers"

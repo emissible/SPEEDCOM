@@ -2,6 +2,7 @@ import math
 import numpy as np
 import os
 import pandas as pd
+from itertools import zip_longest
 
 
 from rdkit import Chem
@@ -10,12 +11,29 @@ from rdkit.Chem import AllChem
 from rdkit.Chem import ChemicalFeatures
 from rdkit import RDConfig
 
-from utilities import grouper
-from utilities import get_largest_num_atoms
+
 
 class spDescriptors:
     """
-    A Class to generate the descpritors for specrtra prediciton
+    A wrapper class using rdkit to generate the different descpritors
+    for specrtra prediciton.
+
+    Initilized with SIMLES of a molecule
+
+    Attributes:
+    Molecule       -- an object of rdkit.Chem.rdchem.Mol
+    __feat_factory -- an object to caluate the featrues for molecules, from
+                    rdkit.Chem.rdMolChemicalFeatures.MolChemicalFeatureFactory
+
+    Methods:
+    set_molecule
+    get_features
+    get_properties
+    get_coulomb_matrix
+    get_Morgan_fingerprint
+    __config_feature_factory
+    __get_charges_coords
+
     """
 
     def __init__(self, SMILES = None):
@@ -28,7 +46,7 @@ class spDescriptors:
             self.Molecule = None
 
         #functions extend from rdkit package
-        self.feat_factory  = None
+        self.__feat_factory  = None
 #        self.Features    = None
 #        self.Fingerprint = None
 
@@ -57,12 +75,12 @@ class spDescriptors:
                 return f_dict2
 
     def get_features(self):
-        if(self.feat_factory is None):
-            self.config_feature_factory()
+        if(self.__feat_factory is None):
+            self.__config_feature_factory()
 
         assert type(self.Molecule) == Chem.rdchem.Mol
 
-        features = self.feat_factory.GetFeaturesForMol(self.Molecule)
+        features = self.__feat_factory.GetFeaturesForMol(self.Molecule)
         features_dict = {}
         for i in range(len(features)):
             f_type = features[i].GetType()
@@ -81,18 +99,64 @@ class spDescriptors:
                                                    useFeatures=use_features)
         return list(fp.ToBinary())
 
-    def get_coulomb_matrix(self):
-        """ """
+    def get_coulomb_matrix(self, eig_sort=True):
+        """
+        Generates the coulomb matrix for a given molecule from its
+            SMILES string, of size MxM, where M is the number of
+            atoms in the molecule. in the training data set.
 
+        Args:
+        -----
+            SMILES (str) -- the SMILES string representation of the
+                molecule.
+        Returns:
+        --------
+            coulomb_matrix (numpy.ndarray) -- the coulomb matrix for
+                a given molecule's nuclear geometry.
+        """
+        # Assertions
+        assert type(self.Molecule) == Chem.rdchem.Mol
+        # Generating the coulomb matrix
+        molecule_df = self.__get_charges_coords()
+        num_atoms = len(molecule_df)
+        coulomb_matrix = np.zeros(shape=(num_atoms,num_atoms))
+        for indexi, rowi in molecule_df.iterrows():
+            for indexj, rowj in molecule_df.iterrows():
+                Zi = rowi.charge
+                xi = rowi.x
+                yi = rowi.y
+                zi = rowi.z
+                Zj = rowj.charge
+                xj = rowj.x
+                yj = rowj.y
+                zj = rowj.z
+                if indexi == indexj:
+                    element = 0.5 * math.pow(Zi, 2.4)
+                else:
+                    norm_diff = math.sqrt(math.pow((xi-xj),2) + math.pow((yi-yj),2) + math.pow((zi-zj),2))
+                    element = Zi * Zj / norm_diff
+                coulomb_matrix[indexi][indexj] = element
 
-    def config_feature_factory(self):
+        if eig_sort:
+            eig = np.linalg.eig(coulomb_matrix)[0]
+            eig_idx = np.argsort(eig)
+            sorted_matrix = np.zeros(shape=(num_atoms,num_atoms))
+            for i in range(num_atoms):
+                sorted_matrix[i] = coulomb_matrix[eig_idx[i]]
+            return sorted_matrix
+        else:
+            pass
+
+        return coulomb_matrix
+
+    def __config_feature_factory(self):
         """
         """
         fdefName = os.path.join(RDConfig.RDDataDir,'BaseFeatures.fdef')
-        self.feat_factory = ChemicalFeatures.BuildFeatureFactory(fdefName)
+        self.__feat_factory = ChemicalFeatures.BuildFeatureFactory(fdefName)
         return
 
-    def get_charges_coords(self):
+    def __get_charges_coords(self):
         """
         Generates a pandas dataframe containing the charges and cartesian
             coordinates of each atom in a molecule.
@@ -130,7 +194,7 @@ class spDescriptors:
         x = []
         y = []
         z = []
-        for item1, item2, item3 in grouper(3, positions):
+        for item1, item2, item3 in self.__grouper(3, positions):
             x.append(item1)
             y.append(item2)
             z.append(item3)
@@ -144,52 +208,26 @@ class spDescriptors:
 
         return molecule_df
 
-    def get_coulomb_matrix(self, eig_sort=True):
+    def __grouper(self, n, iterable, fillvalue=None):
         """
-        Generates the coulomb matrix for a given molecule from its
-            SMILES string, of size MxM, where M is the number of
-            atoms in the molecule. in the training data set.
+        A function to aggregates items in a list into groups of
+            assigned size.
 
         Args:
         -----
-            SMILES (str) -- the SMILES string representation of the
-                molecule.
+            n (int)         -- the number of items per group.
+            iterable (list) -- the list to iterate over, whose items will
+                be grouped.
+            fillvalue       -- the value to fill in empty compartments of a
+                group if the number of items in the iterator isn't a multiple
+                of the group size (n).
+
         Returns:
         --------
-            coulomb_matrix (numpy.ndarray) -- the coulomb matrix for
-                a given molecule's nuclear geometry.
+            grouper (itertools.zip_longest) -- the iterator for the
+                aggregation of items in the input list.
         """
-        # Assertions
-        assert type(self.Molecule) == Chem.rdchem.Mol
-        # Generating the coulomb matrix
-        molecule_df = self.get_charges_coords()
-        num_atoms = len(molecule_df)
-        coulomb_matrix = np.zeros(shape=(num_atoms,num_atoms))
-        for indexi, rowi in molecule_df.iterrows():
-            for indexj, rowj in molecule_df.iterrows():
-                Zi = rowi.charge
-                xi = rowi.x
-                yi = rowi.y
-                zi = rowi.z
-                Zj = rowj.charge
-                xj = rowj.x
-                yj = rowj.y
-                zj = rowj.z
-                if indexi == indexj:
-                    element = 0.5 * math.pow(Zi, 2.4)
-                else:
-                    norm_diff = math.sqrt(math.pow((xi-xj),2) + math.pow((yi-yj),2) + math.pow((zi-zj),2))
-                    element = Zi * Zj / norm_diff
-                coulomb_matrix[indexi][indexj] = element
+        args = [iter(iterable)] * n
+        grouper = zip_longest(fillvalue=fillvalue, *args)
 
-        if eig_sort:
-            eig = np.linalg.eig(coulomb_matrix)[0]
-            eig_idx = np.argsort(eig)
-            sorted_matrix = np.zeros(shape=(num_atoms,num_atoms))
-            for i in range(num_atoms):
-                sorted_matrix[i] = coulomb_matrix[eig_idx[i]]
-            return sorted_matrix
-        else:
-            pass
-
-        return coulomb_matrix
+        return grouper

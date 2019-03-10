@@ -1,7 +1,6 @@
-import cirpy
 import numpy as np
 import os
-#import pubchempy as pcp
+import pubchempy as pcp
 import scipy.signal
 
 import ../core
@@ -32,23 +31,23 @@ def get_absorption_files():
   return [fn for fn in os.listdir(DATA_DIR)
               if any(fn.endswith(.abs.txt))]
 
-def get_molecule_cas(file_name):
+def get_molecule_cid(file_name):
   """
-  Take a file_name, remove the ending and prefix and return the CAS number.
-  If the file_name does not have the cas number, try the name of the system,
-  else return None so as to disreguard the molecule from training.
+  Take a file_name, remove the ending and prefix and return the pubchem
+  CID number.  If the file_name does not have the cas number, try the name
+  of the system,   else return None so as to disreguard the molecule
+  from training.
   """
   file = file_name.split("_")
   #try to get the cas # if not then try name.
   try:
-    cas = file[1].split('-')
-    cas = int(cas[0] + cas[1] + cas[2])
-    cid = 
+    cas = file[1]
+    pcp.get_compounds(cas, 'name')[0].cid
 
-  #file doesn't have a cas number with it, try name
   except:
     pass
 
+  #file doesn't have a cas number with it, try name
   try:
     cid = pcp.get_compounds[file[1], 'name'][0].cid
 
@@ -56,7 +55,7 @@ def get_molecule_cas(file_name):
   except:
     cid = None
 
-  return cas
+  return cid
 
 def get_molecular_weight(cid):
   properties = []

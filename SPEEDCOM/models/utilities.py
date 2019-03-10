@@ -2,45 +2,12 @@ import numpy as np
 import pandas as pd
 
 import json
-from NNModels import spDescriptors
+from NNModels import Descriptors
 #import rdkit
 #from rdkit import Chem
 #from rdkit.Chem import AllChem
 # from rdkit.ForceField.rdForceField import MMFFMolProperties as properties
 # import rdkit.Chem.Draw as draw
-
-# def get_largest_num_atoms(train_df):
-#     """
-#     Returns the number of atoms in the largest molecule of the
-#         training data. Intended for determining the size of the
-#         Coulomb Matrices.
-#
-#     Args:
-#     -----
-#         train_df (pandas.DataFrame) -- the input training data set
-#             as retrieved from the PhotoChemCAD database.
-#     Returns:
-#     --------
-#         largest_num_atoms (int)  -- the number of atoms of the
-#             largest molecule in the training data set, with
-#             Hydrogens included.
-#     """
-#     # Assertions
-#
-#     # Generating a list containing the number of atoms in each
-#     # molecule in the training DF
-#     num_atoms = []
-#     for indexi, rowi in df.iterrows():
-#         smiles = df.name_smiles[indexi]
-#         molecule = Chem.AddHs(Chem.MolFromSmiles(smiles))
-#         num_atoms.append(molecule.GetNumAtoms())
-#     # Adding a new column to the DF that contains the atom count
-#     df['num_atoms'] = num_atoms
-#     df = df.set_index('#')
-#     # Calculating the max number of atoms
-#     largest_num_atoms = max(df.num_atoms)
-#
-#     return largest_num_atoms
 
 def pad_ndarrays(input_dict):
     """
@@ -93,7 +60,7 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
     #Assertions
 
     #initilized the descriptor engine:
-    spD_engine = spDescriptors()
+    spD_engine = Descriptors()
 
     fps_dict = {}
     for rowi_idx, rowi in df.iterrows():
@@ -141,7 +108,7 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
     #Assertions
 
     #initilized the descriptor engine:
-    spD_engine = spDescriptors()
+    spD_engine = Descriptors()
 
     CMs_dict = {}
     for rowi_idx, rowi in df.iterrows():

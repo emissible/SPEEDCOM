@@ -13,7 +13,7 @@ from rdkit import RDConfig
 
 
 
-class spDescriptors:
+class Descriptors:
     """
     A wrapper class using rdkit to generate the different descpritors
     for specrtra prediciton.

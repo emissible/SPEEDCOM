@@ -50,13 +50,14 @@ def pad_ndarrays(input_dict):
     lens_of_arrays = []
     for array_i in input_dict.values():
         lens_of_arrays.append(len(array_i))
-        max_len = max(lens_of_arrays)
-        for array_i_key in input_dict.keys():
-            array_i_len = len(input_dict[array_i_key])
-            if(array_i_len < max_len):
-                input_dict[array_i_key] = \
-                    np.pad(input_dict[array_i_key], (0, max_len-array_i_len),
-                           'constant').tolist()
+
+    max_len = max(lens_of_arrays)
+    for array_i_key in input_dict.keys():
+        array_i_len = len(input_dict[array_i_key])
+        if(array_i_len < max_len):
+            input_dict[array_i_key] = \
+                np.pad(input_dict[array_i_key], (0, max_len-array_i_len),
+                       'constant').tolist()
 
     return input_dict
 

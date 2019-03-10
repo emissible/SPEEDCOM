@@ -3,11 +3,19 @@ import pandas as pd
 
 import json
 from NNModels import Descriptors
+from rdkit import Chem
+
 #import rdkit
 #from rdkit import Chem
 #from rdkit.Chem import AllChem
 # from rdkit.ForceField.rdForceField import MMFFMolProperties as properties
 # import rdkit.Chem.Draw as draw
+def draw_molecule(SMILES, filename):
+    """ draw a molecule"""
+    mol = Chem.MolFromSmiles(SMILES)
+    Chem.Draw.MolToImageFile(mol, filename, kekulize=False)
+    return
+
 
 def pad_ndarrays(input_dict):
     """
@@ -32,7 +40,7 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
                          nBits=2048, use_features=False, padding=True,
                          output_file=None):
     """
-    Compute the fingerprints for an input dataframe with all the SIMLES, and
+    Compute the fingerprints for an input dataframe with all the SMILES, and
     output the results as an dictionary with json txt format
 
     Args:
@@ -83,7 +91,7 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
 def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
                              eig_sort=True, padding=True, output_file=None):
     """
-    Compute the fingerprints for an input dataframe with all the SIMLES, and
+    Compute the fingerprints for an input dataframe with all the SMILES, and
     output the results as an dictionary with json txt format
 
     Args:
@@ -113,6 +121,7 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
     CMs_dict = {}
     for rowi_idx, rowi in df.iterrows():
         spD_engine.set_molecule(rowi[SMILES_column])
+        print(rowi_idx)
         print(rowi[key_name])
         rowi_CM = spD_engine.get_coulomb_matrix()
         if(key_name is not None):
@@ -132,7 +141,7 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
 def compute_properties(df,SMILES_column='SMILES',index_name=None,
                        output_file=None):
     """
-    Compute the fingerprints for an input dataframe with all the SIMLES, and
+    Compute the fingerprints for an input dataframe with all the SMILES, and
     output the results as a csv txt file (exported by pandas)
 
     Args:
@@ -168,7 +177,7 @@ def compute_properties(df,SMILES_column='SMILES',index_name=None,
 
 def compute_features(df,SMILES_column='SMILES',key_name=None, output_file=None):
     """
-    Compute the fingerprints for an input dataframe with all the SIMLES, and
+    Compute the fingerprints for an input dataframe with all the SMILES, and
     output the results as a csv txt file (exported by pandas)
 
     Args:

@@ -13,7 +13,7 @@ from rdkit import Chem
 def draw_molecule(SMILES, filename):
     """ draw a molecule"""
     mol = Chem.MolFromSmiles(SMILES)
-    Chem.Draw.MolToImageFile(mol, filename, kekulize=False)
+    Chem.Draw.MolToFile(mol, filename, kekulize=False)
     return
 
 

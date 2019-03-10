@@ -3,6 +3,8 @@ import os
 import pubchempy as pcp
 import scipy.signal
 
+from SPEEDCOM.models import utilities
+
 """
 The data obtaining functions.  Please note that many of these functions
 should only need to be run when training a new model.

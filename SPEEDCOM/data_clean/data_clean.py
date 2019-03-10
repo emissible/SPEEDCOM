@@ -2,6 +2,8 @@
 Functions for assisting in the cleaning of the obtained information.
 """
 
+from SPEEDCOM import core
+
 def remove_deliminators(my_strings):
   """
   Remove deliminators from numbers (comma) so as
@@ -13,9 +15,9 @@ def remove_deliminators(my_strings):
   for i in my_strings:
     if ',' in i:
       tmp = i.split(",")
-      i = tmp[0] + tmp[1]
+      number = tmp[0] + tmp[1]
     try:
-      my_array.append(float(i))  
+      my_array.append(float(number))  
     except:
       print("String" + i + " not able to be cast to float, characters \
       other than ',' or '.'?")

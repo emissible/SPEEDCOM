@@ -88,7 +88,7 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
     else:
         return fps_dict
 
-def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
+def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigval=False,
                              eig_sort=True, padding=True, output_file=None):
     """
     Compute the fingerprints for an input dataframe with all the SMILES, and
@@ -123,7 +123,7 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
         spD_engine.set_molecule(rowi[SMILES_column])
         # print(rowi_idx)
         # print(rowi[key_name])
-        rowi_CM = spD_engine.get_coulomb_matrix()
+        rowi_CM = spD_engine.get_coulomb_matrix(output_eigval=use_eigval)
         if(key_name is not None):
             rowi_idx = rowi[key_name]
 

@@ -137,12 +137,12 @@ class Descriptors:
         if eig_sort:
             eig = np.linalg.eig(coulomb_matrix)[0]
             eig_idx = np.argsort(eig)
-            sorted_matrix = np.zeros(shape=(num_atoms,num_atoms))
+            temp_matrix = np.zeros(shape=(num_atoms,num_atoms))
             for i in range(num_atoms):
-                sorted_matrix[i] = coulomb_matrix[eig_idx[i]]
-            return sorted_matrix
-        else:
-            pass
+                temp_matrix[i] = coulomb_matrix[eig_idx[i]]
+	    temp_matrix = temp_matrix.transpose()
+            for i in range(num_atoms):
+                coulomb_matrix[i] = temp_matrix[eig_idx[i]]
 
         return coulomb_matrix
 

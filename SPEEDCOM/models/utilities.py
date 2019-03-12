@@ -2,13 +2,9 @@ import numpy as np
 import pandas as pd
 
 import json
-<<<<<<< HEAD
 from NNModels import Descriptors
 from rdkit import Chem
 
-=======
-import NNModels# import Descriptors
->>>>>>> remotes/origin/data_clean
 #import rdkit
 #from rdkit import Chem
 #from rdkit.Chem import AllChem
@@ -72,7 +68,6 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
     #Assertions
 
     #initilized the descriptor engine:
-    spD_engine = Descriptors()
     spD_engine = NNModels.Descriptors()
 
     fps_dict = {}
@@ -121,13 +116,13 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
     #Assertions
 
     #initilized the descriptor engine:
-    spD_engine = Descriptors()
+    spD_engine = NNModels.Descriptors()
 
     CMs_dict = {}
     for rowi_idx, rowi in df.iterrows():
         spD_engine.set_molecule(rowi[SMILES_column])
-        print(rowi_idx)
-        print(rowi[key_name])
+        # print(rowi_idx)
+        # print(rowi[key_name])
         rowi_CM = spD_engine.get_coulomb_matrix()
         if(key_name is not None):
             rowi_idx = rowi[key_name]

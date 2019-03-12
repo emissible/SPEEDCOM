@@ -96,7 +96,7 @@ class Descriptors:
                                                    useFeatures=use_features)
         return list(fp.ToBinary())
 
-    def get_coulomb_matrix(self, eig_sort=True):
+    def get_coulomb_matrix(self, eig_sort=True, output_eigval=False):
         """
         Generates the coulomb matrix for a given molecule from its
             SMILES string, of size MxM, where M is the number of
@@ -133,6 +133,10 @@ class Descriptors:
                     norm_diff = math.sqrt(math.pow((xi-xj),2) + math.pow((yi-yj),2) + math.pow((zi-zj),2))
                     element = Zi * Zj / norm_diff
                 coulomb_matrix[indexi][indexj] = element
+        
+        if output_eigval:
+            eig = np.linalg.eig(coulomb_matrix)[0]
+            return eig.sort()
 
         if eig_sort:
             eig = np.linalg.eig(coulomb_matrix)[0]
@@ -140,7 +144,7 @@ class Descriptors:
             temp_matrix = np.zeros(shape=(num_atoms,num_atoms))
             for i in range(num_atoms):
                 temp_matrix[i] = coulomb_matrix[eig_idx[i]]
-	    temp_matrix = temp_matrix.transpose()
+	        temp_matrix = temp_matrix.transpose()
             for i in range(num_atoms):
                 coulomb_matrix[i] = temp_matrix[eig_idx[i]]
 

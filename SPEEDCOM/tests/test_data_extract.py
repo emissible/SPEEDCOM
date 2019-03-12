@@ -75,7 +75,7 @@ class get_molecular_weight(unittest.TestCase):
 class get_molecular_smiles(unittest.TestCase):
   def test_proper_smiles(self):
     """
-    Ensures able to get canonical SMILES from CID
+    Ensures able to get isomeric SMILES from CID
     """
     assert data_extract.get_molecular_smiles(702) == 'CCO', \
       'get_molecular_smiles returns improper canonical SMILES'

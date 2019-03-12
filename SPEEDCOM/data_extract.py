@@ -3,7 +3,7 @@ import os
 import pubchempy as pcp
 import scipy.signal
 
-from context import Molecule 
+import Molecule 
 
 """
 The data obtaining functions.  Please note that many of these functions

@@ -17,10 +17,9 @@ class Molecule:
   def __init__(self, absorp, cid, columb, emiss, smiles, weight):
     self.absorption_peaks = absorp
     self.cid = cid
-    self.coulomb = columb
     self.emission_peaks = emiss
     self.smiles = data_clean.remove_cations(smiles)
     self.weight = weight
     self.Descriptors = NNModels.Descriptors(smiles)
-
+    self.coulomb = self.Descriptors.get_coulomb_matrix()
 

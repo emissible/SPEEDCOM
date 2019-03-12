@@ -14,8 +14,8 @@ should only need to be run when training a new model.
 def get_emission_files(data_dir):
   """
   Get the total files containing emission spectra.  Expects the files to be of
-  type *.ems.txt and have the naming convention *.ems.txt will return a list of
-  strings to be parsed later.
+  type *.ems.txt and have the naming convention *.ems.txt will return a list
+  of strings to be parsed later.
   """
   return [fn for fn in os.listdir(data_dir) if fn.endswith(".ems.txt")]
 
@@ -106,7 +106,8 @@ def initiate_molecules(data_dir):
       emiss = get_peaks(spectra)
       smiles = get_molecular_smiles(cid)
       weight = get_molecular_weight(cid)
-      my_molecules.append(Molecule.Molecule(absorp, cid, columb, emiss, smiles, weight))
+      my_molecules.append(Molecule.\
+        Molecule(absorp, cid, columb, emiss, smiles, weight))
     else:
       pass
   #For all applicable absorption spectra put properties into molecule objects,
@@ -132,6 +133,11 @@ def initiate_molecules(data_dir):
         emiss = None
         smiles = get_molecular_smiles(cid)
         weight = get_molecular_weight(cid)
-        my_molecules.append(Molecule.Molecule(absorp, cid, columb, emiss, smiles, \
-          weight))
+        my_molecules.append(Molecule.\
+          Molecule(absorp, cid, columb, emiss, smiles, weight))
   return my_molecules
+
+def electrostatic_potentials(file_name):
+  potential = None
+  
+  return potential

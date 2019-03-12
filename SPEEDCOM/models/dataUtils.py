@@ -79,3 +79,19 @@ class DataUtils:
             ret[i, j + 1] = word_map[c]
         ret[i, len(item)+1:] = word_map['E']
     return ret
+  
+  @staticmethod
+  def finger_print_clean(df, colname_string_array):
+    """
+    clean the finger print data loaded from pd.dataframe
+    df -- pd.DataFrame(): dataframe that has the connetivity fingerprints
+    colname_string_array --str: column name of the string array column
+    return X_fp -- np.ndarray: ndarray shape of (len(df),padding sequence)
+    """
+    temp = df[colname_string_array].str.replace("'", "")
+    temp=temp.str.replace("[", "").str.replace("]", "")
+    X_fp = np.array([np.fromstring(row, dtype = int, sep=',') for row in temp])
+    print('fingerprint column shape is',X_fp.shape)
+    return X_fp
+     
+  

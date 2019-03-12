@@ -1,7 +1,7 @@
 # Core.py below
 
-#from models import utilities
-from data_clean import data_clean
+import NNModels
+import data_clean
 #from data_clean import data_extract
 
 class Molecule:
@@ -21,6 +21,6 @@ class Molecule:
     self.emission_peaks = emiss
     self.smiles = data_clean.remove_cations(smiles)
     self.weight = weight
-    #self.Descriptors = models.Descriptors(smiles)
+    self.Descriptors = NNModels.Descriptors(smiles)
 
 

@@ -1,8 +1,8 @@
 # Core.py below
 
 #from models import utilities
-from data_clean import data_clean
-from data_clean import data_extract
+import data_clean
+import data_extract
 
 data_dir = "../DATA/PhotochemCAD3/PCAD3 Compd Database 2018"
 

@@ -3,31 +3,29 @@ import os
 import pubchempy as pcp
 import scipy.signal
 
-from SPEEDCOM.models import utilities
+from context import Molecule 
 
 """
 The data obtaining functions.  Please note that many of these functions
 should only need to be run when training a new model.
 """
 
-#DATA_DIR global variable containing the path to the data
-def get_emission_files():
+#data_dir global variable containing the path to the data
+def get_emission_files(data_dir):
   """
   Get the total files containing emission spectra.  Expects the files to be of
   type *.ems.txt and have the naming convention *.ems.txt will return a list of
   strings to be parsed later.
   """
-  return [fn for fn in os.listdir(DATA_DIR)
-              if any(fn.endswith(.ems.txt))]
+  return [fn for fn in os.listdir(data_dir) if fn.endswith(".ems.txt")]
 
-def get_absorption_files():
+def get_absorption_files(data_dir):
   """
   Get the total files containing absorption spectra.  Expects the files to be
   of type *.txt and have the naming convention *.abs.txt will return a list of
   strings to be parsed later.
   """
-  return [fn for fn in os.listdir(DATA_DIR)
-              if any(fn.endswith(.abs.txt))]
+  return [fn for fn in os.listdir(data_dir) if fn.endswith(".abs.txt")]
 
 def get_molecule_cid(file_name):
   """ 
@@ -36,24 +34,20 @@ def get_molecule_cid(file_name):
   of the system,   else return None so as to disreguard the molecule
   from training.
   """
-  file = file_name.split("_")
+  my_file = file_name.split("_")
   #try to get the cas # if not then try name.
+  cas = my_file[1]
   try:
-    cas = file[1]
-    pcp.get_compounds(cas, 'name')[0].cid
-
+    cid = pcp.get_compounds(cas, 'name')[0].cid
   except:
-    pass
-
-  #file doesn't have a cas number with it, try name
-  try:
-    cid = pcp.get_compounds[file[1], 'name'][0].cid
-
-  #Couldn't determine name.
-  except:
-    cid = None
-
-  return cid
+    #file doesn't have a cas number with it, try name
+    my_name = cas.split(".")
+    try:
+      cid = pcp.get_compounds(my_name[0], 'name')[0].cid
+    except:
+      cid = None
+  finally:
+    return cid
 
 def get_molecular_weight(cid):
   """
@@ -63,9 +57,9 @@ def get_molecular_weight(cid):
 
 def get_molecular_smiles(cid):
   """
-  Takes the PUBCHEM CID and returns the canonical SMILES string.
+  Takes the PUBCHEM CID and returns the isomeric SMILES string.
   """
-  return pcp.Compound.from_cid(cid).canonical_smiles
+  return pcp.Compound.from_cid(cid).isomeric_smiles
 
 def get_spectra(file_name):
   """
@@ -78,7 +72,10 @@ def get_spectra(file_name):
     next(file)
     for line in file:
       tmp = line.split()
-      spectra.append([float(tmp[0]), float(tmp[1])])
+      if len(tmp) > 1:
+        spectra.append([float(tmp[0]), float(tmp[1])])
+      else:
+        continue
   return np.asarray(spectra)
 
 def get_peaks(spectra):
@@ -90,9 +87,9 @@ def get_peaks(spectra):
   peak_locations = scipy.signal.find_peaks(spectra[:,1])[0]
   for i in peak_locations:
     peaks.append(spectra[i, :])
-  return np.asarry(peaks)
+  return np.asarray(peaks)
 
-def initiate_molecules():
+def initiate_molecules(data_dir):
   """
   Takes in the directory containing all of the data files and returns a list
   of populated molecule objects.
@@ -100,21 +97,21 @@ def initiate_molecules():
   my_molecules = []
   #For all applicable emission spectra put properties into molecule objects,
   #and place objects into list for molecules.
-  for ems_file in get_emission_files():
+  for ems_file in get_emission_files(data_dir):
     cid = get_molecule_cid(ems_file) 
     if cid:
-      spectra = get_spectra(ems_file)
+      spectra = get_spectra(data_dir + "/" + ems_file)
       absorp = None
       columb = None
       emiss = get_peaks(spectra)
       smiles = get_molecular_smiles(cid)
       weight = get_molecular_weight(cid)
-      my_molecules.append(molecule(absorp, cid, columb, emiss, smiles, weight))
+      my_molecules.append(Molecule.Molecule(absorp, cid, columb, emiss, smiles, weight))
     else:
       pass
   #For all applicable absorption spectra put properties into molecule objects,
   #and place objects into list for molecules.
-  for abs_file in get_absorption_files():
+  for abs_file in get_absorption_files(data_dir):
     found = 0
     cid = get_molecule_cid(abs_file)
     #Check to see if the molecule already exists in the list, and if it does
@@ -123,18 +120,18 @@ def initiate_molecules():
       for mol in my_molecules:
         if mol.cid == cid:
           found = 1
-          spectra = get_spectra(abs_file)
+          spectra = get_spectra(data_dir + "/" + abs_file)
           mol.absorption_peaks = get_peaks(spectra)
           break
         else:
           pass
       if not found:
-        spectra = get_spectra(abs_file)
+        spectra = get_spectra(data_dir + "/" + abs_file)
         absorp = get_peaks(spectra)
         columb = None
         emiss = None
-        smiles = get_molecular_smiles
+        smiles = get_molecular_smiles(cid)
         weight = get_molecular_weight(cid)
-        my_molecules.append(molecule(absorp, cid, columb, emiss, smiles, \
+        my_molecules.append(Molecule.Molecule(absorp, cid, columb, emiss, smiles, \
           weight))
   return my_molecules

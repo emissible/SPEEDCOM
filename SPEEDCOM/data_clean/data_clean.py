@@ -24,7 +24,7 @@ def remove_deliminators(my_strings):
         other than ',' or '.'?")
   return np.asarray(my_array)
 
-def remove_catioins(smiles):
+def remove_cations(smiles):
   """
   Remove the 1st and 7th row cat/anions from the smiles strings.
   """

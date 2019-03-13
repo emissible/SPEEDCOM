@@ -42,6 +42,8 @@ def get_molecule_cid(file_name):
     cid = pcp.get_compounds(cas, 'name')[0]
   except:
     #file doesn't have a cas number with it, try name
+    cas = my_file[-1]
+    cas.replace("_", ' ')
     my_name = cas.split(".")
     try:
       cid = pcp.get_compounds(my_name[0], 'name')[0]
@@ -108,7 +110,7 @@ def initiate_molecules(data_dir):
   #and place objects into list for molecules.
   for abs_file in get_absorption_files(data_dir):
     found = 0
-    cid = get_molecule_cid(abs_file)
+    pubchem_molecule = get_molecule_cid(abs_file)
     #Check to see if the molecule already exists in the list, and if it does
     #does it already have valid absorption peaks:
     if pubchem_molecule:

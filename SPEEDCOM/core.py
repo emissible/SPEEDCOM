@@ -1,5 +1,6 @@
 #from models import utilities
 import utilities
+import NNModels
 import data_extract
 
 class Molecule:
@@ -17,17 +18,14 @@ class Molecule:
     self.cid = cid
     self.coulomb = columb
     self.emission_peaks = emiss
-    self.smiles = data_clean.remove_cations(smiles)
+    self.smiles = utilities.remove_cations(smiles)
     self.weight = weight
     self.Descriptors = NNModels.Descriptors(smiles)
 
-
-def __main__():
-    data_dir = "../DATA/PhotochemCAD3/PCAD3 Compd Database 2018"
-    
+if __name__ =='__main__':
+    data_dir = "../data/PCAD3_Compd_Database_2018" 
     molecule_list = data_extract.initiate_molecules(data_dir)
-    
     print(len(molecule_list))
 
-    return
+
 

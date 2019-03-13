@@ -3,8 +3,6 @@ import os
 import pubchempy as pcp
 import scipy.signal
 
-from core import Molecule 
-
 """
 The data obtaining functions.  Please note that many of these functions
 should only need to be run when training a new model.
@@ -94,6 +92,9 @@ def initiate_molecules(data_dir):
   Takes in the directory containing all of the data files and returns a list
   of populated molecule objects.
   """
+  # import the Molecule class
+  from core import Molecule 
+  
   my_molecules = []
   #For all applicable emission spectra put properties into molecule objects,
   #and place objects into list for molecules.

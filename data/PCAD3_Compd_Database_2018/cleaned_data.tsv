@@ -1,0 +1,292 @@
+	#	Name	Epsilon	Solvent	Quantum Yield	Solvent.1	Absorption	SMILES
+0	1	Benzene	210	cyclohexane	0.053	hexane	254.75	C1=CC=CC=C1
+1	2	Toluene	2,860	cyclohexane	0.17	cyclohexane	261.75	CC1=CC=CC=C1
+2	3	o-Xylene	254	cyclohexane	0.17	hexane	263.0	CC1=CC=CC=C1C
+3	4	m-Xylene	284	cyclohexane	0.13	hexane	265.0	CC1=CC(=CC=C1)C
+4	5	p-Xylene	770	cyclohexane	0.22	hexane	275.0	CC1=CC=C(C=C1)C
+5	6	Mesitylene	190	cyclohexane	0.08800000000000001	hexane	265.0	CC1=CC(=CC(=C1)C)C
+6	7	Durene	214	cyclohexane	0.3	hexane	278.0	CC1=CC(=C(C=C1C)C)C
+7	8	Pentamethylbenzene	629	cyclohexane	0.075	hexane	271.0	CC1=CC(=C(C(=C1C)C)C)C
+8	9	Hexamethylbenzene	214	cyclohexane	0.01	hexane	271.0	CC1=C(C(=C(C(=C1C)C)C)C)C
+9	10	Phenol	2,340	cyclohexane	0.075	hexane	270.75	C1=CC=C(C=C1)O
+10	11	Anisole	7800	cyclohexane	0.45	cyclohexane	220.0	COC1=CC=CC=C1
+11	12	Benzonitrile	13,100	cyclohexane	0.23	cyclohexane	222.0	C1=CC=C(C=C1)C#N
+12	13	Benzaldehyde	13,200	cyclohexane			242.0	C1=CC=C(C=C1)C=O
+13	14	Benzoic acid	8,270	methanol			227.0	C1=CC=C(C=C1)C(=O)O
+14	15	Acetophenone	12,800	ethanol			241.0	CC(=O)C1=CC=CC=C1
+15	16	Aniline	1,760	cyclohexane	0.17	cyclohexane	288.0	C1=CC=C(C=C1)N
+16	17	N,N-Dimethyl-aniline	14,900	cyclohexane	0.19	cyclohexane	251.0	CN(C)C1=CC=CC=C1
+17	18	Phenylhydrazine Hydrochloride	490	PBS			279.0	C1=CC=C(C=C1)NN.Cl
+18	19	Chlorobenzene	280	cyclohexane	0.0042	cyclohexane	265.0	C1=CC=C(C=C1)Cl
+19	20	Iodobenzene	13,200	cyclohexane			228.0	C1=CC=C(C=C1)I
+20	21	Nitrobenzene	8,140	ethanol			258.0	C1=CC=C(C=C1)[N+](=O)[O-]
+21	22	Styrene	14,700	cyclohexane	0.22	cyclohexane	248.0	C=CC1=CC=CC=C1
+22	23	Phenylacetylene	17,600	cyclohexane	0.11	benzene	236.0	C#CC1=CC=CC=C1
+23	24	1,4-Diethynylbenzene	28,200	chloroform	0.19	chloroform	274.0	C#CC1=CC=C(C=C1)C#C
+24	25	Phenylpropargyl aldehyde	5,000	ethanol			277.0	C1=CC=C(C=C1)C#CC=O
+25	26	Phenylboronic acid	9,520	cyclohexane	0.26	cyclohexane	227.0	B(C1=CC=CC=C1)(O)O
+26	27	Vanillin	9,770	cyclohexane			222.0	COC1=C(C=CC(=C1)C=O)O
+27	28	3-Hydroxyacetophenone	19,000	ethanol			218.0	CC(=O)C1=CC(=CC=C1)O
+28	29	Ethyl 4-(dimethylamino)benzoate	23,200	ethanol	0.29	cyclohexane	310.25	CCOC(=O)C1=CC=C(C=C1)N(C)C
+29	30	Gallacetophenone	12,500	methanol			291.0	CC(=O)C1=C(C(=C(C=C1)O)O)O
+30	31	Terephthalic acid	17,000	ethanol			240.0	C1=CC(=CC=C1C(=O)O)C(=O)O
+31	32	p-Phenylenediamine	6,920	acetonitrile	0.065	acetonitrile	251.0	C1=CC(=CC=C1N)N
+32	33	Tetraphenylmethane	1,910	cyclohexane	0.24	cyclohexane	263.0	C1=CC=C(C=C1)C(C2=CC=CC=C2)(C3=CC=CC=C3)C4=CC=CC=C4
+33	34	N-Phenylbenzylamine	13,200	cyclohexane	0.16399999999999998	cyclohexane	245.0	C1=CC=C(C=C1)CNC2=CC=CC=C2
+34	35	trans-Chalcone	28,000	cyclohexane			302.0	C1=CC=C(C=C1)/C=C/C(=O)C2=CC=CC=C2
+35	36	Benzophenone	19,400	ethanol			252.0	C1=CC=C(C=C1)C(=O)C2=CC=CC=C2
+36	37	4,4'-Dihydroxybenzophenone	15,200	chloroform			283.0	C1=CC(=CC=C1C(=O)C2=CC=C(C=C2)O)O
+37	38	Diethyl phthalate	7,110	ethanol			225.0	CCOC(=O)C1=CC=CC=C1C(=O)OCC
+38	39	1,2,4,5-Tetracyanobenzene	3,400	chloroform	0.21	chloroform	316.0	C1=C(C(=CC(=C1C#N)C#N)C#N)C#N
+39	40	Hexafluorobenzene	684	ethanol	0.035	ethanol	230.0	C1(=C(C(=C(C(=C1F)F)F)F)F)F
+40	41	Ferrocene	96	cyclohexane			442.0	[CH-]1C=CC=C1.[CH-]1C=CC=C1.[Fe+2]
+41	42	Biphenyl	16,000	cyclohexane	0.18	cyclohexane	247.5	C1=CC=C(C=C1)C2=CC=CC=C2
+42	43	p-Terphenyl	33,800	cyclohexane	0.93	cyclohexane	276.25	C1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=CC=C3
+43	44	p-Quaterphenyl	41,000	cyclohexane	0.89	cyclohexane	294.75	C1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=C(C=C3)C4=CC=CC=C4
+44	45	p-Quinquephenyl	62,500	dimethylformamide	0.89	cyclohexane	312.0	C1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=C(C=C3)C4=CC=C(C=C4)C5=CC=CC=C5
+45	46	1,3,5-Triphenylbenzene 	60,000	cyclohexane	0.27	cyclohexane	251.0	C1=CC=C(C=C1)C2=CC(=CC(=C2)C3=CC=CC=C3)C4=CC=CC=C4
+46	47	Benzidine	67,500	ethanol	0.16	chloroform	206.0	C1=CC(=CC=C1C2=CC=C(C=C2)N)N
+47	48	3,3'-Dimethylbenzidine	41,800	ethanol	0.33	ethanol	209.0	CC1=C(C=CC(=C1)C2=CC(=C(C=C2)N)C)N
+48	49	3,3',5,5-Tetramethylbenzidine	34,800	ethanol	0.29	ethanol	212.0	CC1=CC(=CC(=C1N)C)C2=CC(=C(C(=C2)C)N)C
+49	50	2,5-Diphenyloxazole, [PPO]	35,700	cyclohexane	1.0	cyclohexane	302.75	C1=CC=C(C=C1)C2=CN=C(O2)C3=CC=CC=C3
+50	51	1,4-Bis(5-phenyl-2-oxazolyl)benzene, [POPOP]	47,000	cyclohexane	0.93	cyclohexane	359.0	C1=CC=C(C=C1)C2=CN=C(O2)C3=CC=C(C=C3)C4=NC=C(O4)C5=CC=CC=C5
+51	52	1,2,3,4,5-Pentaphenyl-1,3-cyclopentadiene	18,600	cyclohexane	0.0028	dioxane	245.0	C1=CC=C(C=C1)C2C(=C(C(=C2C3=CC=CC=C3)C4=CC=CC=C4)C5=CC=CC=C5)C6=CC=CC=C6
+52	53	rac-BINAP	9,800	acetonitrile			223.0	C1=CC=C(C=C1)P(C2=CC=CC=C2)C3=C(C4=CC=CC=C4C=C3)C5=C(C=CC6=CC=CC=C65)P(C7=CC=CC=C7)C8=CC=CC=C8
+53	54	(R)-BINOL	8,590	acetonitrile	0.1	tetrahydrofuran	278.0	C1=CC=C2C(=C1)C=CC(=C2C3=C(C=CC4=CC=CC=C43)O)O
+54	55	Naphthalene	6,000	cyclohexane	0.23	cyclohexane	275.0	C1=CC=C2C=CC=CC2=C1
+55	56	Anthracene	9,700	cyclohexane	0.36	cyclohexane	356.25	C1=CC=C2C=C3C=CC=CC3=CC2=C1
+56	57	Tetracene	10,000	benzene	0.13	benzene	475.0	C1=CC=C2C=C3C=C4C=CC=CC4=CC3=CC2=C1
+57	58	Pentacene	7,200	dimethylformamide	0.13	tetrahydrofuran	578.0	C1=CC=C2C=C3C=C4C=C5C=CC=CC5=CC4=CC3=CC2=C1
+58	59	Phenanthrene	69,200	cyclohexane	0.125	ethanol	252.0	C1=CC=C2C(=C1)C=CC3=CC=CC=C32
+59	60	Pyrene	81,700	cyclohexane	0.32	cyclohexane	241.0	C1=CC2=C3C(=C1)C=CC4=CC=CC(=C43)C=C2
+60	61	Triphenylene	146,000	cyclohexane	0.08	cyclohexane	258.0	C1=CC=C2C(=C1)C3=CC=CC=C3C4=CC=CC=C24
+61	62	9,10-Diphenylanthracene	14,000	cyclohexane	1.0	cyclohexane	372.5	C1=CC=C(C=C1)C2=C3C=CC=CC3=C(C4=CC=CC=C42)C5=CC=CC=C5
+62	63	9,10-Bis(phenylethynyl)anthracene	87,000	cyclohexane	1.0	cyclohexane	270.25	C1=CC=C(C=C1)C#CC2=C3C=CC=CC3=C(C4=CC=CC=C42)C#CC5=CC=CC=C5
+63	64	Rubrene	127,000	benzene	0.54	chloroform	303.0	C1=CC=C(C=C1)C2=C3C=CC=CC3=C(C4=C(C5=CC=CC=C5C(=C24)C6=CC=CC=C6)C7=CC=CC=C7)C8=CC=CC=C8
+64	65	1,8-Naphthalic anhydride	26,300	acetonitrile	0.32	acetonitrile	228.0	C1=CC2=C3C(=C1)C(=O)OC(=O)C3=CC=C2
+65	66	2-Aminonaphthalene 	53,700	acetonitrile	0.91	acetonitrile	239.0	C1=CC=C2C=C(C=CC2=C1)N
+66	67	2,3-Diaminonaphthalene	50,100	methanol	0.54	methanol	245.0	C1=CC=C2C=C(C(=CC2=C1)N)N
+67	68	8-Anilino-1-naphthalenesulfonic acid	25,100	methanol	0.24	methanol	218.0	C1=CC=C(C=C1)NC2=CC=CC3=C2C(=CC=C3)S(=O)(=O)O
+68	69	1,4,5,8-Naphthalenetetracarboxylic dianhydride	37,200	acetonitrile	0.13	acetonitrile	227.0	C1=CC2=C3C(=CC=C4C3=C1C(=O)OC4=O)C(=O)OC2=O
+69	70	Pyranine	23,100	NaOH aq	1.0	water (pH 10)	235.0	C1=CC2=C3C(=C(C=C2S(=O)(=O)[O-])S(=O)(=O)[O-])C=CC4=C(C=C(C1=C43)O)S(=O)(=O)[O-]
+70	71	1,2-Diphenylacetylene	27,600	ethanol	0.0034	3-methylpentane	278.75	C1=CC=C(C=C1)C#CC2=CC=CC=C2
+71	72	cis-Stilbene	10,200	hexane			276.0	C1=CC=C(C=C1)/C=C\C2=CC=CC=C2
+72	73	trans-Stilbene	28,200	hexane	0.04	hexane	293.75	C1=CC=C(C=C1)/C=C/C2=CC=CC=C2
+73	74	1,4-Diphenylbutadiyne	27,800	ethanol	0.0016	ethanol	326.0	C1=CC=C(C=C1)C#CC#CC2=CC=CC=C2
+74	75	1,4-Diphenylbutadiene	33,000	hexane	0.42	cyclohexane	330.0	C1=CC=C(C=C1)/C=C/C=C/C2=CC=CC=C2
+75	76	1,6-Diphenylhexatriene	82,400	cyclohexane	0.65	cyclohexane	353.25	C1=CC=C(C=C1)/C=C/C=C/C=C/C2=CC=CC=C2
+76	77	4-Dimethylamino-4'-nitrostilbene	27,000	benzene	0.7	benzene	432.25	CN(C)C1=CC=C(C=C1)/C=C/C2=CC=C(C=C2)[N+](=O)[O-]
+77	78	Curcumin	55,000	ethanol	0.063	ethanol	425.0	COC1=C(C=CC(=C1)/C=C/C(=O)CC(=O)/C=C/C2=CC(=C(C=C2)O)OC)O
+78	79	all trans-Retinal 	43,500	ethanol			372.0	CC1=C(C(CCC1)(C)C)/C=C/C(=C/C=C/C(=C/C=O)/C)/C
+79	80	Beta-carotene	139,500	hexane			451.0	CC1=C(C(CCC1)(C)C)/C=C/C(=C/C=C/C(=C/C=C/C=C(/C=C/C=C(/C=C/C2=C(CCCC2(C)C)C)\C)\C)/C)/C
+80	81	Pyridine	1,800	acetonitrile			251.0	C1=CC=NC=C1
+81	82	Pyridine N-oxide	14,300	dichloromethane			276.0	C1=CC=[N+](C=C1)[O-]
+82	83	2-Acetylpyridine	7,500	cyclohexane			227.0	CC(=O)C1=CC=CC=N1
+83	84	4-Dimethylaminopyridine	13,300	acetonitrile	0.017	acetonitrile	257.0	CN(C)C1=CC=NC=C1
+84	85	4-(4-Nitrobenzyl)pyridine 	12,300	ethanol			265.0	C1=CC(=CC=C1CC2=CC=NC=C2)[N+](=O)[O-]
+85	86	1.3,5-Triazine	890	ethanol			270.0	C1=NC=NC=N1
+86	87	Phthalimide	44,100	ethanol			215.0	C1=CC=C2C(=C1)C(=O)NC2=O
+87	88	2,2'-Bipyridine	11,200	acetonitrile			281.0	C1=CC=NC(=C1)C2=CC=CC=N2
+88	89	4,4'-Bipyridine	12,600	acetonitrile			238.0	C1=CN=CC=C1C2=CC=NC=C2
+89	90	Quinoline	27,000	ethanol	0.01	ethanol	204.0	C1=CC=C2C(=C1)C=CC=N2
+90	91	8-Quinoline carboxylic acid	31,900	ethanol	0.02	ethanol	219.0	C1=CC2=C(C(=C1)C(=O)O)N=CC=C2
+91	92	3-Quinoline carboxaldehyde	1,330	ethanol			245.0	C1=CC=C2C(=C1)C=C(C=N2)C=O
+92	93	Benzothiazole	18,700	ethanol			217.0	C1=CC=C2C(=C1)N=CS2
+93	94	Benzotriazole	5,620	ethanol			253.0	C1=CC2=NNN=C2C=C1
+94	95	2-Methylbenzoxazole	10,200	cyclohexane	0.05	cyclohexane	231.75	CC1=NC2=CC=CC=C2O1
+95	96	Pyrrole	15,000	hexane			206.0	C1=CNC=C1
+96	97	Pyrrole-2-carboxaldehyde	15,600	hexane			278.0	C1=CNC(=C1)C=O
+97	98	Thiazole Orange 	58,500	methanol			502.0	CC1=CC=C(C=C1)S(=O)(=O)[O-].CN\1C2=CC=CC=C2S/C1=C\C3=CC=[N+](C4=CC=CC=C34)C
+98	99	Thioflavin T 	36,000	PBS 	0.0004	water	413.0	CC1=CC2=C(C=C1)[N+](=C(S2)C3=CC=C(C=C3)N(C)C)C
+99	100	Tris(2,2'-bipyridyl)ruthenium(II)	87,000	water	0.042	water	286.0	C1=CN=C(N=C1)C2=NC=CC=N2.C1=CN=C(N=C1)C2=NC=CC=N2.C1=CN=C(N=C1)C2=NC=CC=N2.Cl.Cl.[Ru]
+100	101	4-Chloro-7-nitrobenzofurazan 	8,130	ethanol			336.0	C1=C(C2=NON=C2C(=C1)Cl)[N+](=O)[O-]
+101	102	7-Benzylamino-4-nitrobenz-2-oxa-1,3-diazole	19,700	ethanol	0.36	ethanol	460.5	C1=CC=C(C=C1)CNC2=CC=C(C3=NON=C23)[N+](=O)[O-]
+102	103	Carbostyril 124	46,500	water (pH 5 to 9)	0.97	water (pH 5 to 9 )	219.0	CC1=CC(=O)NC2=C1C=CC(=C2)N
+103	104	Quinoline Yellow 	22,700	PBS			413.0	C1=CC=C2C(=C1)C(=O)C(C2=O)C3=NC4=C(C=C(C=C4C=C3)S(=O)(=O)[O-])S(=O)(=O)[O-]
+104	105	2,3,5-Triphenyltetrazolium Chloride	25,600	PBS			247.0	C1=CC=C(C=C1)C2=NN([N+](=N2)C3=CC=CC=C3)C4=CC=CC=C4
+105	106	Quinine sulfate	5,700	0.5 M H2SO4	0.546	H2SO4 aq (1 N)	349.0	COC1=CC2=C(C=CN=C2C=C1)[C@H]([C@@H]3C[C@@H]4CCN3C[C@@H]4C=C)O.COC1=CC2=C(C=CN=C2C=C1)[C@H]([C@@H]3C[C@@H]4CCN3C[C@@H]4C=C)O.O.O.OS(=O)(=O)O
+106	107	L-Alanine	9	methanol			262.0	C[C@@H](C(=O)O)N
+107	108	L-Phenylalanine	195	water	0.022000000000000002	water	257.5	C1=CC=C(C=C1)C[C@@H](C(=O)O)N
+108	109	L-Tyrosine	1,405	phosphate buffer (pH 7, 0.1 M)	0.13	phosphate buffer (pH 7, 0.1 M)	274.25	C1=CC(=CC=C1C[C@@H](C(=O)O)N)O
+109	110	L-Histidine	5,700	water			211.0	C1=C(NC=N1)C[C@@H](C(=O)O)N
+110	111	L-Tryptophan	5,579	phosphate buffer (pH 7, 0.1 M)	0.12	phosphate buffer (pH 7, 0.1 M)	278.0	C1=CC=C2C(=C1)C(=CN2)C[C@@H](C(=O)O)N
+111	112	Adenine	13,000	water (pH 7)			261.0	C1=NC2=C(N1)C(=NC=N2)N
+112	113	Guanine	10,700	water			243.0	C1=NC2=C(N1)C(=O)NC(=N2)N
+113	114	Cytosine	6,100	water			266.75	C1=C(NC(=O)N=C1)N
+114	115	Thymine	7,900	water			263.75	CC1=CNC(=O)NC1=O
+115	116	Uracil	8,200	water			258.25	C1=CNC(=O)NC1=O
+116	117	2-Amino-4-methylpyrimidine 	14,500	ethanol			228.0	CC1=NC(=NC=C1)N
+117	118	2,4-dihydroxy-6-methylpyrimidine	9,300	ethanol			259.0	CC1=CC(=O)NC(=O)N1
+118	119	D-(-)-Salicin	1,000	ethanol			212.0	C1=CC=C(C(=C1)CO)O[C@H]2[C@@H]([C@H]([C@@H]([C@H](O2)CO)O)O)O
+119	120	Riboflavin	33,000	ethanol	0.3	ethanol	263.0	CC1=CC2=C(C=C1C)N(C3=NC(=O)NC(=O)C3=N2)C[C@@H]([C@@H]([C@@H](CO)O)O)O
+120	121	L-Ascorbic acid	14,000	PBS			265.0	C([C@@H]([C@@H]1C(=C(C(=O)O1)O)O)O)O
+121	122	DL-alpha-Tocopherol	26,300	ethanol	0.14	ethanol	206.0	CC1=C(C(=C2CC[C@@](OC2=C1C)(C)CCC[C@H](C)CCC[C@H](C)CCCC(C)C)C)O
+122	123	Vitamin K1	18,600	ethanol			248.0	CC1=C(C(=O)C2=CC=CC=C2C1=O)C/C=C(\C)/CCC[C@H](C)CCC[C@H](C)CCCC(C)C
+123	124	Folic acid	25,200	PBS	0.005	water	281.0	C1=CC(=CC=C1C(=O)N[C@@H](CCC(=O)O)C(=O)O)NCC2=CN=C3C(=N2)C(=O)NC(=N3)N
+124	125	1,4-Benzoquinone	17,000	acetonitrile			239.75	C1=CC(=O)C=CC1=O
+125	126	Hydroquinone	17,000	acetonitrile	0.16	acetonitrile	225.0	C1=CC(=CC=C1O)O
+126	127	2,3,5,6-Tetrachloro-1,4-benzoquinone 	22,400	acetonitrile			288.0	C1(=C(C(=O)C(=C(C1=O)Cl)Cl)Cl)Cl
+127	128	Tetrachlorohydroquinone	39,900	acetonitrile			211.0	C1(=C(C(=C(C(=C1Cl)Cl)O)Cl)Cl)O
+128	129	2,3,5,6-Tetramethyl-1,4-benzoquinone	24,500	acetonitrile			270.0	CC1=C(C(=O)C(=C(C1=O)C)C)C
+129	130	2,3-Dichloro-5,6-dicyano-1,4-benzoquinone	12,300	chloroform			287.0	C(#N)C1=C(C(=O)C(=C(C1=O)Cl)Cl)C#N
+130	131	3,4,5,6-Tetrachloro-1,2-benzoquinone	1,480	chloroform			458.0	C1(=C(C(=O)C(=O)C(=C1Cl)Cl)Cl)Cl
+131	132	2,5-Diphenyl-1,4-benzoquinone	31,100	acetonitrile			243.0	C1=CC=C(C=C1)C2=CC(=O)C(=CC2=O)C3=CC=CC=C3
+132	133	2,5-Di-tert-butyl-1,4-benzoquinone	15,100	acetonitrile			258.0	CC(C)(C)C1=CC(=O)C(=CC1=O)C(C)(C)C
+133	134	Tetracyanoethylene	14,500	chloroform			267.0	C(#N)C(=C(C#N)C#N)C#N
+134	135	7,7,8,8-Tetracyanoquinodimethane	42,700	chloroform			401.0	C1=CC(=C(C#N)C#N)C=CC1=C(C#N)C#N
+135	136	1,4-Naphthoquinone	21,300	ethanol			246.0	C1=CC=C2C(=O)C=CC(=O)C2=C1
+136	137	1,4-Naphthoquinone-2-sulfonic acid, Potassium salt	19,100	water			255.0	C1=CC=C2C(=C1)C(=O)C=C(C2=O)S(=O)(=O)[O-]
+137	138	2,3-Dichloro-1,4-naphthoquinone	18,400	ethanol			280.0	C1=CC=C2C(=C1)C(=O)C(=C(C2=O)Cl)Cl
+138	139	2-Methyl-1,4-naphthoquinone	18,200	ethanol			251.0	CC1=CC(=O)C2=CC=CC=C2C1=O
+139	140	9,10-Phenanthrenequinone 	29,000	chloroform			268.0	C1=CC=C2C(=C1)C3=CC=CC=C3C(=O)C2=O
+140	141	1,2-Naphthoquinone	19,200	methanol			249.0	C1=CC=C2C(=C1)C=CC(=O)C2=O
+141	142	1,2-Naphthoquinone-4-sulfonic acid, sodium salt	8,570	methanol			250.0	C1=CC=C2C(=C1)C(=CC(=O)C2=O)S(=O)(=O)[O-]
+142	143	9,10-Anthraquinone	56,800	ethanol			251.25	C1=CC=C2C(=C1)C(=O)C3=CC=CC=C3C2=O
+143	144	Alizarin	28,400	ethanol			248.0	C1=CC=C2C(=C1)C(=O)C3=C(C2=O)C(=C(C=C3)O)O
+144	145	Alizarin Red S	20,000	ethanol			250.0	C1=CC=C2C(=C1)C(=O)C3=CC(=C(C(=C3C2=O)O)O)S(=O)(=O)[O-]
+145	146	1,4-Anthraquinone	46,800	ethanol			233.0	C1=CC=C2C=C3C(=O)C=CC(=O)C3=CC2=C1
+146	147	5,12-Naphthacenequinone	36,300	benzene	0.43	benzene	296.0	C1=CC=C2C=C3C(=CC2=C1)C(=O)C4=CC=CC=C4C3=O
+147	148	6,13-Pentacenequinone	107,000	benzene	0.54	benzene	303.0	C1=CC=C2C=C3C(=CC2=C1)C(=O)C4=CC5=CC=CC=C5C=C4C3=O
+148	149	Coumarin	11,000	ethanol			275.0	C1=CC=C2C(=C1)C=CC(=O)O2
+149	150	4-Hydroxycoumarin	8,470	ethanol	0.003	ethanol	280.0	C1=CC=C2C(=C1)C(=CC(=O)O2)O
+150	151	7-Hydroxycoumarin	16,800	ethanol	0.08	methanol	326.0	C1=CC(=CC2=C1C=CC(=O)O2)O
+151	152	7-Hydroxy-4-(trifluoromethyl)coumarin	12,600	ethanol	0.2	ethanol	338.0	C1=CC2=C(C=C1O)OC(=O)C=C2C(F)(F)F
+152	153	7-Methoxycoumarin-4-acetic acid	11,820	methanol	0.18	methanol	323.75	COC1=CC2=C(C=C1)C(=CC(=O)O2)CC(=O)O
+153	154	Coumarin 1	23,500	ethanol	0.5	ethanol	373.25	CCN(CC)C1=CC2=C(C=C1)C(=CC(=O)O2)C
+154	155	Coumarin 6	54,000	ethanol	0.78	ethanol	459.25	CCN(CC)C1=CC2=C(C=C1)C=C(C(=O)O2)C3=NC4=CC=CC=C4S3
+155	156	Coumarin 7	52,500	ethanol	0.82	methanol	436.0	CCN(CC)C1=CC2=C(C=C1)C=C(C(=O)O2)C3=NC4=CC=CC=C4N3
+156	157	Coumarin 30	54,000	acetonitrile	0.8	ethanol	407.5	CCN(CC)C1=CC2=C(C=C1)C=C(C(=O)O2)C3=NC4=CC=CC=C4N3C
+157	158	Coumarin 151	17,000	ethanol	0.53	ethanol	384.0	C1=CC2=C(C=C1N)OC(=O)C=C2C(F)(F)F
+158	159	Coumarin 314	46,800	ethanol	0.68	ethanol	436.0	CCOC(=O)C1=CC2=CC3=C4C(=C2OC1=O)CCCN4CCC3
+159	160	Coumarin 343	44,300	ethanol	0.63	ethanol	444.75	C1CC2=C3C(=C4C(=C2)C=C(C(=O)O4)C(=O)O)CCCN3C1
+160	161	Calcein Blue	16,100	PBS	0.59	PBS	361.0	CC1=CC(=O)OC2=C1C=CC(=C2CN(CC(=O)O)CC(=O)O)O
+161	162	Urolithin B	11,300	ethanol	0.21	dimethylformamide	278.0	C1=CC=C2C(=C1)C3=C(C=C(C=C3)O)OC2=O
+162	163	Acridine 	178,000	ethanol	0.0079	ethanol	247.0	C1=CC=C2C(=C1)C=C3C=CC=CC3=N2
+163	164	Proflavine hydrochloride	53,700	water (pH 7)	0.34	water (pH 4)	261.0	C1=CC(=CC2=NC3=C(C=CC(=C3)N)C=C21)N.Cl
+164	165	Acridine Orange	49,100	ethanol (basic)	0.2	ethanol (basic)	270.5	CN(C)C1=CC2=C(C=C1)C=C3C=CC(=CC3=N2)N(C)C.Cl
+165	166	Acridine Yellow G	51,100	ethanol	0.47	ethanol	264.0	CC1=CC2=CC3=CC(=C(C=C3N=C2C=C1N)N)C.Cl
+166	167	Acridone	99,900	ethanol	0.42	ethanol	249.0	C1=CC=C2C(=C1)C(=O)C3=CC=CC=C3N2
+167	168	Phenazine	107,000	ethanol			248.0	C1=CC=C2C(=C1)N=C3C=CC=CC3=N2
+168	169	Phenosafranin	35,600	ethanol	0.2	methanol	533.0	C1=CC=C(C=C1)[N+]2=C3C=C(C=CC3=NC4=C2C=C(C=C4)N)N
+169	170	Neutral Red	43,700	ethanol (basic)	0.044000000000000004	ethanol 	278.0	CC1=CC2=NC3=C(C=C(C=C3)N(C)C)N=C2C=C1N.Cl
+170	171	Janus Green B	35,000	PBS			587.0	CCN(CC)C1=CC2=[N+](C3=C(C=CC(=C3)N=NC4=CC=C(C=C4)N(C)C)N=C2C=C1)C5=CC=CC=C5
+171	172	Phenothiazine	47,600	cyclohexane	0.006	cyclohexane	253.0	C1=CC=C2C(=C1)NC3=CC=CC=C3S2
+172	173	Thionin	77,600	ethanol	0.04	ethanol	605.0	C1=CC2=C(C=C1N)SC3=CC(=[NH2+])C=CC3=N2
+173	174	Methylene blue	40,700	ethanol	0.04	ethanol	656.0	CN(C)C1=CC2=C(C=C1)N=C3C=CC(=[N+](C)C)C=C3S2
+175	176	Toluidine Blue O	74,000	ethanol	0.076	ethanol	628.0	CC1=CC2=C(C=C1N)SC3=CC(=[N+](C)C)C=CC3=N2
+176	177	Phenoxathiin	28,500	ethanol			237.0	C1=CC=C2C(=C1)OC3=CC=CC=C3S2
+177	178	Phenoxazine	39,800	ethanol	0.025	ethanol	239.0	C1=CC=C2C(=C1)NC3=CC=CC=C3O2
+178	179	Oxazine 1	117,000	methanol	0.11	ethanol	642.5	CCN(CC)C1=CC2=C(C=C1)N=C3C=CC(=[N+](CC)CC)C=C3O2.[O-]Cl(=O)(=O)=O
+179	180	Cresyl Violet perchlorate	28,000	ethanol	0.54	methanol	603.0	C1=CC=C2C(=C1)C(=CC3=C2N=C4C=CC(=N)C=C4O3)N.OCl(=O)(=O)=O
+180	181	Nile Red	38,000	dioxane	0.7	dioxane	519.4	CCN(CC)C1=CC2=C(C=C1)N=C3C4=CC=CC=C4C(=O)C=C3O2
+181	182	Nile Blue 	67,000	ethanol	0.27	ethanol	627.5	CC[N+](=C1C=CC2=NC3=C(C=C(C4=CC=CC=C43)N)OC2=C1)CC.[O-]Cl(=O)(=O)=O
+182	183	Oxazine 170	83,000	methanol	0.63	methanol	613.25	CCNC1=CC2=C(C3=CC=CC=C31)N=C4C=C(C(=[NH+]CC)C=C4O2)C.[O-]Cl(=O)(=O)=O
+183	184	Azobenzene	22,400	benzene			319.0	C1=CC=C(C=C1)N=NC2=CC=CC=C2
+184	185	Acid Red 2	18,500	PBS			430.0	CN(C)C1=CC=C(C=C1)N=NC2=CC=CC=C2C(=O)O
+185	186	Methyl Orange	25,900	PBS			466.0	CN(C)C1=CC=C(C=C1)N=NC2=CC=C(C=C2)S(=O)(=O)[O-]
+186	187	Orange G	20,900	PBS			478.0	C1=CC=C(C=C1)N=NC2=C(C=CC3=CC(=CC(=C32)S(=O)(=O)[O-])S(=O)(=O)[O-])O
+187	188	Orange II	15,400	PBS			486.0	C1=CC=C2C(=C1)C=CC(=C2N=NC3=CC=C(C=C3)S(=O)(=O)[O-])O
+188	189	Acid Red 88	11,700	PBS			503.0	C1=CC=C2C(=C1)C=CC(=C2N=NC3=CC=C(C4=CC=CC=C43)S(=O)(=O)[O-])O
+189	190	Sudan I	14,500	ethanol			481.0	C1=CC=C(C=C1)N=NC2=C(C=CC3=CC=CC=C32)O
+190	191	Sudan II	15,800	ethanol			498.0	CC1=CC(=C(C=C1)N=NC2=C(C=CC3=CC=CC=C32)O)C
+191	192	Acid Violet 3	36,000	PBS			555.0	C1=CC(=CC=C1N)N=NC2=C(C3=C(C=C(C=C3C=C2S(=O)(=O)[O-])S(=O)(=O)[O-])O)O
+192	193	Acid Red 1	31,900	PBS			530.0	CC(=O)NC1=C2C(=CC(=C1)S(=O)(=O)[O-])C=C(C(=C2O)N=NC3=CC=CC=C3)S(=O)(=O)[O-]
+193	194	Acid Red 14	24,000	PBS			512.0	C1=CC=C2C(=C1)C(=CC=C2S(=O)(=O)[O-])N=NC3=C(C4=CC=CC=C4C(=C3)S(=O)(=O)[O-])O
+194	195	Acid Blue 92	32,300	PBS			563.0	C1=CC=C(C=C1)NC2=C3C(=C(C=C2)N=NC4=C5C(=CC(=C4)S(=O)(=O)[O-])C=C(C=C5O)S(=O)(=O)[O-])C=CC=C3S(=O)(=O)[O-]
+195	196	Sudan III	30,000	ethanol			504.0	C1=CC=C(C=C1)N=NC2=CC=C(C=C2)N=NC3=C(C=CC4=CC=CC=C43)O
+196	197	Sudan IV	32,500	ethanol			518.0	CC1=CC=CC=C1N=NC2=CC(=C(C=C2)N=NC3=C(C=CC4=CC=CC=C43)O)C
+197	198	Acid Black 1	51,600	PBS			619.0	C1=CC=C(C=C1)N=NC2=C(C3=C(C(=C(C=C3C=C2S(=O)(=O)[O-])S(=O)(=O)[O-])N=NC4=CC=C(C=C4)[N+](=O)[O-])N)O
+198	199	Ponceau S	42,000	PBS			513.0	C1=CC(=CC=C1N=NC2=CC(=C(C=C2)N=NC3=C4C=CC(=CC4=CC(=C3O)S(=O)(=O)[O-])S(=O)(=O)[O-])S(=O)(=O)[O-])S(=O)(=O)[O-]
+199	200	Congo Red	48,000	PBS			483.0	C1=CC=C2C(=C1)C(=CC(=C2N)N=NC3=CC=C(C=C3)C4=CC=C(C=C4)N=NC5=C(C6=CC=CC=C6C(=C5)S(=O)(=O)[O-])N)S(=O)(=O)[O-]
+200	201	Benzopurpurin 4B	23,900	water			497.0	CC1=C(C=CC(=C1)C2=CC(=C(C=C2)N=NC3=C(C4=CC=CC=C4C(=C3)S(=O)(=O)[O-])N)C)N=NC5=C(C6=CC=CC=C6C(=C5)S(=O)(=O)[O-])N
+201	202	Evans Blue	86,000	PBS			606.0	CC1=C(C=CC(=C1)C2=CC(=C(C=C2)N=NC3=C(C4=C(C=C3)C(=CC(=C4N)S(=O)(=O)[O-])S(=O)(=O)[O-])O)C)N=NC5=C(C6=C(C=C5)C(=CC(=C6N)S(=O)(=O)[O-])S(=O)(=O)[O-])O
+202	203	1,1'-Diethyl-2,2'-cyanine iodide	54,000	ethanol			524.25	CCN1/C(=C/C2=[N+](C3=CC=CC=C3C=C2)CC)/C=CC4=CC=CC=C41
+203	204	1,1'-Diethyl-2,2'-carbocyanine iodide 	128,000	methanol	0.001	methanol	603.5	CCN1/C(=C/C=C/C2=[N+](C3=CC=CC=C3C=C2)CC)/C=CC4=CC=CC=C41
+204	205	1,1'-Diethyl-2,2'-dicarbocyanine iodide	326,000	ethanol	0.0028	ethanol	711.0	CCN1/C(=C/C=C/C=C/C2=[N+](C3=CC=CC=C3C=C2)CC)/C=CC4=CC=CC=C41
+205	206	1,1'-Diethyl-4,4'-cyanine iodide	75,000	ethanol			592.0	CCN1C=C/C(=C\C2=CC=[N+](C3=CC=CC=C23)CC)/C4=CC=CC=C41
+206	207	1,1'-Diethyl-4,4'-carbocyanine iodide	210,000	ethanol	0.006999999999999999	ethanol	709.5	CCN1C=C/C(=C\C=C\C2=CC=[N+](C3=CC=CC=C23)CC)/C4=CC=CC=C41
+207	208	1,1'-Diethyl-4,4'-dicarbocyanine iodide	213,000	ethanol	0.033	DMSO	818.0	CCN1C=C/C(=C\C=C\C=C\C2=CC=[N+](C3=CC=CC=C23)CC)/C4=CC=CC=C41
+208	209	3,3'-Diethyloxacarbocyanine iodide	149,000	ethanol	0.05	methanol	485.0	CCN\1C2=CC=CC=C2O/C1=C/C=C/C3=[N+](C4=CC=CC=C4O3)CC
+209	210	3,3'-Diethyloxadicarbocyanine iodide	237,000	ethanol	0.49	ethanol	582.0	CCN\1C2=CC=CC=C2O/C1=C\C=C\C=C\C3=[N+](C4=CC=CC=C4O3)CC
+210	211	3,3'-Diethyloxatricarbocyanine iodide	220,000	ethanol	0.49	ethanol	687.5	CCN1C2=CC=CC=C2OC1=CC=CC=CC=CC3=[N+](C4=CC=CC=C4O3)CC
+211	212	1,1'-Diethyl-3,3,3',3'-tetramethylindocarbocyanine Iodide	133,000	methanol	0.07	methanol	544.25	CCN1C2=CC=CC=C2C(C1=CC=CC3=[N+](C4=CC=CC=C4C3(C)C)CC)(C)C
+212	213	1,1'-Diethyl-3,3,3',3'-tetramethylindodicarbocyanine Iodide	200,000	methanol	0.4	methanol	637.5	CCN\1C2=CC=CC=C2C(/C1=C/C=C/C=C/C3=[N+](C4=CC=CC=C4C3(C)C)CC)(C)C
+214	215	Indocyanine Green	194,000	ethanol	0.05	ethanol	789.0	CC1(C(=[N+](C2=C1C3=CC=CC=C3C=C2)CCCCS(=O)(=O)[O-])/C=C/C=C/C=C/C=C/4\C(C5=C(N4CCCCS(=O)(=O)[O-])C=CC6=CC=CC=C65)(C)C)C
+215	216	3,3'-Diethylthiacarbocyanine iodide	161,000	ethanol	0.05	ethanol	559.25	CCN\1C2=CC=CC=C2S/C1=C\C=C\C3=[N+](C4=CC=CC=C4S3)CC
+216	217	3,3'-Diethylthiadicarbocyanine iodide 	249,000	ethanol	0.35	ethanol	655.75	CCN\1C2=CC=CC=C2S/C1=C/C=C/C=C/C3=[N+](C4=CC=CC=C4S3)CC
+217	218	3,3'-Diethylthiatricarbocyanine iodide 	212,000	isopropanol			763.25	CCN\1C2=CC=CC=C2S/C1=C/C=C/C=C/C=C/C3=[N+](C4=CC=CC=C4S3)CC
+218	219	Merocyanine 540	138,000	ethanol	0.39	ethanol	559.5	CCCCN1C(=O)C(=C/C=C/C=C\2/N(C3=CC=CC=C3O2)CCCS(=O)(=O)[O-])C(=O)N(C1=S)CCCC
+219	220	4-(dicyanomethylene)-2-methyl-6-(p-dimethylaminostyryl)-4H-pyran, [DCM] 	42,000	methanol	0.43	methanol	468.0	CC1=CC(=C(C#N)C#N)C=C(O1)/C=C/C2=CC=C(C=C2)N(C)C
+220	221	Stains all	96,500	ethanol			575.5	CCN1/C(=C/C(=C/C2=[N+](C3=C(S2)C=CC4=CC=CC=C43)CC)/C)/SC5=C1C6=CC=CC=C6C=C5
+221	222	Auramine O	25,300	water	0.03	glycerol	431.25	CN(C)C1=CC=C(C=C1)C(=N)C2=CC=C(C=C2)N(C)C.Cl
+222	223	Malachite Green	77,200	water			616.5	CN(C)C1=CC=C(C=C1)C(=C2C=CC(=[N+](C)C)C=C2)C3=CC=CC=C3.CN(C)C1=CC=C(C=C1)C(=C2C=CC(=[N+](C)C)C=C2)C3=CC=CC=C3.C(=O)(C(=O)O)O.C(=O)(C(=O)[O-])O.C(=O)(C(=O)[O-])O
+223	224	Crystal Violet	75,800	water	0.019	glycerol	590.5	CN(C)C1=CC=C(C=C1)C(=C2C=CC(=[N+](C)C)C=C2)C3=CC=C(C=C3)N(C)C
+224	225	p-Fuchsin	80,600	PBS			543.0	CC1=CC(=C(C2=CC=C(C=C2)N)C3=CC=C(C=C3)N)C=CC1=N.Cl
+226	227	Methyl Green	77,800	PBS			632.0	CC[N+](C)(C)C1=CC=C(C=C1)C(=C2C=CC(=[N+](C)C)C=C2)C3=CC=C(C=C3)N(C)C.Cl[Zn]Cl
+227	228	Methyl Blue	12,250	PBS			590.0	C1=CC(=NC2=CC=C(C=C2)S(=O)(=O)[O-])C=CC1=C(C3=CC=C(C=C3)NC4=CC=C(C=C4)S(=O)(=O)O)C5=CC=C(C=C5)NC6=CC=C(C=C6)S(=O)(=O)[O-]
+228	229	Phenolphthalein	21,500	0.1 N NaOH aq			554.0	C1=CC=C2C(=C1)C(=O)OC2(C3=CC=C(C=C3)O)C4=CC=C(C=C4)O
+229	230	Phenol Red	40,000	0.1 N NaOH aq			558.0	C1=CC=C2C(=C1)C(OS2(=O)=O)(C3=CC=C(C=C3)O)C4=CC=C(C=C4)O
+230	231	Cresol Red	46,300	0.1 N NaOH aq			573.0	CC1=C(C=CC(=C1)C2(C3=CC=CC=C3S(=O)(=O)O2)C4=CC(=C(C=C4)O)C)O
+231	232	Thymol Blue	17,600	0.1 N NaOH aq			597.0	CC1=CC(=C(C=C1C2(C3=CC=CC=C3S(=O)(=O)O2)C4=CC(=C(C=C4C)O)C(C)C)C(C)C)O
+232	233	Perylene	38,500	cyclohexane	0.94	cyclohexane	435.75	C1=CC2=C3C(=C1)C4=CC=CC5=C4C(=CC=C5)C3=CC=C2
+234	235	Perylene, PMI(OR)	32,000	toluene	0.82	toluene	507.0	C1=CC2=C3C(=C1)C4=CC=CC5=C4C(=CC=C5)C3=CC=C2
+236	237	Perylene, PDI	50,000	toluene	0.97	toluene	528.0	CC(C)(C)C1=CC(=C(C=C1)C(C)(C)C)N2C(=O)C3=C4C(=CC=C5C4=C(C=C3)C6=C7C5=CC=C8C7=C(C=C6)C(=O)N(C8=O)C9=C(C=CC(=C9)C(C)(C)C)C(C)(C)C)C2=O
+237	238	Fluorescein 	92,300	ethanol(basic)	0.97	ethanol (basic)	500.25	C1=CC=C2C(=C1)C(=O)OC23C4=C(C=C(C=C4)O)OC5=C3C=CC(=C5)O
+238	239	2',7'-Dichlorofluorescein	75,000	PBS	0.58	30% tris buffered (in DMSO)	502.0	C1=CC=C2C(=C1)C(=O)OC23C4=CC(=C(C=C4OC5=CC(=C(C=C35)Cl)O)O)Cl
+239	240	3,4,5,6-Tetrachlorofluorescein	65,500	PBS	0.65	PBS	509.0	C1=CC2=C(C=C1O)OC3=C(C24C5=C(C(=C(C(=C5Cl)Cl)Cl)Cl)C(=O)O4)C=CC(=C3)O
+241	242	Eosin Y	112,000	ethanol (basic)	0.67	ethanol	524.75	C1=CC=C(C(=C1)C2=C3C=C(C(=O)C(=C3OC4=C(C(=C(C=C24)Br)[O-])Br)Br)Br)C(=O)[O-]
+243	244	Erythrosine B	107,000	ethanol	0.08	ethanol	535.0	C1=CC=C2C(=C1)C(=O)OC23C4=CC(=C(C(=C4OC5=C(C(=C(C=C35)I)[O-])I)I)[O-])I
+244	245	Rose bengal	90,400	ethanol (basic)	0.11	ethanol (basic)	559.0	C1=C2C(=C3C=C(C(=O)C(=C3OC2=C(C(=C1I)[O-])I)I)I)C4=C(C(=C(C(=C4Cl)Cl)Cl)Cl)C(=O)[O-]
+245	246	Xantphos	23,700	dichloromethane	0.16	dichloromethane	261.0	CC1(C2=C(C(=CC=C2)P(C3=CC=CC=C3)C4=CC=CC=C4)OC5=C1C=CC=C5P(C6=CC=CC=C6)C7=CC=CC=C7)C
+246	247	Rhodamine 123	85,700	ethanol	0.86	ethanol	511.75	COC(=O)C1=CC=CC=C1C2=C3C=CC(=N)C=C3OC4=C2C=CC(=C4)N.Cl
+247	248	Rhodamine B	106,000	ethanol	0.7	ethanol	542.75	CCN(CC)C1=CC2=C(C=C1)C(=C3C=CC(=[N+](CC)CC)C=C3O2)C4=CC=CC=C4C(=O)O
+248	249	Sulforhodamine B	99,000	ethanol	0.7	ethanol	553.0	CCN(CC)C1=CC2=C(C=C1)C(=C3C=CC(=[N+](CC)CC)C=C3O2)C4=C(C=C(C=C4)S(=O)(=O)[O-])S(=O)(=O)[O-]
+249	250	Rhodamine 6G	116,000	ethanol	0.95	ethanol	529.75	CCNC1=C(C=C2C(=C1)OC3=CC(=[NH+]CC)C(=CC3=C2C4=CC=CC=C4C(=O)OCC)C)C
+251	252	Sulforhodamine 101	110,000	ethanol	0.9	ethanol	576.0	C1CC2=C3C(=C4C(=C2)C(=C5C=C6CCC[N+]7=C6C(=C5O4)CCC7)C8=C(C=C(C=C8)S(=O)(=O)O)S(=O)(=O)[O-])CCCN3C1
+252	253	Dansylglycine  	4,300	dioxane	0.66	dioxane	338.5	CN(C)C1=CC=CC2=C1C=CC=C2S(=O)(=O)NCC(=O)O
+253	254	Lucifer Yellow CH	24,200	water	0.21	water	279.75	C1=C(C=C2C3=C1C(=O)N(C(=O)C3=CC(=C2N)S(=O)(=O)[O-])NC(=O)NN)S(=O)(=O)[O-]
+254	255	Piroxicam	13,000	hexane	0.035	hexane	325.0	CN1C(=C(C2=CC=CC=C2S1(=O)=O)O)C(=O)NC3=CC=CC=N3
+255	256	1,2,3,4,5-Pentamethylcyclopentadiene	12,200	ethanol			249.0	CC1C(=C(C(=C1C)C)C)C
+256	257	Ethidium Bromide	56,800	PBS	0.039	water	285.0	CC[N+]1=C2C=C(C=CC2=C3C=CC(=CC3=C1C4=CC=CC=C4)N)N
+257	258	4',6-Diamidino-2-phenylindole, [DAPI]	27,800	water	0.043	water	344.0	C1=CC(=CC=C1C2=CC3=C(N2)C=C(C=C3)C(=N)N)C(=N)N.Cl.Cl
+258	259	Hoechst 33258 	40,100	water	0.034	water	345.5	CN1CCN(CC1)C2=CC3=C(C=C2)N=C(N3)C4=CC5=C(C=C4)N=C(N5)C6=CC=C(C=C6)O.Cl.Cl.Cl
+259	260	Squarylium dye III	309,000	dichloromethane	0.65	dichloromethane	627.25	CN(C)C1=CC=C(C=C1)C2=C(C(=C3C=CC(=[N+](C)C)C=C3)C2=O)[O-]
+260	261	Ellagic Acid Dihydrate	35,600	PBS			276.0	C1=C2C3=C(C(=C1O)O)OC(=O)C4=CC(=C(C(=C43)OC2=O)O)O.O.O
+261	262	Betalamic Acid	27,000	water			424.0	C\1[C@H](NC(=C/C1=C/C=O)C(=O)O)C(=O)O
+262	263	Betanin	65,000	PBS			535.0	C\1[C@H](NC(=C/C1=C/C=[N+]2[C@@H](CC3=CC(=C(C=C32)O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)C(=O)[O-])C(=O)O)C(=O)O
+263	264	Rutin trihydrate	25,000	methanol			205.0	C[C@H]1[C@@H]([C@H]([C@H]([C@@H](O1)OC[C@@H]2[C@H]([C@@H]([C@H]([C@@H](O2)OC3=C(OC4=CC(=CC(=C4C3=O)O)O)C5=CC(=C(C=C5)O)O)O)O)O)O)O)O
+264	265	Hesperidin	41,700	methanol			203.0	C[C@H]1[C@@H]([C@H]([C@H]([C@@H](O1)OC[C@@H]2[C@H]([C@@H]([C@H]([C@@H](O2)OC3=CC(=C4C(=O)C[C@H](OC4=C3)C5=CC(=C(C=C5)OC)O)O)O)O)O)O)O)O
+265	266	5-Phenyldipyrromethane	36,000	hexane			208.0	C1=CC=C(C=C1)C(C2=CC=CN2)C3=CC=CN3
+272	273	H2P	261,000	toluene	0.043	toluene	396.25	C1=CC2=CC3=CC=C(N3)C=C4C=CC(=N4)C=C5C=CC(=N5)C=C1N2
+273	274	MgP	487,000	toluene	0.057999999999999996	propanol	402.0	CN1C=[N+](C2=C1C(=O)NC(=N2)N)[C@H]3[C@@H]([C@@H]([C@H](O3)COP(=O)(O)OP(=O)(O)OP(=O)(O)O)O)O
+275	276	H2OEP	159,000	benzene	0.13	benzene	400.0	CCC1=C(C2=CC3=NC(=CC4=NC(=CC5=C(C(=C(N5)C=C1N2)CC)CC)C(=C4CC)CC)C(=C3CC)CC)CC
+276	277	MgOEP	408,000	toluene	0.15	toluene	409.75	CCC1=C(C2=CC3=NC(=CC4=C(C(=C([N-]4)C=C5C(=C(C(=N5)C=C1[N-]2)CC)CC)CC)CC)C(=C3CC)CC)CC.[Mg+2]
+277	278	CuOEP	347,000	toluene			400.0	CCC1=C(C2=CC3=NC(=CC4=NC(=CC5=C(C(=C([N-]5)C=C1[N-]2)CC)CC)C(=C4CC)CC)C(=C3CC)CC)CC.[Cu+2]
+278	279	ZnOEP	417,000	toluene	0.045	benzene	404.25	CCC1=C(C2=CC3=NC(=CC4=C(C(=C([N-]4)C=C5C(=C(C(=N5)C=C1[N-]2)CC)CC)CC)CC)C(=C3CC)CC)CC.[Zn+2]
+279	280	H2TPP	443,000	toluene	0.11	toluene	419.25	C1=CC=C(C=C1)C2=C3C=CC(=C(C4=NC(=C(C5=CC=C(N5)C(=C6C=CC2=N6)C7=CC=CC=C7)C8=CC=CC=C8)C=C4)C9=CC=CC=C9)N3
+281	282	ZnTPP	574,000	toluene	0.033	toluene	422.75	C1=CC=C(C=C1)C2=C3C=CC(=C(C4=NC(=C(C5=CC=C([N-]5)C(=C6C=CC2=N6)C7=CC=CC=C7)C8=CC=CC=C8)C=C4)C9=CC=CC=C9)[N-]3.[Zn+2]
+282	283	H2TMP	427,000	toluene	0.08800000000000001	toluene	419.0	CC1=CC(=C(C(=C1)C)C2=C3C=CC(=C(C4=NC(=C(C5=CC=C(N5)C(=C6C=CC2=N6)C7=C(C=C(C=C7C)C)C)C8=C(C=C(C=C8C)C)C)C=C4)C9=C(C=C(C=C9C)C)C)N3)C
+285	286	H2TTP	495,000	toluene	0.12	benzene	420.0	CC1=CC=C(C=C1)C2=C3C=CC(=C(C4=NC(=C(C5=CC=C(N5)C(=C6C=CC2=N6)C7=CC=C(C=C7)C)C8=CC=C(C=C8)C)C=C4)C9=CC=C(C=C9)C)N3
+287	288	(ODC)H2P	299,000	benzene	0.0019	toluene	419.0	C1=CC(=C(C(=C1)Cl)C2=C3C=CC(=C(C4=NC(=C(C5=CC=C(N5)C(=C6C=CC2=N6)C7=C(C=CC=C7Cl)Cl)C8=C(C=CC=C8Cl)Cl)C=C4)C9=C(C=CC=C9Cl)Cl)N3)Cl
+288	289	C6F5-H2P	236,900	toluene	0.032	benzene	417.0	C1=CC2=C(C3=NC(=C(C4=CC=C(N4)C(=C5C=CC(=N5)C(=C1N2)C6=C(C(=C(C(=C6F)F)F)F)F)C7=C(C(=C(C(=C7F)F)F)F)F)C8=C(C(=C(C(=C8F)F)F)F)F)C=C3)C9=C(C(=C(C(=C9F)F)F)F)F
+292	293	Protoporphyrin IX dimethyl ester	166,000	chloroform	0.1	methanol	408.0	CC1=C(C2=CC3=C(C(=C(N3)C=C4C(=C(C(=N4)C=C5C(=C(C(=N5)C=C1N2)C)CCC(=O)OC)CCC(=O)OC)C)C=C)C)C=C
+293	294	Hematin	85,000	acetic acid			385.9	CC1=C(C2=CC3=NC(=CC4=C(C(=C([N-]4)C=C5C(=C(C(=N5)C=C1[N-]2)C=C)C)C)CCC(=O)O)C(=C3C)CCC(=O)O)C=C.O.[Fe+2]
+294	295	Tetrabenzoporphine	66,100	dimethylformamide	0.41	dimethylformamide	429.0	C1=CC=C2C(=C1)C3=CC4=NC(=CC5=C6C=CC=CC6=C(N5)C=C7C8=CC=CC=C8C(=N7)C=C2N3)C9=CC=CC=C94
+306	307	Ph-Corrole	110,000	dichloromethane	0.14	dichloromethane	416.0	C1=CC=C(C=C1)C2=C3C=CC(=C(C4=CC=C(N4)C5=CC=C(N5)C(=C6C=CC2=N6)C7=CC=CC=C7)C8=CC=CC=C8)N3
+307	308	C6F5-Corrole	114,000	dichloromethane	0.11	dichloromethane	408.0	C1=CC2=C(C3=CC=C(N3)C4=CC=C(N4)C(=C5C=CC(=N5)C(=C1N2)C6=C(C(=C(C(=C6F)F)F)F)F)C7=C(C(=C(C(=C7F)F)F)F)F)C8=C(C(=C(C(=C8F)F)F)F)F
+308	309	Sapphyrin	74,900	dichloromethane			491.0	C1=CC2=CC3=CC=C(N3)C=C4C=CC(=N4)C5=NC(=CC6=CC=C(N6)C=C1N2)C=C5
+309	310	Bilirubin	55,000	chloroform			450.75	CC1=C(NC(=C1CCC(=O)O)CC2=C(C(=C(N2)/C=C\3/C(=C(C(=O)N3)C)C=C)C)CCC(=O)O)/C=C\4/C(=C(C(=O)N4)C=C)C
+310	311	Biliverdin dimethyl ester	56,200	ethanol			377.0	CC1=C(C(=CC2=C(C(=C(N2)C=C3C(=C(C(=O)N3)C)C=C)C)CCC(=O)OC)NC1=CC4=NC(=O)C(=C4C)C=C)CCC(=O)OC
+311	312	Cyanocobalamin	27,500	borate buffer (pH 10)			361.0	CC1=CC2=C(C=C1C)N(C=N2)[C@@H]3[C@@H]([C@@H]([C@H](O3)CO)OP(=O)([O-])O[C@H](C)CNC(=O)CC[C@@]4([C@H]([C@@H]5[C@]6([C@@]([C@@H](/C(=C(/C7=N/C(=C\C8=N/C(=C(\C4=N5)/C)/[C@H](C8(C)C)CCC(=O)N)/[C@H]([C@]7(C)CC(=O)N)CCC(=O)N)\C)/[N-]6)CCC(=O)N)(C)CC(=O)N)C)CC(=O)N)C)O.[C-]#N.[Co+3]
+312	313	H2Pc	162,000	chloronaphthalene	0.6	chloronaphthalene	698.5	C1=CC=C2C(=C1)C3=NC4=NC(=NC5=C6C=CC=CC6=C(N5)N=C7C8=CC=CC=C8C(=N7)N=C2N3)C9=CC=CC=C94
+313	314	MgPc	87,100	pyridine	0.48	chloronaphthalene	674.0	C1=CC=C2C(=C1)C3=NC4=NC(=NC5=C6C=CC=CC6=C([N-]5)N=C7C8=CC=CC=C8C(=N7)N=C2[N-]3)C9=CC=CC=C94.[Mg+2]
+315	316	ZnPc	281,800	pyridine	0.3	pyridine	674.0	C1=CC=C2C(=C1)C3=NC4=NC(=NC5=C6C=CC=CC6=C([N-]5)N=C7C8=CC=CC=C8C(=N7)N=C2[N-]3)C9=CC=CC=C94.[Zn+2]
+321	322	H2N4P(tBu)	72,600	chlorobenzene	0.21	chloroform	624.38	CC(C)(C)C1=CC2=NC3=C(C=C(N3)N=C4C(=CC(=N4)N=C5C(=CC(=N5)N=C1N2)C(C)(C)C)C(C)(C)C)C(C)(C)C
+323	324	Chlorophyll a  	111,700	diethyl ether	0.32	diethyl ether	429.0	CCC1=C(C2=NC1=CC3=C(C4=C([N-]3)C(=C5[C@H]([C@@H](C(=N5)C=C6C(=C(C(=C2)[N-]6)C=C)C)C)CCC(=O)OC/C=C(\C)/CCC[C@H](C)CCC[C@H](C)CCCC(C)C)[C@H](C4=O)C(=O)OC)C)C.[Mg+2]
+324	325	Chlorophyll b	160,000	diethyl ether	0.11699999999999999	diethyl ether	453.0	CCC1=C(C2=NC1=CC3=C(C4=C([N-]3)C(=C5[C@H]([C@@H](C(=N5)C=C6C(=C(C(=C2)[N-]6)C=C)C)C)CCC(=O)OC/C=C(\C)/CCC[C@H](C)CCC[C@H](C)CCCC(C)C)[C@H](C4=O)C(=O)OC)C)C=O.[Mg+2]
+325	326	Pheophorbide a	93,000	ethanol	0.28	ethanol	410.0	CCC1=C(C2=NC1=CC3=C(C4=C([C@@H](C(=C5[C@H]([C@@H](C(=CC6=NC(=C2)C(=C6C)C=C)N5)C)CCC(=O)O)C4=N3)C(=O)OC)O)C)C
+326	327	Pyropheophorbide a	105,000	dichloromethane	0.31	dimethylformamide	413.0	CCC1=C(C2=NC1=CC3=C(C4=C(CC(=C5[C@H]([C@@H](C(=CC6=NC(=C2)C(=C6C)C=C)N5)C)CCC(=O)O)C4=N3)O)C)C
+327	328	Pyropheophorbide a methyl ester	108,000	dichloromethane	0.21	dichloromethane	414.0	CCC1=C(C2=NC1=CC3=C(C4=C(CC(=C5[C@@H]([C@H](C(=CC6=NC(=C2)C(=C6C)C=C)N5)C)CCC(=O)OC)C4=N3)O)C)C
+328	329	Chlorin e6 	169,000	ethanol	0.16	ethanol	401.0	CCC1=C2C=C3C(=C(C(=N3)C(=C4[C@H]([C@@H](C(=N4)C=C5C(=C(C(=CC(=C1C)N2)N5)C=C)C)C)CCC(=O)O)CC(=O)O)C(=O)O)C
+329	330	Purpurin 18	83,200	toluene	0.08	toluene	413.0	CCC1=C(C2=NC1=CC3=C(C4=C(N3)C(=C5[C@H]([C@@H](C(=CC6=NC(=C2)C(=C6C)C=C)N5)C)CCC(=O)O)C(=O)OC4=O)C)C
+338	339	Bacteriochlorophyll a	92,000	toluene	0.2	toluene	780.2	CC[C@@H]1[C@H](C2=NC1=CC3=C(C4=C([N-]3)C(=C5[C@H]([C@@H](C(=N5)C=C6C(=C(C(=C2)[N-]6)C(=O)C)C)C)CCC(=O)OC/C=C(\C)/CCC[C@H](C)CCC[C@H](C)CCCC(C)C)[C@H](C4=O)C(=O)OC)C)C.[Mg+2]

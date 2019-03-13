@@ -59,7 +59,7 @@ def get_l_max(wavelength_intensity):
     wavelength_intensity.view('f8,f8').sort(order=['f1'], axis = 0)
     return wavelength_intensity[-1][0]
 
-def getdef get_em_max(clean_df, em_file_colname,prefix_dir):
+def get_em_max(clean_df, em_file_colname,prefix_dir):
     """
     from list of emission file names, get the lambda max from existing files 
     and fill None if file not exist

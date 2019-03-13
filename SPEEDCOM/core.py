@@ -13,7 +13,7 @@ class Molecule:
     * smiles:           The canonical SMILES string (string).
     * weight:           The molecular weight (float).
   """
-  def __init__(self, absorp, cid, columb, emiss, smiles, weight):
+  def __init__(self, absorp, cid, columb, emiss, smiles, weight, flnm):
     self.absorption_peaks = absorp
     self.cid = cid
     self.coulomb = columb
@@ -21,9 +21,10 @@ class Molecule:
     self.smiles = utilities.remove_cations(smiles)
     self.weight = weight
     self.Descriptors = NNModels.Descriptors(smiles)
+    self.file_name = flnm
 
 if __name__ =='__main__':
-    data_dir = "../data/PCAD3_Compd_Database_2018" 
+    data_dir = "../data/PhotochemCAD3/PCAD3 Compd Database 2018" 
     molecule_list = data_extract.initiate_molecules(data_dir)
     print(len(molecule_list))
 

@@ -6,14 +6,17 @@ import matplotlib.pyplot as plt
 class ModelUtils:
 
   @staticmethod
-  def plot_model(x_train, x_test, y_train, y_test, model):
+  def plot_model_error(x_train, x_test, y_train, y_test, model):
     """
     input model and actual data, plot error vs. y actual
     """
+    
+    y_train =y_train.reshape(-1,1)
+    y_test = y_test.reshape(-1,1)
     fig, axes = plt.subplots(2)
     fig.dpi=100
-    axes[0].scatter(y_train, model.predict(x_train).reshape(1,-1)-y_train, color = 'r',label='training')
-    axes[1].scatter(y_test,model.predict(x_test).reshape(1,-1)-y_test, color = 'blue',label = 'test')
+    axes[0].scatter(y_train, model.predict(x_train) - y_train, color = 'r',label='training')
+    axes[1].scatter(y_test, model.predict(x_test) - y_test, color = 'blue',label = 'test')
     fig.legend()
     plt.suptitle("error vs. y actual" )
     

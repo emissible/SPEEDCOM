@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+import os
 import json
 from NNModels import Descriptors
 from rdkit import Chem

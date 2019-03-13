@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
-
+import os
 import json
+import NNModels
 from NNModels import Descriptors
 from rdkit import Chem
 
@@ -10,11 +11,70 @@ from rdkit import Chem
 #from rdkit.Chem import AllChem
 # from rdkit.ForceField.rdForceField import MMFFMolProperties as properties
 # import rdkit.Chem.Draw as draw
+
+def remove_deliminators(my_strings):
+    """
+    Remove deliminators from numbers (comma) so as
+    to be able to process numbers as int or float types in place of
+    strings.  Takes in 'my_array', an array of strings, and will return
+    an array of floats.
+    """
+    my_array = []
+    for i in my_strings:
+        number = i
+        if ',' in i:
+            tmp = i.split(",")
+            number = tmp[0] + tmp[1]
+        try:
+            my_array.append(float(number))  
+        except:
+            print('String ' + i + ' not able to be cast to float, characters'
+                  + " other than ',' or '.'?")
+    return np.asarray(my_array)
+
+def remove_cations(smiles):
+    """
+    Remove the 1st and 7th row cat/anions from the smiles strings.
+    """
+    split_smiles = smiles.split(".")
+    ion_list = ['[Li+]', '[Na+]', '[K+]', '[Rb+]', '[Cs+]', '[Fr+]', '[F-]', 
+                '[Cl-]', '[Br-]', '[I-]', '[At]']
+    smiles = [i for i in split_smiles if i not in ion_list]
+    smiles = '.'.join(smiles)
+    return smiles
+
 def draw_molecule(SMILES, filename):
     """ draw a molecule"""
     mol = Chem.MolFromSmiles(SMILES)
     Chem.Draw.MolToFile(mol, filename, kekulize=False)
     return
+
+def get_l_max(wavelength_intensity):
+    """
+    args:
+    wavelength_intensity -- np.array(2D), dtypes float64
+    first column: wavelength; seconde column: intensity
+    return:
+    lambda_max(float)
+    """
+    wavelength_intensity.view('f8,f8').sort(order=['f1'], axis = 0)
+    return wavelength_intensity[-1][0]
+
+def get_em_max(clean_df, em_file_colname,prefix_dir):
+    """
+    from list of emission file names, get the lambda max from existing files 
+    and fill None if file not exist
+    """
+    from data_extract import get_spectra, get_peaks
+    emission=[]
+    for x in clean_df[em_file_colname].astype(str):#cast dtype to string
+        if x != 'nan':
+            em_max = get_l_max(get_peaks(get_spectra(os.path.join(prefix_dir, x))))
+            emission.append(em_max)
+        else:
+            emission.append(None)
+    return emission
+
 
 
 def pad_ndarrays(input_dict):
@@ -68,7 +128,7 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
     #Assertions
 
     #initilized the descriptor engine:
-    spD_engine = Descriptors()
+    spD_engine = NNModels.Descriptors()
 
     fps_dict = {}
     for rowi_idx, rowi in df.iterrows():
@@ -88,7 +148,7 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
     else:
         return fps_dict
 
-def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
+def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigval=False,
                              eig_sort=True, padding=True, output_file=None):
     """
     Compute the fingerprints for an input dataframe with all the SMILES, and
@@ -116,14 +176,14 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
     #Assertions
 
     #initilized the descriptor engine:
-    spD_engine = Descriptors()
+    spD_engine = NNModels.Descriptors()
 
     CMs_dict = {}
     for rowi_idx, rowi in df.iterrows():
         spD_engine.set_molecule(rowi[SMILES_column])
-        print(rowi_idx)
-        print(rowi[key_name])
-        rowi_CM = spD_engine.get_coulomb_matrix()
+        # print(rowi_idx)
+        # print(rowi[key_name])
+        rowi_CM = spD_engine.get_coulomb_matrix(output_eigval=use_eigval)
         if(key_name is not None):
             rowi_idx = rowi[key_name]
 

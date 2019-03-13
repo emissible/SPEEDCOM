@@ -3,7 +3,7 @@ import os
 import pubchempy as pcp
 import scipy.signal
 
-import Molecule 
+from core import Molecule 
 
 """
 The data obtaining functions.  Please note that many of these functions
@@ -106,7 +106,7 @@ def initiate_molecules(data_dir):
       emiss = get_peaks(spectra)
       smiles = get_molecular_smiles(cid)
       weight = get_molecular_weight(cid)
-      my_molecules.append(Molecule.Molecule(absorp, cid, columb, emiss, smiles, weight))
+      my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, weight))
     else:
       pass
   #For all applicable absorption spectra put properties into molecule objects,
@@ -132,6 +132,6 @@ def initiate_molecules(data_dir):
         emiss = None
         smiles = get_molecular_smiles(cid)
         weight = get_molecular_weight(cid)
-        my_molecules.append(Molecule.Molecule(absorp, cid, columb, emiss, smiles, \
+        my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, \
           weight))
   return my_molecules

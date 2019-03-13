@@ -48,6 +48,34 @@ def draw_molecule(SMILES, filename):
     Chem.Draw.MolToFile(mol, filename, kekulize=False)
     return
 
+def get_l_max(wavelength_intensity):
+    """
+    args:
+    wavelength_intensity -- np.array(2D), dtypes float64
+    first column: wavelength; seconde column: intensity
+    return:
+    lambda_max(float)
+    """
+    wavelength_intensity.view('f8,f8').sort(order=['f1'], axis = 0)
+    return wavelength_intensity[-1][0]
+
+def getdef get_em_max(clean_df, em_file_colname,prefix_dir):
+    """
+    from list of emission file names, get the lambda max from existing files 
+    and fill None if file not exist
+    """
+    from data_extract import get_spectra, get_peaks
+    emission=[]
+    for x in clean_df[em_file_colname].astype(str):#cast dtype to string
+        if x != 'nan':
+            em_max = get_l_max(get_peaks(get_spectra(os.path.join(prefix_dir, x))))
+            emission.append(em_max)
+        else:
+            emission.append(None)
+    return emission
+
+
+
 def pad_ndarrays(input_dict):
     """
     pad the arrays in the input dictionary as the the maxium length

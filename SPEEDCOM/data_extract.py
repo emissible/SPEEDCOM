@@ -3,8 +3,6 @@ import os
 import pubchempy as pcp
 import scipy.signal
 
-import Molecule 
-
 """
 The data obtaining functions.  Please note that many of these functions
 should only need to be run when training a new model.
@@ -94,6 +92,9 @@ def initiate_molecules(data_dir):
   Takes in the directory containing all of the data files and returns a list
   of populated molecule objects.
   """
+  # import the Molecule class
+  from core import Molecule 
+  
   my_molecules = []
   #For all applicable emission spectra put properties into molecule objects,
   #and place objects into list for molecules.
@@ -106,8 +107,7 @@ def initiate_molecules(data_dir):
       emiss = get_peaks(spectra)
       smiles = get_molecular_smiles(cid)
       weight = get_molecular_weight(cid)
-      my_molecules.append(Molecule.\
-        Molecule(absorp, cid, columb, emiss, smiles, weight))
+      my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, weight))
     else:
       pass
   #For all applicable absorption spectra put properties into molecule objects,
@@ -133,8 +133,8 @@ def initiate_molecules(data_dir):
         emiss = None
         smiles = get_molecular_smiles(cid)
         weight = get_molecular_weight(cid)
-        my_molecules.append(Molecule.\
-          Molecule(absorp, cid, columb, emiss, smiles, weight))
+        my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, \
+          weight))
   return my_molecules
 
 def electrostatic_potentials(file_name):

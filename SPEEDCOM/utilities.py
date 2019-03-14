@@ -26,7 +26,7 @@ def remove_deliminators(my_strings):
             tmp = i.split(",")
             number = tmp[0] + tmp[1]
         try:
-            my_array.append(float(number))  
+            my_array.append(float(number))
         except:
             print('String ' + i + ' not able to be cast to float, characters'
                   + " other than ',' or '.'?")
@@ -37,16 +37,32 @@ def remove_cations(smiles):
     Remove the 1st and 7th row cat/anions from the smiles strings.
     """
     split_smiles = smiles.split(".")
-    ion_list = ['[Li+]', '[Na+]', '[K+]', '[Rb+]', '[Cs+]', '[Fr+]', '[F-]', 
+    ion_list = ['[Li+]', '[Na+]', '[K+]', '[Rb+]', '[Cs+]', '[Fr+]', '[F-]',
                 '[Cl-]', '[Br-]', '[I-]', '[At-]']
     smiles = [i for i in split_smiles if i not in ion_list]
     smiles = '.'.join(smiles)
     return smiles
 
 def draw_molecule(SMILES, filename):
-    """ draw a molecule"""
+    """
+    Draws the 2D skeletal structure of a molecule using the rdkit
+        package, returning the output to a file.
+
+    Args:
+    -----
+        SMILES (str) -- a string representation of the molecule
+        filename () --
+
+    """
+    # Assertions
+    assert isinstance(SMILES, str), \
+        'the SMILES must be a string'
+    assert isinstance(filename, )
+
+    # Functionality
     mol = Chem.MolFromSmiles(SMILES)
     Chem.Draw.MolToFile(mol, filename, kekulize=False)
+
     return
 
 def get_l_max(wavelength_intensity):
@@ -62,7 +78,7 @@ def get_l_max(wavelength_intensity):
 
 def get_em_max(clean_df, em_file_colname,prefix_dir):
     """
-    from list of emission file names, get the lambda max from existing files 
+    from list of emission file names, get the lambda max from existing files
     and fill None if file not exist
     """
     from data_extract import get_spectra, get_peaks
@@ -79,14 +95,28 @@ def get_em_max(clean_df, em_file_colname,prefix_dir):
 
 def pad_ndarrays(input_dict):
     """
-    pad the arrays in the input dictionary as the the maxium length
-    among them, with zeros
+    Pads out all arrays in the given input dictionary of arrays
+        with zeros so that they are all the same size and the largest input array.
+
+    Args:
+    -----
+        input_dict (dict) -- input dictionary of arrays
+
+    Returns:
+    --------
+        input_dict (dict) -- the modified input dictionary,
+            where all arrays have been padded out.
     """
+    # Assertions
+    assert isinstance(input_dict, dict), \
+        'Wrong Type: input must be a dictionary'
+    # Functionality
     lens_of_arrays = []
     for array_i in input_dict.values():
         lens_of_arrays.append(len(array_i))
 
     max_len = max(lens_of_arrays)
+
     for array_i_key in input_dict.keys():
         array_i_len = len(input_dict[array_i_key])
         if(array_i_len < max_len):
@@ -111,23 +141,40 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
         radius (int)           --
         nBits (int)            -- maxium number of bits for fingerprints
                                   computation
-        use_features (boolean) -- If True (default as False), use featrues to
-                                  compute figureprints
-        padding (boolean)      -- If True (default), pad all the fingerprints
-                                  to the maxium length in the dictionary
-                                  with zeros
-        output_file (str)      -- If None, return a dict,
-                                  Otherwise output an json txt file.
+        use_features (boolean) -- If True (default as False), use features to
+                                  compute fingerprints
+        padding (boolean)      -- If True (default), pad all the
+            fingerprints to the maxium length in the dictionary
+            with zeros
+        output_file (str)     -- If None, return a dict. Otherwise
+            returns a json .txt file of filename given by the string.
+            
     Returns:
     --------
         fps_dict (dict)   --  an dictionary contains the fingerprints
                               key    -- name or index of the molecules
                               values -- a list of int
-
     """
     #Assertions
+    assert isinstance(df, pd.DataFrame), \
+        'Wrong Type: input df must be a pandas dataframe'
+    assert isinstance(SMILES_column, str), \
+        'Wrong Type: column names must be a strings'
+    assert isinstance(key_name, (str, type(None))), \
+        'Wrong Type: key name must be a string or NoneType'
+    assert isinstance(radius, int), \
+        'Wrong Type: radius must be an integer'
+    assert isinstance(nBits, int), \
+        'Wrong Type: number of bits must be an integer'
+    assert nBits > 0, 'nBits must be a positive integer'
+    assert isinstance(use_features, boolean), \
+        'Wrong Type: padding must be a boolean'
+    assert isinstance(padding, boolean), \
+        'Wrong Type: padding must be a boolean'
+    assert isinstance(output_file, (str, type(None))), \
+        'Wrong Type: output_file must be a string or NoneType'
 
-    #initilized the descriptor engine:
+    # Initializing the descriptor engine:
     spD_engine = NNModels.Descriptors()
 
     fps_dict = {}
@@ -151,31 +198,44 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
 def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigval=False,
                              eig_sort=True, padding=True, output_file=None):
     """
-    Compute the fingerprints for an input dataframe with all the SMILES, and
-    output the results as an dictionary with json txt format
+    Compute the fingerprints for an input dataframe with all the SMILES,
+        and output the results as an dictionary with json txt format
 
     Args:
     -----
         df (pandas.DataFrame) -- an input dataframe with SMILES info
         SMILES_column (str)   -- the column name of SMILES
         key_name (str)        -- the column name for output dict key
-        eig_sort (boolean)    -- If True (default), sort the coulomb matrixes
-                                 with their eigenvalues
-        padding (boolean)     -- If True (default), pad all the coulomb matrixes
-                                 to the maxium length in the dictionary
-                                 with zeros
-        output_file (str)     -- If None, return a dict
-                                 Otherwise output an json txt file.
+        eig_sort (boolean)    -- If True (default), sort the coulomb
+            matrixes with their eigenvalues.
+        padding (boolean)     -- If True (default), pad all the coulomb
+            matrices to the maxium length in the dictionary with zeros.
+        output_file (str)     -- If None, return a dict. Otherwise,
+            return a json txt file of the name given by the string.
 
     Returns:
     --------
-        fps_dict (dict)   --  an dictionary contains the fingerprints
-                              key    -- name or index of the molecules
-                              values -- a list of list of floats
+        fps_dict (dict)   --  an dictionary whose values are the
+            fingerprints of the molecules, and the keys are the index
+            or names of the molecules.
     """
     #Assertions
+    assert isinstance(df, pd.DataFrame), \
+        'Wrong Type: input df must be a pandas dataframe'
+    assert isinstance(SMILES_column, str), \
+        'Wrong Type: column names must be a strings'
+    assert isinstance(key_name, (str, type(None))), \
+        'Wrong Type: key name must be a string or NoneType'
+    assert isinstance(use_eigval, boolean), \
+        'Wrong Type: use_eigval must be a boolean'
+    assert isinstance(eig_sort, boolean), \
+        'Wrong Type: eig_sort must be a boolean'
+    assert isinstance(padding, boolean), \
+        'Wrong Type: padding must be a boolean'
+    assert isinstance(output_file, (str, type(None))), \
+        'Wrong Type: output_file must be a string or NoneType'
 
-    #initilized the descriptor engine:
+    # Initializing the descriptor engine:
     spD_engine = NNModels.Descriptors()
 
     CMs_dict = {}

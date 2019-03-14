@@ -38,7 +38,7 @@ def remove_cations(smiles):
     """
     split_smiles = smiles.split(".")
     ion_list = ['[Li+]', '[Na+]', '[K+]', '[Rb+]', '[Cs+]', '[Fr+]', '[F-]', 
-                '[Cl-]', '[Br-]', '[I-]', '[At]']
+                '[Cl-]', '[Br-]', '[I-]', '[At-]']
     smiles = [i for i in split_smiles if i not in ion_list]
     smiles = '.'.join(smiles)
     return smiles

@@ -3,6 +3,9 @@ import os
 import pubchempy as pcp
 import scipy.signal
 
+# import the Molecule class
+from core import Molecule 
+
 """
 The data obtaining functions.  Please note that many of these functions
 should only need to be run when training a new model.
@@ -28,7 +31,7 @@ def get_absorption_files(data_dir):
 def get_molecule_cid(file_name):
   """ 
   Take a file_name, remove the ending and prefix and return the pubchem
-  CID number.  If the file_name does not have the cas number, try the name
+  molecule object.  If the file_name does not have the cas number, try the name
   of the system,   else return None so as to disreguard the molecule
   from training.
   """
@@ -36,28 +39,16 @@ def get_molecule_cid(file_name):
   #try to get the cas # if not then try name.
   cas = my_file[1]
   try:
-    cid = pcp.get_compounds(cas, 'name')[0].cid
+    cid = pcp.get_compounds(cas, 'name')[0]
   except:
     #file doesn't have a cas number with it, try name
     my_name = cas.split(".")
     try:
-      cid = pcp.get_compounds(my_name[0], 'name')[0].cid
+      cid = pcp.get_compounds(my_name[0], 'name')[0]
     except:
       cid = None
   finally:
     return cid
-
-def get_molecular_weight(cid):
-  """
-  Takes the PUBCHEM CID and returns the molecular weight as a float.
-  """
-  return pcp.Compound.from_cid(cid).molecular_weight
-
-def get_molecular_smiles(cid):
-  """
-  Takes the PUBCHEM CID and returns the isomeric SMILES string.
-  """
-  return pcp.Compound.from_cid(cid).isomeric_smiles
 
 def get_spectra(file_name):
   """
@@ -92,22 +83,25 @@ def initiate_molecules(data_dir):
   Takes in the directory containing all of the data files and returns a list
   of populated molecule objects.
   """
-  # import the Molecule class
-  from core import Molecule 
   
   my_molecules = []
+  my_added_molecules = []
   #For all applicable emission spectra put properties into molecule objects,
   #and place objects into list for molecules.
   for ems_file in get_emission_files(data_dir):
-    cid = get_molecule_cid(ems_file) 
-    if cid:
+    pubchem_molecule = get_molecule_cid(ems_file) 
+    if pubchem_molecule:
+      cid = pubchem_molecule.cid
       spectra = get_spectra(data_dir + "/" + ems_file)
       absorp = None
       columb = None
       emiss = get_peaks(spectra)
-      smiles = get_molecular_smiles(cid)
-      weight = get_molecular_weight(cid)
-      my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, weight))
+      smiles = pubchem_molecule.isomeric_smiles
+      weight = pubchem_molecule.molecular_weight
+      file_name = ems_file.split(".")[0]
+      my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, weight,\
+        file_name))
+      my_added_molecules.append(cid)
     else:
       pass
   #For all applicable absorption spectra put properties into molecule objects,
@@ -117,27 +111,28 @@ def initiate_molecules(data_dir):
     cid = get_molecule_cid(abs_file)
     #Check to see if the molecule already exists in the list, and if it does
     #does it already have valid absorption peaks:
-    if cid:
-      for mol in my_molecules:
-        if mol.cid == cid:
-          found = 1
-          spectra = get_spectra(data_dir + "/" + abs_file)
-          mol.absorption_peaks = get_peaks(spectra)
-          break
-        else:
-          pass
+    if pubchem_molecule:
+      cid = pubchem_molecule.cid
+      if cid in my_added_molecules:
+        found = 1
+        mol_index = my_added_molecules.index(cid)
+        spectra = get_spectra(data_dir + "/" + abs_file)
+        my_molecules[mol_index].absorption_peaks = get_peaks(spectra)
+        break
+      else:
+        pass
       if not found:
         spectra = get_spectra(data_dir + "/" + abs_file)
         absorp = get_peaks(spectra)
         columb = None
         emiss = None
-        smiles = get_molecular_smiles(cid)
-        weight = get_molecular_weight(cid)
+        smiles = pubchem_molecule.isomeric_smiles
+        weight = pubchem_molecule.molecular_weight
+        file_name = abs_file.split(".")[0]
         my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, \
-          weight))
+          weight, file_name))
   return my_molecules
 
 def electrostatic_potentials(file_name):
   potential = None
-  
   return potential

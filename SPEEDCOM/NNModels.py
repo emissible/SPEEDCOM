@@ -156,7 +156,7 @@ class Descriptors:
             temp_matrix = np.zeros(shape=(num_atoms,num_atoms))
             for i in range(num_atoms):
                 temp_matrix[i] = coulomb_matrix[eig_idx[i]]
-            temp_matrix = temp_matrix.transpose
+            temp_matrix = temp_matrix.transpose()
             for i in range(num_atoms):
                 coulomb_matrix[i] = temp_matrix[eig_idx[i]]
 

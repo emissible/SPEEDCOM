@@ -5,6 +5,7 @@ import json
 import NNModels
 from NNModels import Descriptors
 from rdkit import Chem
+from sklearn.decomposition import PCA
 
 #import rdkit
 #from rdkit import Chem
@@ -26,7 +27,7 @@ def remove_deliminators(my_strings):
             tmp = i.split(",")
             number = tmp[0] + tmp[1]
         try:
-            my_array.append(float(number))  
+            my_array.append(float(number))
         except:
             print('String ' + i + ' not able to be cast to float, characters'
                   + " other than ',' or '.'?")
@@ -37,7 +38,7 @@ def remove_cations(smiles):
     Remove the 1st and 7th row cat/anions from the smiles strings.
     """
     split_smiles = smiles.split(".")
-    ion_list = ['[Li+]', '[Na+]', '[K+]', '[Rb+]', '[Cs+]', '[Fr+]', '[F-]', 
+    ion_list = ['[Li+]', '[Na+]', '[K+]', '[Rb+]', '[Cs+]', '[Fr+]', '[F-]',
                 '[Cl-]', '[Br-]', '[I-]', '[At-]']
     smiles = [i for i in split_smiles if i not in ion_list]
     smiles = '.'.join(smiles)
@@ -62,7 +63,7 @@ def get_l_max(wavelength_intensity):
 
 def get_em_max(clean_df, em_file_colname,prefix_dir):
     """
-    from list of emission file names, get the lambda max from existing files 
+    from list of emission file names, get the lambda max from existing files
     and fill None if file not exist
     """
     from data_extract import get_spectra, get_peaks
@@ -181,8 +182,6 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigva
     CMs_dict = {}
     for rowi_idx, rowi in df.iterrows():
         spD_engine.set_molecule(rowi[SMILES_column])
-        # print(rowi_idx)
-        # print(rowi[key_name])
         rowi_CM = spD_engine.get_coulomb_matrix(output_eigval=use_eigval)
         if(key_name is not None):
             rowi_idx = rowi[key_name]
@@ -197,6 +196,71 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigva
             f.write(json.dumps(CMs_dict))
     else:
         return CMs_dict
+
+def compute_coulumb_matrixes_pca(df,SMILES_column='SMILES', key_name=None,
+                                 cutoff_var_ratio=1e-4, max_n_components=None,
+                                 padding=True, output_file=None):
+    """
+    Compute the fingerprints for an input dataframe with all the SMILES, and
+    output the results as an dictionary with json txt format
+
+    Args:
+    -----
+        df (pandas.DataFrame)    -- an input dataframe with SMILES info
+        SMILES_column (str)      -- the column name of SMILES
+        key_name (str)           -- the column name for output dict key
+        cutoff_var_ratio (float) -- cutoff variance ratio for singular values,
+                                    default as 1e-5
+        max_n_components (int)   -- max number of components for pca
+        padding (boolean)        -- If True (default), pad all the coulomb matrixes
+                                   to the maxium length in the dictionary
+                                   with zeros
+        output_file (str)        -- If None, return a dict
+                                   Otherwise output an json txt file.
+
+    Returns:
+    --------
+        fps_dict (dict)   --  an dictionary contains the fingerprints
+                              key    -- name or index of the molecules
+                              values -- a list of list of floats
+    """
+    #Assertions
+
+    #Initilization of engines
+    spD_engine = NNModels.Descriptors()
+    PCA_engine = PCA()
+
+    CMs_pca_dict = {}
+    for rowi_idx, rowi in df.iterrows():
+        spD_engine.set_molecule(rowi[SMILES_column])
+        rowi_CM = spD_engine.get_coulomb_matrix(eig_sort=False)
+
+        rowi_components = len(rowi_CM)
+        if(max_n_components is not None):
+            if (max_n_components < rowi_components):
+                rowi_components = max_n_components
+
+        PCA_engine.set_params(n_components=rowi_components)
+        PCA_engine.fit(rowi_CM)
+        rowi_CM_pca_var = PCA_engine.explained_variance_ratio_
+
+        for i in range(len(rowi_CM_pca_var)):
+            if (rowi_CM_pca_var[i] < cutoff_var_ratio): break
+
+        if(key_name is not None):
+            rowi_idx = rowi[key_name]
+
+        CMs_pca_dict[rowi_idx] = PCA_engine.singular_values_[:i]
+
+    if(padding):
+        pad_ndarrays(CMs_pca_dict)
+
+    if(output_file is not None):
+        with open(output_file, 'w') as f:
+            f.write(json.dumps(CMs_pca_dict))
+    else:
+        return CMs_pca_dict
+
 
 def compute_properties(df,SMILES_column='SMILES',index_name=None,
                        output_file=None):

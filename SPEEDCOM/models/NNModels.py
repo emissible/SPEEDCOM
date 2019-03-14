@@ -133,10 +133,11 @@ class Descriptors:
                     norm_diff = math.sqrt(math.pow((xi-xj),2) + math.pow((yi-yj),2) + math.pow((zi-zj),2))
                     element = Zi * Zj / norm_diff
                 coulomb_matrix[indexi][indexj] = element
-        
+
         if output_eigval:
             eig = np.linalg.eig(coulomb_matrix)[0]
-            return eig.sort()
+            eig.sort()
+            return eig
 
         if eig_sort:
             eig = np.linalg.eig(coulomb_matrix)[0]

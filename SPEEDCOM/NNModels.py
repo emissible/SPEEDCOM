@@ -12,30 +12,31 @@ from rdkit import RDConfig
 
 class Descriptors:
     """
-    A wrapper class using rdkit to generate the different descpritors
-    for specrtra prediciton.
+    A wrapper class using rdkit to generate the different
+        descpritors for specrtra prediciton.
 
-    Initilized with SIMLES of a molecule
+    Initilized with SMILES of a molecule
 
     Attributes:
-    Molecule       -- an object of rdkit.Chem.rdchem.Mol
-    __feat_factory -- an object to caluate the featrues for molecules, from
-                    rdkit.Chem.rdMolChemicalFeatures.MolChemicalFeatureFactory
+        Molecule       -- an object of rdkit.Chem.rdchem.Mol
+        __feat_factory -- an object to caluate the features
+            for molecules, from
+            rdkit.Chem.rdMolChemicalFeatures.MolChemicalFeatureFactory
 
     Methods:
-    set_molecule
-    get_features
-    get_properties
-    get_coulomb_matrix
-    get_Morgan_fingerprint
-    __config_feature_factory
-    __get_charges_coords
+        set_molecule
+        get_features
+        get_properties
+        get_coulomb_matrix
+        get_Morgan_fingerprint
+        __config_feature_factory
+        __get_charges_coords
 
     """
 
     def __init__(self, SMILES = None):
         """
-        spDescriptor Constructor
+        Descriptor class constructor method.
         """
         if(SMILES is not None):
             self.set_molecule(SMILES)
@@ -50,11 +51,22 @@ class Descriptors:
 
     def set_molecule(self, SMILES):
         """ set molecule of the spDecriptor"""
+        # Assertions
+        assert isinstance(SMILES, str),\
+            'the SMILES must be a string'
+        # Functionality
         self.Molecule = Chem.MolFromSmiles(SMILES)
         return
 
     def get_properties(self, feature_name = None):
-        """  """
+        """
+        Returns the properties of a molecule object using
+            the rdkit package.
+
+        Args:
+        -----
+            feature_name
+        """
 
         assert type(self.Molecule) == Chem.rdchem.Mol
         f_dict = dict(zip(Properties().GetPropertyNames(),\
@@ -133,7 +145,7 @@ class Descriptors:
                     norm_diff = math.sqrt(math.pow((xi-xj),2) + math.pow((yi-yj),2) + math.pow((zi-zj),2))
                     element = Zi * Zj / norm_diff
                 coulomb_matrix[indexi][indexj] = element
-        
+
         if output_eigval:
             eig = np.linalg.eig(coulomb_matrix)[0]
             return eig.sort()

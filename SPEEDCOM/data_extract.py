@@ -136,5 +136,58 @@ def initiate_molecules(data_dir):
   return my_molecules
 
 def electrostatic_potentials(file_name):
-  potential = None
-  return potential
+  """
+  Returns the dielectic constant for the various solvents within the database.
+  If a solvent is not in the list will return 1.
+  Takes a string and returns a double
+
+  Sources: 
+  acetic acid to water (pH 7): 
+    https://www.organicdivision.org/wp-content/uploads/2016/12/\
+      organic_solvents.html
+  Glycerol - Sulfuric Acid: 
+    http://www.appliedmc.com/content/images/Dielectric_Constants.pdf
+  """
+  return{
+    "none":                                     1.0,
+    "acetic acid":                              6.20,
+    "acetonitrile":                             36.64,
+    "benzene":                                  2.28,
+    "chlorobenzene":                            5.69,
+    "chloroform":                               4.81,
+    "cyclohexane":                              2.02,
+    "dichloromethane":                          9.08,
+    "diethyl ether":                            4.267,
+    "dimethylformamide":                        38.25,
+    "dioxane":                                  2.21,
+    "DMSO":                                     47.0,
+    "ethanol":                                  24.6, 
+    "ethanol ":                                 24.6,
+    "ethanol(basic)":                           24.6,
+    "ethanol (basic)":                          24.6,
+    "hexane":                                   1.89,
+    "isopropanol":                              18.3,
+    "methanol":                                 32.6,
+    "propanol":                                 20.1,
+    "pyridine":                                 12.3,
+    "tetrahydrofuran":                          7.52,
+    "toluene":                                  2.38,
+    "water":                                    78.54,
+    "water (pH 5 to 9)":                        78.54,
+    "water (pH 5 to 9 )":                       78.54,
+    "water (pH 7)":                             78.54,
+    "glycerol":                                 13.2,
+    "0.5 M H2SO4":                              31.0,
+    "H2SO4 aq (1 N)":                           31.0,
+    "phosphate buffer (pH 7, 0.1 M)":           0.0,
+    "PBS ":                                     0.0,
+    "0.1 N NaOH aq":                            0.0,
+    "borate buffer (pH 10)":                    0.0,
+    "NaOH aq":                                  0.0,
+    "chloronaphthalene":                        0.0,
+    "water (pH 10)":                            0.0,
+    "3-methylpentane":                          0.0,
+    "water (pH 4)":                             0.0,
+    "PBS":                                      0.0,
+    "30% tris buffered (in DMSO)":              0.0
+    }.get(file_name,"none")

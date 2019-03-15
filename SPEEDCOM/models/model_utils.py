@@ -4,21 +4,44 @@ import matplotlib as mplt
 import matplotlib.pyplot as plt
 
 class ModelUtils:
-
+  
   @staticmethod
-  def plot_model_error(x_train, x_test, y_train, y_test, model):
-    """
-    input model and actual data, plot error vs. y actual
-    """
+  def coeff_determination(y_true, y_pred):
+    from keras import backend as K
+    SS_res =  K.sum(K.square( y_true-y_pred ))
+    SS_tot = K.sum(K.square( y_true - K.mean(y_true) ) )
+    return ( 1 - SS_res/(SS_tot + K.epsilon()) )
     
-    y_train =y_train.reshape(-1,1)
-    y_test = y_test.reshape(-1,1)
-    fig, axes = plt.subplots(2)
-    fig.dpi=100
-    axes[0].scatter(y_train, model.predict(x_train) - y_train, color = 'r',label='training')
-    axes[1].scatter(y_test, model.predict(x_test) - y_test, color = 'blue',label = 'test')
-    fig.legend()
-    plt.suptitle("error vs. y actual" )
+    
+  
+    @staticmethod
+    def plot_model_error(x_train, x_test, y_train, y_test, model, save_fig_fname = None):
+        """
+        input model and actual data, plot train, test predicted data and error
+        """
+        y_train = y_train.reshape(-1,1)
+        y_test = y_test.reshape(-1,1)
+    
+        plt.figure(figsize=(8, 10), dpi=100)
+        plt.subplot(211)
+        plt.scatter(y_train, model.predict(X_train), color = 'r', label = 'train')
+        plt.scatter(y_test, model.predict(X_test), color = 'blue', label = 'test')
+        plt.xlabel('Actual Absorption Wavelength(nm)', fontsize=12)
+        plt.ylabel('Predicted Absorption Wavelength(nm)', fontsize=12)
+        plt.legend(loc='upper center')
+
+        plt.subplot(212)
+        plt.scatter(y_train, model.predict(X_train)-y_train, color = 'r', label = 'train', marker= 'x')
+        plt.scatter(y_test, model.predict(X_test)-y_test, color = 'blue', label = 'test', marker = 'x')
+        plt.axhline(0, ls='--')
+        plt.xlabel('Actual Absorption Wavelength(nm)', fontsize=12)
+        plt.ylabel('Prediction error(nm)', fontsize=12)
+        plt.legend(loc='upper center')
+        
+        if save_fig_fname is not None:
+            plt.savefig(save_fig_fname)
+        else:
+            plt.show()
     
   @staticmethod
   def combine_columns(nd_arrays):

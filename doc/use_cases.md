@@ -6,7 +6,7 @@ A molecule in its ground electronic state becomes excited upon the **absorption*
 
 Structures that exhibit this behaviour on a short enough timescale are known as _fluorophores_, and result in different molecules having different characteristic wavelengths of absorption ($$\lambda_{abs}$$) and emission ($$\lambda_{ems}$$). These can be determined experimentally by spectroscopy, as well as theoretically through _ab initio_ calculations. 
 
-Other quantities characteristic for a certain molecule are the **molar extinction coefficient** ($$\epsilon$$) - which represents the extent to which light is absorbed at a given wavelength - and the **quantum yield** ($$\Phi_{f}$$) - which represents the ratio of quanta (packets of energy with a certain wavelength) absorbed to those emitted.
+Other quantities characteristic for a certain molecule are the **molar extinction coefficient** ![equation](https://latex.codecogs.com/gif.latex?%5Cepsilon) - which represents the extent to which light is absorbed at a given wavelength - and the **quantum yield** ($$\Phi_{f}$$) - which represents the ratio of quanta (packets of energy with a certain wavelength) absorbed to those emitted.
 
 ## Objectives
 
@@ -14,7 +14,7 @@ The objective of _SPEEDCOM_ is simple: to use deep-learning to generate the fluo
 
 ## Components
 
-<p align="center"><img src="doc/source/_static/flowChart.png" alt="Use Flow Diagram" title="Use Flow Diagram"/></p>
+<p align="center"><img src="source/_static/flow_chart.png" alt="Use Flow Diagram" title="Flow Diagram"/></p>
 
 ### <u>Front End</u>
 
@@ -23,7 +23,7 @@ User interactions are handled through our Graphical User Interface (GUI). Here t
 
 The user can then choose between the generation of an emission or an absorption spectra for the fluorescence of their molecule. This is displayed in the GUI, along with the skeletal, 2D representation of their molecule. The user can check this structure to see if they are receiving the spectra for the molecule they are expecting to.
 
-The user may also choose to download the spectra and associated calculated physical quantities, such as $$\lambda_{abs}$$, $$\lambda_{ems}$$, $$\phi_{f}$$ and $$\epsilon$$.
+The user may also choose to download the spectra and associated calculated physical quantities, such as $$\lambda_{abs}$$, $$\lambda_{ems}$$, $$\phi_{f}$$ and ![equation](https://latex.codecogs.com/gif.latex?%5Cepsilon).
 
 
 ### <u>Back End</u>

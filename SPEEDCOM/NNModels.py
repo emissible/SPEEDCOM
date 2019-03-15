@@ -18,12 +18,14 @@ class Descriptors:
     Initilized with SMILES of a molecule
 
     Attributes:
+    -----------
         Molecule       -- an object of rdkit.Chem.rdchem.Mol
         __feat_factory -- an object to caluate the features
             for molecules, from
             rdkit.Chem.rdMolChemicalFeatures.MolChemicalFeatureFactory
 
     Methods:
+    --------
         set_molecule
         get_features
         get_properties
@@ -50,40 +52,67 @@ class Descriptors:
 
 
     def set_molecule(self, SMILES):
-        """ set molecule of the spDecriptor"""
+        """
+        Assigns a molecule to the initialized Descriptor class.
+
+        Args:
+        -----
+            SMILES (str) -- the string representation of a molecule
+        """
         # Assertions
         assert isinstance(SMILES, str),\
             'the SMILES must be a string'
         # Functionality
         self.Molecule = Chem.MolFromSmiles(SMILES)
+
         return
 
-    def get_properties(self, feature_name = None):
+    def get_properties(self, property_name=None):
         """
         Returns the properties of a molecule object using
             the rdkit package.
 
         Args:
         -----
-            feature_name
-        """
+            property_name (str) -- the name of a property to be
+                returned. If None, function returns all properties.
 
+        Returns:
+        --------
+            f_dict2 (dict) -- a dictionary containing all the
+                molecule's properties as keys and their float
+                values as the dict values.
+        """
+        # Assertions
         assert type(self.Molecule) == Chem.rdchem.Mol
+        # Functionality
         f_dict = dict(zip(Properties().GetPropertyNames(),\
                     Properties().ComputeProperties(self.Molecule)))
 
-        if(feature_name is None):
+        if(property_name is None):
             return f_dict
         else:
-            if type(feature_name) == str:
-                return f_dict[feature_name]
-            elif type(feature_name) == list:
+            if type(property_name) == str:
+                return f_dict[property_name]
+            elif type(property_name) == list:
                 f_dict2 = {}
-                for i in range(len(feature_name)):
-                    f_dict2[feature_name[i]] = f_dict[feature_name[i]]
+                for i in range(len(property_name)):
+                    f_dict2[property_name[i]] = f_dict[property_name[i]]
                 return f_dict2
 
     def get_features(self):
+        """
+        Gets the features of the molecule currently constructed in
+            the Descriptor class.
+
+        Args:
+        -----
+        Returns:
+        --------
+            features_dict (dict) -- a dictionary conatining the
+                feature names as keys and their values as the
+                values of the dictionary.
+        """
         if(self.__feat_factory is None):
             self.__config_feature_factory()
 
@@ -101,12 +130,34 @@ class Descriptors:
 
         return features_dict
 
-    def get_Morgan_fingerprint(self, radius=2, nBits=2048, use_features=False):
-        """  """
+    def get_Morgan_fingerprint(self, radius=2, nBits=2048, use_feat=False):
+        """
+        Returns a list of integers that as a whole represents the
+            Morgan fingerprint of a molecule.
+
+        Args:
+        -----
+            radius (int)    --
+            nBits (int)     -- the number of bits the molecule
+                is characterized by.
+            use_feat (bool) -- (default False) If True, uses the
+                molecule's features when calculating the finger-
+                print using RDKit.
+
+        Returns:
+        --------
+            out_fp (list) -- a list containing the bits that
+                comprise the Morgan fingerprint of the molecule.
+        """
+        # Assertions
         assert type(self.Molecule) == Chem.rdchem.Mol
-        fp = AllChem.GetMorganFingerprintAsBitVect(self.Molecule, radius, nBits=nBits,
-                                                   useFeatures=use_features)
-        return list(fp.ToBinary())
+        # Functionality
+        fp = AllChem.GetMorganFingerprintAsBitVect(self.Molecule, radius,
+                                                    nBits=nBits,
+                                                    useFeatures=use_feat)
+        out_fp = list(fp.ToBinary())
+
+        return out_fp
 
     def get_coulomb_matrix(self, eig_sort=True, output_eigval=False):
         """
@@ -148,7 +199,9 @@ class Descriptors:
 
         if output_eigval:
             eig = np.linalg.eig(coulomb_matrix)[0]
-            return eig.sort()
+            eig.sort()
+
+            return eig
 
         if eig_sort:
             eig = np.linalg.eig(coulomb_matrix)[0]

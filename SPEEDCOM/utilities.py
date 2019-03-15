@@ -26,7 +26,7 @@ def remove_deliminators(my_strings):
         number = i
         if ',' in i:
             tmp = i.split(",")
-            number = tmp[0] + tmp[1]
+            number = ''.join(tmp)
         try:
             my_array.append(float(number))
         except:

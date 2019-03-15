@@ -3,7 +3,6 @@ import pandas as pd
 import os
 import json
 import NNModels
-from NNModels import Descriptors
 from rdkit import Chem
 
 #import rdkit
@@ -14,10 +13,18 @@ from rdkit import Chem
 
 def remove_deliminators(my_strings):
     """
-    Remove deliminators from numbers (comma) so as
-    to be able to process numbers as int or float types in place of
-    strings.  Takes in 'my_array', an array of strings, and will return
-    an array of floats.
+    Remove deliminators from numbers (i.e. commas) so as to be able
+    to process numbers as int or float types in place of strings.
+
+    Args:
+    -----
+        my_strings (list or np.array) -- list of string
+            representations of numbers (i.e. ['1,306', '5,765']).
+
+    Returns:
+    --------
+        my_array (np.array) -- array of floats.
+
     """
     my_array = []
     for i in my_strings:
@@ -30,18 +37,35 @@ def remove_deliminators(my_strings):
         except:
             print('String ' + i + ' not able to be cast to float, characters'
                   + " other than ',' or '.'?")
-    return np.asarray(my_array)
+    my_array = np.asarray(my_array)
 
-def remove_cations(smiles):
+    return my_array
+
+def remove_cations(SMILES):
     """
-    Remove the 1st and 7th row cat/anions from the smiles strings.
+    Removes periodic table group 1 and 7 counterions from the SMILES
+        strings.
+
+    Args:
+    -----
+        SMILES (str) -- the SMILES string representation of the
+            molecule.
+
+    Returns:
+    --------
+        SMILES (str) -- the string representation of the molecule with
+            the counterions omitted.
     """
-    split_smiles = smiles.split(".")
+    # Assertions
+    assert isinstance(SMILES, str), 'the SMILES must be a string'
+    # Functionality
+    split_SMILES = SMILES.split(".")
     ion_list = ['[Li+]', '[Na+]', '[K+]', '[Rb+]', '[Cs+]', '[Fr+]', '[F-]',
                 '[Cl-]', '[Br-]', '[I-]', '[At-]']
-    smiles = [i for i in split_smiles if i not in ion_list]
-    smiles = '.'.join(smiles)
-    return smiles
+    SMILES = [i for i in split_SMILES if i not in ion_list]
+    SMILES = '.'.join(SMILES)
+
+    return SMILES
 
 def draw_molecule(SMILES, filename):
     """
@@ -50,14 +74,16 @@ def draw_molecule(SMILES, filename):
 
     Args:
     -----
-        SMILES (str) -- a string representation of the molecule
-        filename () --
+        SMILES (str)   -- a string representation of the molecule.
+        filename (str) -- the name of the desired output file
+            containing the .png file extension. This file type is
+            required for implementation in the front end.
 
     """
     # Assertions
-    assert isinstance(SMILES, str), \
-        'the SMILES must be a string'
-    assert isinstance(filename, )
+    assert isinstance(SMILES, str), 'the SMILES must be a string'
+    assert isinstance(filename, str), 'the filename must be a string'
+    assert filename.endswith('.png'), 'filename must include .png extension'
 
     # Functionality
     mol = Chem.MolFromSmiles(SMILES)
@@ -67,36 +93,68 @@ def draw_molecule(SMILES, filename):
 
 def get_l_max(wavelength_intensity):
     """
-    args:
-    wavelength_intensity -- np.array(2D), dtypes float64
-    first column: wavelength; seconde column: intensity
-    return:
-    lambda_max(float)
-    """
-    wavelength_intensity.view('f8,f8').sort(order=['f1'], axis = 0)
-    return wavelength_intensity[-1][0]
+    Identifies and returns the wavelength of maximum intensity in a
+        2D array of wavelengths and intensities.
 
-def get_em_max(clean_df, em_file_colname,prefix_dir):
+    Args:
+    -----
+        wavelength_intensity (np.array(2D), dtypes float64) -- a 2D
+            array where the first coloumn contains the wavelengths
+            and the second column contains the intensities.
+
+    Returns:
+    --------
+        lambda_max (float) -- the wavelength of maximum intensity
+
     """
-    from list of emission file names, get the lambda max from existing files
-    and fill None if file not exist
+    # Assertions
+    assert isinstance(wavelength_intensity, np.array)
+    # Functionality
+    wavelength_intensity.view('f8,f8').sort(order=['f1'], axis = 0)
+    lambda_max = wavelength_intensity[-1][0]
+
+    return lambda_max
+
+def get_em_max(clean_df, em_file_colname, prefix_dir):
     """
+    Retrieves the lambda max values from existing files in a list of
+        emission file names and appends them to a list, filling with
+        None if the file dosn't exist.
+
+    Args:
+    -----
+        clean_df (pandas.DataFrame) -- a df containing the cleaned data
+        em_file_colname (str) -- the name of column that contains the
+            emission filenames.
+        prefix_dir (str) -- string representing the directory in which
+            the original PhotoChemCAD data is contained.
+
+    Returns:
+    --------
+        emission (list) -- a list containing the lambda max values
+    """
+    # Assertions
+    assert isinstance(clean_df, pd.DataFrame), 'Input must be a pandas df'
+    assert isinstance(em_file_colname, str), 'column name must be a string'
+    assert isinstance(prefix_dir, str), 'directory name must be a string'
+
+    # Functionality
     from data_extract import get_spectra, get_peaks
     emission=[]
-    for x in clean_df[em_file_colname].astype(str):#cast dtype to string
+    for x in clean_df[em_file_colname].astype(str): #cast dtype to string
         if x != 'nan':
             em_max = get_l_max(get_peaks(get_spectra(os.path.join(prefix_dir, x))))
             emission.append(em_max)
         else:
             emission.append(None)
+
     return emission
-
-
 
 def pad_ndarrays(input_dict):
     """
     Pads out all arrays in the given input dictionary of arrays
-        with zeros so that they are all the same size and the largest input array.
+        with zeros so that they are all the same size and the
+        largest input array.
 
     Args:
     -----
@@ -110,6 +168,7 @@ def pad_ndarrays(input_dict):
     # Assertions
     assert isinstance(input_dict, dict), \
         'Wrong Type: input must be a dictionary'
+
     # Functionality
     lens_of_arrays = []
     for array_i in input_dict.values():
@@ -131,7 +190,7 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
                          output_file=None):
     """
     Compute the fingerprints for an input dataframe with all the SMILES, and
-    output the results as an dictionary with json txt format
+        returns the results as a dictionary or as a json txt file.
 
     Args:
     -----
@@ -141,14 +200,14 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
         radius (int)           --
         nBits (int)            -- maxium number of bits for fingerprints
                                   computation
-        use_features (boolean) -- If True (default as False), use features to
+        use_features (bool) -- If True (default as False), use features to
                                   compute fingerprints
-        padding (boolean)      -- If True (default), pad all the
+        padding (bool)      -- If True (default), pad all the
             fingerprints to the maxium length in the dictionary
             with zeros
         output_file (str)     -- If None, return a dict. Otherwise
             returns a json .txt file of filename given by the string.
-            
+
     Returns:
     --------
         fps_dict (dict)   --  an dictionary contains the fingerprints
@@ -167,15 +226,15 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
     assert isinstance(nBits, int), \
         'Wrong Type: number of bits must be an integer'
     assert nBits > 0, 'nBits must be a positive integer'
-    assert isinstance(use_features, boolean), \
-        'Wrong Type: padding must be a boolean'
-    assert isinstance(padding, boolean), \
-        'Wrong Type: padding must be a boolean'
+    assert isinstance(use_features, bool), \
+        'Wrong Type: padding must be a bool'
+    assert isinstance(padding, bool), \
+        'Wrong Type: padding must be a bool'
     assert isinstance(output_file, (str, type(None))), \
         'Wrong Type: output_file must be a string or NoneType'
 
-    # Initializing the descriptor engine:
-    spD_engine = NNModels.Descriptors()
+    # Functionality
+    spD_engine = NNModels.Descriptors() # Initializing the Descriptors class
 
     fps_dict = {}
     for rowi_idx, rowi in df.iterrows():
@@ -206,9 +265,9 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigva
         df (pandas.DataFrame) -- an input dataframe with SMILES info
         SMILES_column (str)   -- the column name of SMILES
         key_name (str)        -- the column name for output dict key
-        eig_sort (boolean)    -- If True (default), sort the coulomb
+        eig_sort (bool)    -- If True (default), sort the coulomb
             matrixes with their eigenvalues.
-        padding (boolean)     -- If True (default), pad all the coulomb
+        padding (bool)     -- If True (default), pad all the coulomb
             matrices to the maxium length in the dictionary with zeros.
         output_file (str)     -- If None, return a dict. Otherwise,
             return a json txt file of the name given by the string.
@@ -226,17 +285,17 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigva
         'Wrong Type: column names must be a strings'
     assert isinstance(key_name, (str, type(None))), \
         'Wrong Type: key name must be a string or NoneType'
-    assert isinstance(use_eigval, boolean), \
-        'Wrong Type: use_eigval must be a boolean'
-    assert isinstance(eig_sort, boolean), \
-        'Wrong Type: eig_sort must be a boolean'
-    assert isinstance(padding, boolean), \
-        'Wrong Type: padding must be a boolean'
+    assert isinstance(use_eigval, bool), \
+        'Wrong Type: use_eigval must be a bool'
+    assert isinstance(eig_sort, bool), \
+        'Wrong Type: eig_sort must be a bool'
+    assert isinstance(padding, bool), \
+        'Wrong Type: padding must be a bool'
     assert isinstance(output_file, (str, type(None))), \
         'Wrong Type: output_file must be a string or NoneType'
 
-    # Initializing the descriptor engine:
-    spD_engine = NNModels.Descriptors()
+    # Functionality
+    spD_engine = NNModels.Descriptors() # Initializing the Descriptors class
 
     CMs_dict = {}
     for rowi_idx, rowi in df.iterrows():
@@ -246,7 +305,8 @@ def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigva
         rowi_CM = spD_engine.get_coulomb_matrix(output_eigval=use_eigval)
         if(key_name is not None):
             rowi_idx = rowi[key_name]
-
+        else:
+            pass
         CMs_dict[rowi_idx] = rowi_CM
 
     if(padding):
@@ -268,15 +328,31 @@ def compute_properties(df,SMILES_column='SMILES',index_name=None,
     -----
         df (pandas.DataFrame) -- an input dataframe with SMILES info
         SMILES_column (str)   -- the column name of SMILES
-        index_name (str)      -- the index name for output DataFrame index
-        output_file (str)     -- If None, return a dataframe
-                                 Otherwise output an csv txt file.
+        index_name (str)      -- the index name for output DataFrame
+            index.
+        output_file (str)     -- string representing the desired name
+            of the output file. If None, return a dataframe. Otherwise,
+            outputs as a txt file (must include .txt extension in file
+            name), where values are comma separated.
     Returns:
     --------
-
+        prop_df (pandas.DataFrame) -- data frame containing the
+            molecule's properties.
     """
-    #initilized the descriptor engine:
-    spD_engine = Descriptors()
+    # Assertions
+    assert isinstance(df, pd.DataFrame), \
+        'Wrong Type: input df must be a pandas dataframe'
+    assert isinstance(SMILES_column, str), \
+        'Wrong Type: column names must be a strings'
+    assert isinstance(index_name, (str, type(None))), \
+        'Wrong Type: index name must be a string or NoneType'
+    assert isinstance(output_file, str), \
+        'Wrong Type: desired output file name must be a string'
+    assert output_file.endswith('.txt'), \
+        'output_file string must include the .txt extension'
+
+    # Functionality
+    spD_engine = NNModels.Descriptors() # Initializing the Descriptor class
 
     prop_df = pd.DataFrame()
     for rowi_idx, rowi in df.iterrows():
@@ -297,20 +373,38 @@ def compute_properties(df,SMILES_column='SMILES',index_name=None,
 
 def compute_features(df,SMILES_column='SMILES',key_name=None, output_file=None):
     """
-    Compute the fingerprints for an input dataframe with all the SMILES, and
-    output the results as a csv txt file (exported by pandas)
+    Compute the fingerprints for an input dataframe with all the
+        SMILES, and output the results as a csv txt file (exported
+        by pandas).
 
     Args:
     -----
         df (pandas.DataFrame) -- an input dataframe with SMILES info
         SMILES_column (str)   -- the column name of SMILES
         key_name (str)        -- the column name for output dict key
-        output_file (str)     -- If None, return a dict
-                                 Otherwise output an json txt file.
-    Returns:
+        output_file (str)     -- the string represntation of the
+            desired file output name. If None, return a dictionary.
+            Otherwise, output an json txt file.
+
+    Returns (if output_file not specified):
     --------
+        feats_dict (dict) -- a dictionary containing all the molecule's
+            features.
     """
-    spD_engine = Descriptors()
+    # Assertions
+    assert isinstance(df, pd.DataFrame), \
+        'Wrong Type: input df must be a pandas dataframe'
+    assert isinstance(SMILES_column, str), \
+        'Wrong Type: column names must be a strings'
+    assert isinstance(key_name, (str, type(None))), \
+        'Wrong Type: key name must be a string or NoneType'
+    assert isinstance(output_file, str), \
+        'Wrong Type: desired output file name must be a string'
+    assert output_file.endswith('.txt'), \
+        'output_file string must include the .txt extension'
+
+    # Assertions
+    spD_engine = NNModels.Descriptors() # Initializing the Descriptor class
 
     feats_dict = {}
     for rowi_idx, rowi in df.iterrows():

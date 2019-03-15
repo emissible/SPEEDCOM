@@ -38,7 +38,7 @@ class DataUtils:
     get integer map for character and int
     return dict and max length of all str
     """
-    charset = set(''.join(x_smiles.flatten()) + "!E")
+    charset = sorted(list(set(''.join(x_smiles.flatten()) + "!E")))
     char_to_int = dict((c,i) for i,c in enumerate(charset))
     return char_to_int
   
@@ -79,7 +79,29 @@ class DataUtils:
             ret[i, j + 1] = word_map[c]
         ret[i, len(item)+1:] = word_map['E']
     return ret
-  
+
+  @staticmethod
+  def reverse_wordmap(word_map):
+    rev_wordmap={}
+    for key, val in word_map.items():
+      rev_wordmap[val] = key
+    return rev_wordmap
+
+
+
+  @staticmethod
+  def decode_num_smiles(numeric_smiles_list, rev_wordmap):
+    smiles_list = []
+    for numeric_smiles in numeric_smiles_list:
+      smiles = ''
+      for num in numeric_smiles:
+        char = rev_wordmap[num]
+        if (char !='!' and char != 'E'):
+          smiles += char
+      smiles_list.append(smiles)
+    return np.array(smiles_list)
+
+
   @staticmethod
   def finger_print_clean(df, colname_string_array):
     """

@@ -1,2 +1,0 @@
-# Lambda_abs Lambda_abs epsilon Phi_fluorescence
-260 300 100 0.75 

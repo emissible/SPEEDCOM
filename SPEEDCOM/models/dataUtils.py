@@ -38,7 +38,7 @@ class DataUtils:
     get integer map for character and int
     return dict and max length of all str
     """
-    charset = set(''.join(x_smiles.flatten()) + "!E")
+    charset = sorted(list(set(''.join(x_smiles.flatten()) + "!E")))
     char_to_int = dict((c,i) for i,c in enumerate(charset))
     return char_to_int
   
@@ -98,7 +98,7 @@ class DataUtils:
         char = rev_wordmap[num]
         if (char !='!' and char != 'E'):
           smiles += char
-    smiles_list.append(smiles)
+      smiles_list.append(smiles)
     return np.array(smiles_list)
 
 

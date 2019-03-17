@@ -137,7 +137,8 @@ class Descriptors:
 
         Args:
         -----
-            radius (int)    --
+            radius (int)    -- the radius parameter to be passed to
+                the
             nBits (int)     -- the number of bits the molecule
                 is characterized by.
             use_feat (bool) -- (default False) If True, uses the
@@ -167,15 +168,27 @@ class Descriptors:
 
         Args:
         -----
-            SMILES (str) -- the SMILES string representation of the
-                molecule.
+            eig_sort (bool) -- (Default True) If False, doesn't sort
+                the coulomb matrix by eignevalue.
+            output_eigval (bool) -- (Default False) If True, outputs
+                the eigenvalues of the Coulomb Matrix instead of the
+                Coulomb matrix itself.
+
         Returns:
         --------
             coulomb_matrix (numpy.ndarray) -- the coulomb matrix for
-                a given molecule's nuclear geometry.
+                a given molecule's nuclear geometry in the form of a
+                2D aray.
+
+            eig (np.array) -- Outputs if the output_eigval argument
+                is True as a 1D array of the eigenvalues of the Coulomb
+                matrix.
         """
         # Assertions
         assert type(self.Molecule) == Chem.rdchem.Mol
+        assert isinstance(eig_sort, bool), 'eig_sort must be a bool'
+        assert isinstance(output_eigval, bool), 'output_eigval must be a bool'
+
         # Generating the coulomb matrix
         molecule_df = self.__get_charges_coords()
         num_atoms = len(molecule_df)
@@ -217,9 +230,12 @@ class Descriptors:
 
     def __config_feature_factory(self):
         """
+        Initialize the 'feature factory' rdkit module with the
+            current molecule.
         """
         fdefName = os.path.join(RDConfig.RDDataDir,'BaseFeatures.fdef')
         self.__feat_factory = ChemicalFeatures.BuildFeatureFactory(fdefName)
+
         return
 
     def __get_charges_coords(self):

@@ -86,5 +86,10 @@ def test_get_Morgan_fingerprint():
     return
 
 def test_get_coulomb_matrix():
+    """
+    Tests the function that returns the Coulomb matrix of a molecule.
+    """
+    try:
+        get_coulomb_matrix(smile)
 
     return

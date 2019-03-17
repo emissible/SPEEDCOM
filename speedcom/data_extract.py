@@ -4,7 +4,7 @@ import pubchempy as pcp
 import scipy.signal
 
 # import the Molecule class
-from core import Molecule 
+from speedcom import Molecule 
 
 """
 The data obtaining functions.  Please note that many of these functions

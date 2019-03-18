@@ -1,6 +1,6 @@
-import utilities
-import NNModels
-import data_extract
+import speedcom.utilities as utilities
+import speedcom.NNModels as NNModels
+import speedcom.data_extract as data_extract
 
 #import speedcom
 

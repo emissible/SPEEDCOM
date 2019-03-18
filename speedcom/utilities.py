@@ -2,7 +2,7 @@ import json
 import math
 import matplotlib.pyplot as plt
 #import NNModles
-#import speedcom.NNModels
+import speedcom.NNModels as NNModels
 import numpy as np
 import os
 import pandas as pd
@@ -487,7 +487,7 @@ def broaden_spectrum(spect, sigma):
 
     return plot_vals
 
-def visualize(data, sigma=5.0):
+def visualize(data, sigma=5.0, save_dir='../data/'):
     """
     Generate the displayed emission and abosrbance plot from the
         informationpredicted by the model. Saves two  files called
@@ -557,10 +557,10 @@ def visualize(data, sigma=5.0):
     #Saves the generated figure to a file in the data folder (given the same
     #name as the input SMILES string (data[0]).  Figure is in a *.png file
     #format.
-    plt.savefig("../data/" + str(data[0]) + ".png", dpi=300)
+    plt.savefig(save_dir + str(data[0]) + ".png", dpi=300)
     plt.close()
     #Save the data to file
-    fo = open('../data/' + str(data[0]) + '_peaks.txt', 'w')
+    fo = open(save_dir + str(data[0]) + '_peaks.txt', 'w')
     fo.write("Absorption\tIntensitiy\n")
     #**FUTURE FEATURE**
     #for i in range(len(data[1]):

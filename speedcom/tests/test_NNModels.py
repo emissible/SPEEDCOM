@@ -1,18 +1,18 @@
-import speedcom.NNModels
+import speedcom.tests.context as context
 
 # Initialize the class with a test moleucle.
 test_SMILES = 'C1=CC=CC=C1'
-molecule = NNModels.Descriptors(test_SMILES)
+molecule = context.NNModels.Descriptors(test_SMILES)
 
 def test__init__():
     """
     Testing for correct construction of the Descriptor class.
     """
     try:
-        molecule = NNModels.Descriptors()
+        mol = context.NNModels.Descriptors()
     except:
         raise RuntimeError('Error in constructing molecule')
-    assert isinstance(molecule, NNModel.Descriptors), \
+    assert isinstance(mol, NNModel.Descriptors), \
         'molecule object constructed as wrong type.'
 
     return
@@ -75,7 +75,7 @@ def test_get_Morgan_fingerprint():
             'Error in output: value at index ' + str(index) + \
             ' isnt an integer'
         index += 1
-
+    
     return
 
 def test_get_coulomb_matrix():

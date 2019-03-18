@@ -2,6 +2,8 @@ import numpy as np
 import os
 import pandas as pd
 
+import speedcom.tests.context as context
+
 def test_remove_deliminators():
     """
     Tests the function that removes delimiters from
@@ -9,7 +11,7 @@ def test_remove_deliminators():
     """
     test_list = ['6,230', '4,890']
     try:
-        my_array = remove_deliminators(test_list)
+        my_array = context.utilities.remove_deliminators(test_list)
     except Exception as e:
         assert isinstance(e, TypeError)
 
@@ -21,13 +23,13 @@ def test_remove_deliminators():
             'value at index ' + str(index) + ' is not a float'
         index += 1
 
-    assert remove_deliminators(['1,000,000']) == [1000000], \
+    assert context.utilities.remove_deliminators(['1,000,000']) == [1000000], \
         'Not correctly removing 2 delimiters from a number.'
-    assert remove_deliminators(['0.1']) == [0.1], \
+    assert context.utilities.remove_deliminators(['0.1']) == [0.1], \
         'Incorrectly removing the decimal point from a float.'
-    assert remove_deliminators(['1234']) == [1234], \
+    assert context.utilities.remove_deliminators(['1234']) == [1234], \
         'Incorrecly changing value of number passed'
-    assert remove_deliminators(['1,234.5']) == [1234.5], \
+    assert context.utilities.remove_deliminators(['1,234.5']) == [1234.5], \
         'Incorrecly changing value of number passed'
 
     return
@@ -48,16 +50,16 @@ def test_remove_cations():
     except Exception as e:
         assert isinstance(e, TypeError)
 
-    removed2 = remove_cations(test_SMILES2)
-    removed3 = remove_cations(test_SMILES3)
+    removed2 = context.utilities.remove_cations(test_SMILES2)
+    removed3 = context.utilities.remove_cations(test_SMILES3)
 
-    if removed1 != test_SMILES:
+    if not removed1 == test_SMILES:
         raise RuntimeError("Error: function removing \
             counterions that don't exist!")
-    else if removed2 != test_SMILES2:
+    elif not removed2 == test_SMILES2:
         raise RuntimeError("Error: function removing \
             counterions that it shouldn't!")
-    else if removed3 == test_SMILES3:
+    elif removed3 == test_SMILES3:
         raise RuntimeError("Error: function not removing \
             counterions that it should!")
 
@@ -71,7 +73,7 @@ def test_draw_molecule():
     test_SMILES = 'C[C@@H](CC1=CC=CC=C1)NC'
     test_filename = 'testDrawMolecule.png'
     try:
-        draw_molecule(test_SMILES, test_filename)
+        context.utilities.draw_molecule(test_SMILES, test_filename)
     except Exception as e:
         assert isinstance(e, TypeError)
 
@@ -85,7 +87,7 @@ def test_get_l_max():
     test_wl_int = [[400, 0.5], [500, 1]]
 
     try:
-        test_l_max = get_l_max(test_wl_int)
+        test_l_max = context.utilities.get_l_max(test_wl_int)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(test_l_max, float), \
@@ -113,7 +115,7 @@ def test_pad_ndarrays():
     test_dict = {0:[1, 2, 3], 1:[1, 2, 3, 4, 5]}
 
     try:
-        finger_dict = pad_ndarrays(test_dict)
+        finger_dict = context.utilities.pad_ndarrays(test_dict)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(finger_dict, dict), \
@@ -136,9 +138,10 @@ def test_compute_fingerprints():
     filname = 'fingerprint_test.txt'
 
     try:
-        finger_dict = compute_fingerprints(test_df, key_name=test_keyname)
-        finger_dict_file = compute_features(test_df, key_name=test_keyname,
-                                            output_file=filname)
+        finger_dict = context.utilities.compute_fingerprints(test_df, \
+            key_name=test_keyname)
+        finger_dict_file = context.utilities.compute_features(test_df, \
+            key_name=test_keyname, output_file=filname)
     except Exception as e:
         assert isinstance(e, TypeError)
 
@@ -164,11 +167,12 @@ def test_compute_coulomb_matrixes():
     filename = 'coulomb_test.txt'
 
     try:
-        out_cm = compute_coulumb_matrixes(test_df, key_name=test_keyname)
-        out_eig = compute_coulumb_matrixes(test_df, key_name=test_keyname,
-                                           use_eigval=True)
-        out_cm_file = compute_coulumb_matrixes(test_df, key_name=test_keyname,
-                                               output_file=filname)
+        out_cm = context.utilities.compute_coulumb_matrixes(test_df, \
+            key_name=test_keyname)
+        out_eig = context.utilities.compute_coulumb_matrixes(test_df, \
+            key_name=test_keyname, use_eigval=True)
+        out_cm_file = context.utilities.compute_coulumb_matrixes(test_df, \
+            key_name=test_keyname, output_file=filname)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(out_cm, dict), \
@@ -195,9 +199,10 @@ def test_compute_properties():
     filename = 'properties_test.txt'
 
     try:
-        out_prop = compute_properties(test_df, index_name=test_idxname)
-        out_prop_file = compute_properties(test_df, index_name=test_idxname,
-                                           output_file=True)
+        out_prop = context.utilities.compute_properties(test_df, \
+            index_name=test_idxname)
+        out_prop_file = context.utilities.compute_properties(test_df, \
+            index_name=test_idxname, output_file=True)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(out_prop, pd.DataFrame), \
@@ -222,9 +227,10 @@ def test_compute_features():
     filename = 'features_test.txt'
 
     try:
-        out_feat = compute_features(test_df, key_name=test_keyname)
-        out_feat_file = compute_features(test_df, key_name=test_keyname,
-                                        output_file=filename)
+        out_feat = context.utilities.compute_features(test_df, \
+            key_name=test_keyname)
+        out_feat_file = context.utilities.compute_features(test_df, \
+            key_name=test_keyname, output_file=filename)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(out_feat, dict), \
@@ -244,12 +250,12 @@ def test_broaden_spectrum():
     test_spect = [250, 1]
     sigma = 5.0
     try:
-        coords = broaden_spectrum(test_spect, sigma)
+        coords = context.utilities.broaden_spectrum(test_spect, sigma)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert min(coords[0]) == test_spect[0] - 50.0
     assert max(coords[0]) == test_spect[0] + 50.0
-    assert np.isclose(max(coords[1]) == 1.0
+    assert np.isclose(max(coords[1])) == 1.0
 
     return
 
@@ -262,7 +268,7 @@ def test_visualize():
     data_test = [test_SMILES, 200, 1, 250, 1]
 
     try:
-        visualize(data_test)
+        context.utilities.visualize(data_test)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert os.path.isfile('../data/' + str(SMILES) + '.png'), \

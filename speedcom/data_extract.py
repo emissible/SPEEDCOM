@@ -3,8 +3,8 @@ import os
 import pubchempy as pcp
 import scipy.signal
 
-# import the Molecule class
-from speedcom import Molecule 
+# import the speedcom.Molecule class
+import speedcom
 
 """
 The data obtaining functions.  Please note that many of these functions
@@ -14,25 +14,25 @@ should only need to be run when training a new model.
 #data_dir global variable containing the path to the data
 def get_emission_files(data_dir):
     """
-    Get the total files containing emission spectra.  Expects the files to be of
-    type *.ems.txt and have the naming convention *.ems.txt will return a list
-    of strings to be parsed later.
+    Get the total files containing emission spectra.  Expects the files to 
+    be of type *.ems.txt and have the naming convention *.ems.txt will return
+    a list of strings to be parsed later.
      """
     return [fn for fn in os.listdir(data_dir) if fn.endswith(".ems.txt")]
 
 def get_absorption_files(data_dir):
     """
-    Get the total files containing absorption spectra.  Expects the files to be
-    of type *.txt and have the naming convention *.abs.txt will return a list of
-    strings to be parsed later.
+    Get the total files containing absorption spectra.  Expects the files to
+    be of type *.txt and have the naming convention *.abs.txt will return a 
+    list of strings to be parsed later.
     """
     return [fn for fn in os.listdir(data_dir) if fn.endswith(".abs.txt")]
 
 def get_molecule_cid(file_name):
     """ 
     Take a file_name, remove the ending and prefix and return the pubchem
-    molecule object.  If the file_name does not have the cas number, try the name
-    of the system,   else return None so as to disreguard the molecule
+    molecule object.  If the file_name does not have the cas number, try the 
+    name of the system,   else return None so as to disreguard the molecule
     from training.
     """
     my_file = file_name.split("_")
@@ -101,25 +101,26 @@ def initiate_molecules(data_dir):
             smiles = pubchem_molecule.isomeric_smiles
             weight = pubchem_molecule.molecular_weight
             file_name = ems_file.split(".")[0]
-            my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, weight,\
-               file_name))
+            my_molecules.append(speedcom.Molecule(absorp, cid, columb, emiss, \
+                smiles, weight, file_name))
             my_added_molecules.append(cid)
         else:
            pass
-          #For all applicable absorption spectra put properties into molecule objects,
-          #and place objects into list for molecules.
+       #For all applicable absorption spectra put properties into molecule 
+       #objects, and place objects into list for molecules.
         for abs_file in get_absorption_files(data_dir):
             found = 0
             pubchem_molecule = get_molecule_cid(abs_file)
-            #Check to see if the molecule already exists in the list, and if it does
-            #does it already have valid absorption peaks:
+            #Check to see if the molecule already exists in the list, and if 
+            #it does, does it already have valid absorption peaks:
             if pubchem_molecule:
                 cid = pubchem_molecule.cid
                 if cid in my_added_molecules:
                     found = 1
                     mol_index = my_added_molecules.index(cid)
                     spectra = get_spectra(data_dir + "/" + abs_file)
-                    my_molecules[mol_index].absorption_peaks = get_peaks(spectra)
+                    my_molecules[mol_index].absorption_peaks = \
+                        get_peaks(spectra)
                     break
                 else:
                   pass
@@ -131,8 +132,8 @@ def initiate_molecules(data_dir):
                     smiles = pubchem_molecule.isomeric_smiles
                     weight = pubchem_molecule.molecular_weight
                     file_name = abs_file.split(".")[0]
-                    my_molecules.append(Molecule(absorp, cid, columb, emiss, smiles, \
-                    weight, file_name))
+                    my_molecules.append(speedcom.Molecule(absorp, cid, \
+                        columb, emiss, smiles, weight, file_name))
     return my_molecules
 
 def electrostatic_potentials(file_name):

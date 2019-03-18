@@ -15,14 +15,14 @@ install:
 - travis_retry pip install -e .
 
 script:
-- py.test --pyargs speedcom
-#- py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
+#- py.test --pyargs speedcom
+- py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
 #- tox
-#- coverage report
+- coverage report
 
 after_success:
 #- coveralls
 
 after_success:
 - ls -a
-#- coveralls
+- coveralls

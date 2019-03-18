@@ -4,7 +4,7 @@ import pubchempy as pcp
 import scipy.signal
 
 # import the Molecule class
-from core import Molecule 
+from speedcom import Molecule 
 
 """
 The data obtaining functions.  Please note that many of these functions
@@ -147,6 +147,16 @@ def electrostatic_potentials(file_name):
             organic_solvents.html
     Glycerol - Sulfuric Acid: 
         http://www.appliedmc.com/content/images/Dielectric_Constants.pdf
+    Chloronaphthalene - http://www.stenutz.eu/chem/solv6.php?\
+        name=1-chloronaphthalene
+    3-methylpentante - https://journals.aps.org/pra/pdf/10.1103/\
+        PhysRevA.42.4735
+    PBS - http://www.materials-talks.com/blog/2015/03/09/how-to-get-the\
+        -latest-software-for-the-zetasizer-nano/
+    Borate Buffer - https://www.honeywellprocess.com/library/marketing/tech\
+        -specs/Dielectric%20Constant%20Table.pdf
+    Sodium Hydroxide - http://www.microkat.gr/msdspd90-99/Sodium%20\
+        hydroxide.html
     """
     return{
         "none":                                     1.0,
@@ -161,6 +171,7 @@ def electrostatic_potentials(file_name):
         "dimethylformamide":                        38.25,
         "dioxane":                                  2.21,
         "DMSO":                                     47.0,
+        "30% tris buffered (in DMSO)":              47.0,
         "ethanol":                                  24.6, 
         "ethanol ":                                 24.6,
         "ethanol(basic)":                           24.6,
@@ -175,19 +186,18 @@ def electrostatic_potentials(file_name):
         "water":                                    78.54,
         "water (pH 5 to 9)":                        78.54,
         "water (pH 5 to 9 )":                       78.54,
+        "water (pH 4)":                             78.54,
         "water (pH 7)":                             78.54,
+        "water (pH 10)":                            78.54,
         "glycerol":                                 13.2,
         "0.5 M H2SO4":                              31.0,
         "H2SO4 aq (1 N)":                           31.0,
-        "phosphate buffer (pH 7, 0.1 M)":           0.0,
-        "PBS ":                                     0.0,
-        "0.1 N NaOH aq":                            0.0,
-        "borate buffer (pH 10)":                    0.0,
-        "NaOH aq":                                  0.0,
-        "chloronaphthalene":                        0.0,
-        "water (pH 10)":                            0.0,
-        "3-methylpentane":                          0.0,
-        "water (pH 4)":                             0.0,
-        "PBS":                                      0.0,
-        "30% tris buffered (in DMSO)":              0.0
+        "chloronaphthalene":                        5.0,
+        "3-methylpentane":                          9.7,
+        "PBS":                                      79.0, 
+        "PBS ":                                     79.0,
+        "phosphate buffer (pH 7, 0.1 M)":           79.0,
+        "borate buffer (pH 10)":                    8.2,
+        "NaOH aq":                                  57.5,
+        "0.1 N NaOH aq":                            57.5
         }.get(file_name,"none")

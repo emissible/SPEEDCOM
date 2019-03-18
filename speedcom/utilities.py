@@ -479,10 +479,12 @@ def broaden_spectrum(spect, sigma):
 def visualize(data, sigma=5.0):
     """
     Generate the displayed emission and abosrbance plot from the
-        informationpredicted by the model. Saves to a file called
-        by the frontend. **NOTE** This takes in only one row of a
-        data frame at a time (only one molecule can be plotted at
-        once, hence the declared numpy array as input will work
+        informationpredicted by the model. Saves two  files called
+        by the frontend, by the name of the input smiles string which
+        contain the absorption/emission spectrum as well as the
+        absorption and emission peaks. **NOTE** This takes in only one 
+        row of a data frame at a time (only one molecule can be plotted
+        at once, hence the declared numpy array as input will work
         with any list object as well as long as it follows the
         structure detailed in the Args section below).
 
@@ -539,5 +541,17 @@ def visualize(data, sigma=5.0):
     #name as the input SMILES string (data[0]).  Figure is in a *.png file
     #format.
     plt.savefig("../data/" + str(data[0]) + ".png", dpi=300)
-
+    #Save the data to file
+    fo = open('../data/' + str(data[0]) + '_peaks.txt', w)
+    fo.write("Absorption\tIntensitiy\n")
+    #**FUTURE FEATURE**
+    #for i in range(len(data[1]):
+    #  fo.write(str(data[1][i]) + '\t' + str(data[2][i]))
+    fo.write(str(data[1]) + '\t' + str(data[2]))
+    fo.write("\nEmission\tIntensity\n")
+    #**FUTURE FEATURE**
+    #for i in range(len(data[3]):
+    #  fo.write(str(data[3][i]) + '\t' + str(data[4][i]))
+    fo.write(str(data[3]) + '\t' + str(data[4]))
+    fo.close
     return

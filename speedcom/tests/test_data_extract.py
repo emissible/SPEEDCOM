@@ -112,4 +112,11 @@ class initiate_molecules(unittest.TestCase):
 
 class electgrostatic_potentials(unittest.TestCase):
     def test_valid_return_with_known(self):
-        assert contest.data_extract.electrostatic_potentials(
+        assert context.data_extract.electrostatic_potentials('acetic acid') \
+            == 6.20, "electrostatic_potentils returns incorrect value"
+        return
+
+    def test_valid_return_unknown(self):
+        assert context.data_extract.electrostatic_potentials("NOT MOLECULES")\
+            == 1.0, "electrostatic_potentials unable to return for unknowns"
+        return

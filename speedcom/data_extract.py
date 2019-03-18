@@ -4,7 +4,7 @@ import pubchempy as pcp
 import scipy.signal
 
 # import the speedcom.Molecule class
-import speedcom
+#import speedcom
 
 """
 The data obtaining functions.  Please note that many of these functions
@@ -80,67 +80,11 @@ def get_peaks(spectra):
         peaks.append(spectra[i, :])
     return np.asarray(peaks)
 
-def initiate_molecules(data_dir):
-    """
-    Takes in the directory containing all of the data files and returns a list
-    of populated molecule objects.
-    """
-  
-    my_molecules = []
-    my_added_molecules = []
-    #For all applicable emission spectra put properties into molecule objects,
-    #and place objects into list for molecules.
-    for ems_file in get_emission_files(data_dir):
-        pubchem_molecule = get_molecule_cid(ems_file) 
-        if pubchem_molecule:
-            cid = pubchem_molecule.cid
-            spectra = get_spectra(data_dir + "/" + ems_file)
-            absorp = None
-            columb = None
-            emiss = get_peaks(spectra)
-            smiles = pubchem_molecule.isomeric_smiles
-            weight = pubchem_molecule.molecular_weight
-            file_name = ems_file.split(".")[0]
-            my_molecules.append(speedcom.Molecule(absorp, cid, columb, emiss, \
-                smiles, weight, file_name))
-            my_added_molecules.append(cid)
-        else:
-           pass
-       #For all applicable absorption spectra put properties into molecule 
-       #objects, and place objects into list for molecules.
-        for abs_file in get_absorption_files(data_dir):
-            found = 0
-            pubchem_molecule = get_molecule_cid(abs_file)
-            #Check to see if the molecule already exists in the list, and if 
-            #it does, does it already have valid absorption peaks:
-            if pubchem_molecule:
-                cid = pubchem_molecule.cid
-                if cid in my_added_molecules:
-                    found = 1
-                    mol_index = my_added_molecules.index(cid)
-                    spectra = get_spectra(data_dir + "/" + abs_file)
-                    my_molecules[mol_index].absorption_peaks = \
-                        get_peaks(spectra)
-                    break
-                else:
-                  pass
-                if not found:
-                    spectra = get_spectra(data_dir + "/" + abs_file)
-                    absorp = get_peaks(spectra)
-                    columb = None
-                    emiss = None
-                    smiles = pubchem_molecule.isomeric_smiles
-                    weight = pubchem_molecule.molecular_weight
-                    file_name = abs_file.split(".")[0]
-                    my_molecules.append(speedcom.Molecule(absorp, cid, \
-                        columb, emiss, smiles, weight, file_name))
-    return my_molecules
-
 def electrostatic_potentials(file_name):
     """
-    Returns the dielectic constant for the various solvents within the database.
-    If a solvent is not in the list will return 1.
-    Takes a string and returns a double
+    Returns the dielectic constant for the various solvents within the
+    database.  If a solvent is not in the list will return 1. Takes a 
+    string and returns a double
   
     Sources: 
     acetic acid to water (pH 7): 
@@ -154,8 +98,8 @@ def electrostatic_potentials(file_name):
         PhysRevA.42.4735
     PBS - http://www.materials-talks.com/blog/2015/03/09/how-to-get-the\
         -latest-software-for-the-zetasizer-nano/
-    Borate Buffer - https://www.honeywellprocess.com/library/marketing/tech\
-        -specs/Dielectric%20Constant%20Table.pdf
+    Borate Buffer - https://www.honeywellprocess.com/library/marketing/\
+        tech-specs/Dielectric%20Constant%20Table.pdf
     Sodium Hydroxide - http://www.microkat.gr/msdspd90-99/Sodium%20\
         hydroxide.html
     """
@@ -201,4 +145,4 @@ def electrostatic_potentials(file_name):
         "borate buffer (pH 10)":                    8.2,
         "NaOH aq":                                  57.5,
         "0.1 N NaOH aq":                            57.5
-        }.get(file_name,"none")
+        }.get(file_name, 1.0)

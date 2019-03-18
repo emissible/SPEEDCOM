@@ -4,8 +4,10 @@ import pandas as pd
 import math
 import os
 import json
-import NNModels
+#import NNModels
 from rdkit import Chem
+
+import speedcom
 
 #import rdkit
 #from rdkit import Chem

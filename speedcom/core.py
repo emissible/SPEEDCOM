@@ -8,15 +8,15 @@ class Molecule:
   The molecule class holds the information about the different molecules:
     * absorption_peaks: The absorption peaks (2D numpy array).
     * cid:              The PUBCHEM CID (float).
-    * columb:           The columb matrix for the molecule.
+    * coulomb:           The columb matrix for the molecule.
     * emission_peaks:   The emission peaks (2D numpy array).
     * smiles:           The canonical SMILES string (string).
     * weight:           The molecular weight (float).
   """
-  def __init__(self, absorp, cid, columb, emiss, smiles, weight, flnm):
+  def __init__(self, absorp, cid, coulomb, emiss, smiles, weight, flnm):
     self.absorption_peaks = absorp
     self.cid = cid
-    self.coulomb = columb
+    self.coulomb = coulomb
     self.emission_peaks = emiss
     self.smiles = utilities.remove_cations(smiles)
     self.weight = weight
@@ -24,9 +24,6 @@ class Molecule:
     self.file_name = flnm
 
 if __name__ =='__main__':
-    data_dir = "../data/PhotochemCAD3/PCAD3 Compd Database 2018" 
+    data_dir = "../data/PhotochemCAD3/PCAD3 Compd Database 2018"
     molecule_list = data_extract.initiate_molecules(data_dir)
     print(len(molecule_list))
-
-
-

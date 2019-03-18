@@ -33,7 +33,6 @@ class Descriptors:
         get_Morgan_fingerprint
         __config_feature_factory
         __get_charges_coords
-
     """
 
     def __init__(self, SMILES = None):
@@ -50,6 +49,7 @@ class Descriptors:
 #        self.Features    = None
 #        self.Fingerprint = None
 
+        return
 
     def set_molecule(self, SMILES):
         """
@@ -137,8 +137,9 @@ class Descriptors:
 
         Args:
         -----
-            radius (int)    -- the radius parameter to be passed to
-                the
+            radius (int)    -- passed to the rdkit function, this
+                represents the the number of atomic neighbours the
+                fingerprint is evaluated for.
             nBits (int)     -- the number of bits the molecule
                 is characterized by.
             use_feat (bool) -- (default False) If True, uses the

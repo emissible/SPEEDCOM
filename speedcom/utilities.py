@@ -26,6 +26,9 @@ def remove_deliminators(my_strings):
         my_array (np.array) -- array of floats.
 
     """
+    # Assertions
+    assert isinstance(my_strings, (list, np.array)), \
+        'my_strings must be a list or a numpy array.'
     my_array = []
     for i in my_strings:
         number = i
@@ -198,7 +201,9 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
         df (pandas.DataFrame)  -- an input dataframe with SMILES info
         SMILES_column (str)    -- the column name of SMILES
         key_name (str)         -- the column name for output dict key
-        radius (int)           --
+        radius (int)           -- passed to the rdkit function, this
+            represents the the number of atomic neighbours the finger-
+            print is evaluated for.
         nBits (int)            -- maxium number of bits for fingerprints
                                   computation
         use_features (bool) -- If True (default as False), use features to
@@ -255,20 +260,28 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
     else:
         return fps_dict
 
-def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, use_eigval=False,
-                             eig_sort=True, padding=True, output_file=None):
+def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
+                            use_eigval=False, eig_sort=True, padding=True,
+                            output_file=None):
     """
     Compute the fingerprints for an input dataframe with all the SMILES,
-        and output the results as an dictionary with json txt format
+        and output the results as an dictionary with json txt format.
+
+    Sources:
+        Using Coulomb matrix for machine learning on chemical context:
+        Grégoire Montavon et al 2013 New J. Phys. 15 095003
 
     Args:
     -----
         df (pandas.DataFrame) -- an input dataframe with SMILES info
         SMILES_column (str)   -- the column name of SMILES
         key_name (str)        -- the column name for output dict key
-        eig_sort (bool)    -- If True (default), sort the coulomb
-            matrixes with their eigenvalues.
-        padding (bool)     -- If True (default), pad all the coulomb
+        use_eigval (bool)     -- (Default True) If true, will return
+            just the eigenvalues of the coulomb matrix for each
+            molecule. If False, returns the Coulomb matrix itself.
+        eig_sort (bool)       -- If True (default), sort the coulomb
+            matrices with their eigenvalues.
+        padding (bool)        -- If True (default), pad all the coulomb
             matrices to the maxium length in the dictionary with zeros.
         output_file (str)     -- If None, return a dict. Otherwise,
             return a json txt file of the name given by the string.
@@ -347,10 +360,13 @@ def compute_properties(df,SMILES_column='SMILES',index_name=None,
         'Wrong Type: column names must be a strings'
     assert isinstance(index_name, (str, type(None))), \
         'Wrong Type: index name must be a string or NoneType'
-    assert isinstance(output_file, str), \
+    assert isinstance(output_file, (str, type(None))), \
         'Wrong Type: desired output file name must be a string'
-    assert output_file.endswith('.txt'), \
-        'output_file string must include the .txt extension'
+    if type(output_file) is str:
+        assert output_file.endswith('.txt'),\
+            'output_file string must include the .txt extension'
+    else:
+        pass
 
     # Functionality
     spD_engine = NNModels.Descriptors() # Initializing the Descriptor class
@@ -399,12 +415,14 @@ def compute_features(df,SMILES_column='SMILES',key_name=None, output_file=None):
         'Wrong Type: column names must be a strings'
     assert isinstance(key_name, (str, type(None))), \
         'Wrong Type: key name must be a string or NoneType'
-    assert isinstance(output_file, str), \
+    assert isinstance(output_file, (str, type(None)), \
         'Wrong Type: desired output file name must be a string'
-    assert output_file.endswith('.txt'), \
-        'output_file string must include the .txt extension'
-
-    # Assertions
+    if type(output_file) is str:
+        assert output_file.endswith('.txt'),\
+            'output_file string must include the .txt extension'
+    else:
+        pass
+    # Functionality
     spD_engine = NNModels.Descriptors() # Initializing the Descriptor class
 
     feats_dict = {}

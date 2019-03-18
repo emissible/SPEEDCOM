@@ -6,7 +6,7 @@ import unittest
 import speedcom.tests.context as context
 
 #Variables for testing
-testing_dir = 'DATA_CLEAN_TEST_DIR'
+testing_dir = 'DATA_CLEAN_TEST_DIR/'
 cid_test = "ZZZ_64-17-5_ethanol.txt"
 name_test = "ZZZ_ethanol_ZZZ.txt"
 
@@ -17,9 +17,8 @@ class get_emission_files(unittest.TestCase):
         Tests that a non-existant directory returns an error.  Should be
         handeled by built in python os package.
         """
-        DATA_DIR = "NONEXISTANTDIRECTORY"
         self.assertRaises(Exception, lambda:context.data_extract.\
-            get_emission_files())
+            get_emission_files("NONEXISTANTDIRECTORY"))
 
     def test_emission_files(self):
         """
@@ -49,7 +48,7 @@ class get_molecule_cid(unittest.TestCase):
         """
         Tests able to get CID from the cas number
         """
-        assert context.data_extract.get_molecule_cid(cid_test) == 702, \
+        assert context.data_extract.get_molecule_cid(cid_test).cid == 702, \
             'get_molecule_cid unable to ID from cid'
         return
 
@@ -57,26 +56,8 @@ class get_molecule_cid(unittest.TestCase):
         """
         Tests able to get CID from name
         """
-        assert context.data_extract.get_molecule_cid(name_test) == 702, \
+        assert context.data_extract.get_molecule_cid(name_test).cid == 702, \
             'get_molecule_cid unable to ID from name'
-        return
-
-class get_molecular_weight(unittest.TestCase):
-    def test_proper_weight(self):
-        """
-        Ensures able to get moleular weight from CID = 702
-        """
-        assert context.data_extract.get_molecular_weight(702) == 46.07, \
-            'get_molecular_weight returns improper weight'
-        return
-
-class get_molecular_smiles(unittest.TestCase):
-    def test_proper_smiles(self):
-        """
-        Ensures able to get isomeric SMILES from CID
-        """
-        assert context.data_extract.get_molecular_smiles(702) == 'CCO', \
-            'get_molecular_smiles returns improper canonical SMILES'
         return
 
 class get_spectra(unittest.TestCase):
@@ -110,7 +91,7 @@ class initiate_molecules(unittest.TestCase):
             "initiate_molecules unable to find all molecules"
         return
 
-class electgrostatic_potentials(unittest.TestCase):
+class electrostatic_potentials(unittest.TestCase):
     def test_valid_return_with_known(self):
         assert context.data_extract.electrostatic_potentials('acetic acid') \
             == 6.20, "electrostatic_potentils returns incorrect value"

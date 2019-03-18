@@ -7,10 +7,23 @@ class ModelUtils:
   
     @staticmethod
     def coeff_determination(y_true, y_pred):
+        """
+        calculates the R square of true value and predicted value
+        with keras backend
+        Args:
+        -----
+        y_true (np.array)
+        y_pred (np.array)
+        
+        Returns:
+        -----
+        R_square (float)
+        """
+        assert len(y_true) == len(y_pred)
         from keras import backend as K
         SS_res =  K.sum(K.square( y_true-y_pred ))
         SS_tot = K.sum(K.square( y_true - K.mean(y_true) ) )
-        return ( 1 - SS_res/(SS_tot + K.epsilon()) )
+        return (1 - SS_res/(SS_tot + K.epsilon()))
     
     
   
@@ -19,9 +32,9 @@ class ModelUtils:
         """
         input model and actual data, plot train, test predicted data and error
         """
+        
         y_train = y_train.reshape(-1,1)
         y_test = y_test.reshape(-1,1)
-    
         plt.figure(figsize=(8, 10), dpi=100)
         plt.subplot(211)
         plt.scatter(y_train, model.predict(X_train), color = 'r', label = 'train')

@@ -441,7 +441,7 @@ def compute_features(df,SMILES_column='SMILES',key_name=None, output_file=None):
         return feats_dict
 
 def broaden_spectrum(spect, sigma):
-    """
+    """ """
     Broadens the peaks defined in spect by the sigma factor and
         returns the x and y data to plot.
 
@@ -482,7 +482,7 @@ def visualize(data, sigma=5.0):
         informationpredicted by the model. Saves two  files called
         by the frontend, by the name of the input smiles string which
         contain the absorption/emission spectrum as well as the
-        absorption and emission peaks. **NOTE** This takes in only one 
+        absorption and emission peaks. **NOTE** This takes in only one
         row of a data frame at a time (only one molecule can be plotted
         at once, hence the declared numpy array as input will work
         with any list object as well as long as it follows the

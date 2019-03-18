@@ -1,6 +1,6 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import math
 import os
 import json
@@ -417,7 +417,7 @@ def compute_features(df,SMILES_column='SMILES',key_name=None, output_file=None):
         'Wrong Type: column names must be a strings'
     assert isinstance(key_name, (str, type(None))), \
         'Wrong Type: key name must be a string or NoneType'
-    assert isinstance(output_file, (str, type(None)), \
+    assert isinstance(output_file, (str, type(None))), \
         'Wrong Type: desired output file name must be a string'
     if type(output_file) is str:
         assert output_file.endswith('.txt'),\
@@ -443,21 +443,26 @@ def compute_features(df,SMILES_column='SMILES',key_name=None, output_file=None):
         return feats_dict
 
 def broaden_spectrum(spect, sigma):
-    """ """
-    Broadens the peaks defined in spect by the sigma factor and
+    """
+    Broadens a peak defined in spect by the sigma factor and
         returns the x and y data to plot.
 
     Args:
     ----
         spect (np.array) -- input array containing the peak info for
-            the spectrum to be broadened.
+            the individual peak to be broadened.
         sigma (float) -- gaussian broadening term for the peaks given.
 
     Returns:
     --------
-        plot_vals (list) -- 2 element list containing the x and y
+        plot_vals (list) -- a 2D array containing the x and y
             values for plotting.
     """
+    # Assertions
+    assert isinstance(spect, (np.array, list)), \
+        'Input must be a list or a numpy array.'
+    assert isinstane(sigma, float), \
+        'sigma values must be a float'
     #min of the spectrum **FUTURE FEATURE**
     #min_x = min(spect[0]) - 50.
     min_x = spect[0] - 50
@@ -492,7 +497,7 @@ def visualize(data, sigma=5.0):
 
     Args:
     -----
-        data (np.array)       -- input array containing the info
+        data (list, np.array) -- input array containing the info
             for the molecule: [SMILES, abosrbance wavelength,
             absorbance intensity, emission wavelength, emission
             intensity]
@@ -503,6 +508,11 @@ def visualize(data, sigma=5.0):
     Returns:
     --------
     """
+    # Assertions
+    assert isinstance(data, (list, np.array)), \
+        'Input data must be a list or a numpy array.'
+    assert isinstance(sigma, float), \
+        'sigma value for broadening must be a float'
     #For pretty plotting purposes
     min_x = None
     max_x = None
@@ -544,7 +554,7 @@ def visualize(data, sigma=5.0):
     #format.
     plt.savefig("../data/" + str(data[0]) + ".png", dpi=300)
     #Save the data to file
-    fo = open('../data/' + str(data[0]) + '_peaks.txt', w)
+    fo = open('../data/' + str(data[0]) + '_peaks.txt', 'w')
     fo.write("Absorption\tIntensitiy\n")
     #**FUTURE FEATURE**
     #for i in range(len(data[1]):
@@ -556,4 +566,5 @@ def visualize(data, sigma=5.0):
     #  fo.write(str(data[3][i]) + '\t' + str(data[4][i]))
     fo.write(str(data[3]) + '\t' + str(data[4]))
     fo.close
+
     return

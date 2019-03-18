@@ -235,3 +235,38 @@ def test_compute_features():
     os.remove(filename)
 
     return
+
+def test_broaden_spectrum():
+    """
+    Tests the function responsible for broadening the peaks in the
+        spectra.
+    """
+    test_spect = [250, 1]
+    sigma = 5.0
+    try:
+        coords = broaden_spectrum(test_spect, sigma)
+    except Exception as e:
+        assert isinstance(e, TypeError)
+    assert min(coords[0]) == test_spect[0] - 50.0
+    assert max(coords[0]) == test_spect[0] + 50.0
+    assert np.isclose(max(coords[1]) == 1.0
+
+    return
+
+def test_visualize():
+    """
+    Tests the function that plots the predicted spectra and saves
+        to a file.
+    """
+    test_SMILES = 'CCC'
+    data_test = [test_SMILES, 200, 1, 250, 1]
+
+    try:
+        visualize(data_test)
+    except Exception as e:
+        assert isinstance(e, TypeError)
+    assert os.path.isfile('../data/' + str(SMILES) + '.png'), \
+        "Figure hasn't been written to file, or hasn't been saved in \
+        the correct directory."
+
+    return

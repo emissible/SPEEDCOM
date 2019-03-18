@@ -16,6 +16,7 @@ install:
 
 script:
 - py.test --pyargs SPEEDCOM --cov-report term-missing --cov=SPEEDCOM
+#- nosetests -w speedcom/tests
 #- tox
 - coverage report
 

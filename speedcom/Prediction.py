@@ -48,12 +48,12 @@ class Models:
     
     def save_table_file(self, x, table):
         table_df = pd.DataFrame(table, columns=['lambda_abs', 'lambda_ems','epsilon', 'quantum_yield'])
-        table_df.to_csv('%s example_table.txt' %x, sep = '\t', index=False)    
+        table_df.to_csv('%s_example_table.txt' %x, sep = '\t', index=False)    
     
     def save_visual(self, x, data_for_plot):
         plot_df = pd.DataFrame(data_for_plot, columns=['SMILES', 'abs_wl_max',\
            'abs_intensity','ems_wl_max','ems_intensity'])
-        plot_df.to_csv('%s example_plot_data.txt' % x, sep = '\t', index=False)
+        plot_df.to_csv('%s_example_plot_data.txt' % x, sep = '\t', index=False)
 
     
     def _predict(self, model, x):
@@ -74,9 +74,9 @@ class Models:
 
 if __name__ == '__main__':
     models = Models()
-    input = 'C1=CC=CC=C1'
-    table, visual_data = models.predict_all(input)
-    models.save_table_file(input, table)
-    models.save_visual(input, visual_data)
+    input_smiles = 'C1=CC=CC=C1'
+    table, visual_data = models.predict_all(input_smiles)
+    models.save_table_file(input_smiles, table)
+    models.save_visual(input_smiles, visual_data)
     print(table)
     print(visual_data)

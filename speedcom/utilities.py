@@ -459,10 +459,10 @@ def broaden_spectrum(spect, sigma):
             values for plotting.
     """
     # Assertions
-    assert isinstance(spect, (np.array, list)), \
-        'Input must be a list or a numpy array.'
-    assert isinstane(sigma, float), \
-        'sigma values must be a float'
+    #assert isinstance(spect, (np.array, list)), \
+    #    'Input must be a list or a numpy array.'
+    #assert isinstane(sigma, float), \
+    #    'sigma values must be a float'
     #min of the spectrum **FUTURE FEATURE**
     #min_x = min(spect[0]) - 50.
     min_x = spect[0] - 50
@@ -509,10 +509,10 @@ def visualize(data, sigma=5.0):
     --------
     """
     # Assertions
-    assert isinstance(data, (list, np.array)), \
-        'Input data must be a list or a numpy array.'
-    assert isinstance(sigma, float), \
-        'sigma value for broadening must be a float'
+    #assert isinstance(data, (list, np.array)), \
+    #    'Input data must be a list or a numpy array.'
+    #assert isinstance(sigma, float), \
+    #    'sigma value for broadening must be a float'
     #For pretty plotting purposes
     min_x = None
     max_x = None
@@ -553,6 +553,7 @@ def visualize(data, sigma=5.0):
     #name as the input SMILES string (data[0]).  Figure is in a *.png file
     #format.
     plt.savefig("../data/" + str(data[0]) + ".png", dpi=300)
+    plt.close()
     #Save the data to file
     fo = open('../data/' + str(data[0]) + '_peaks.txt', 'w')
     fo.write("Absorption\tIntensitiy\n")

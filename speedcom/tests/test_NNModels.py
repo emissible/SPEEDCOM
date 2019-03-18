@@ -13,7 +13,7 @@ def test__init__():
         mol = context.NNModels.Descriptors()
     except:
         raise RuntimeError('Error in constructing molecule')
-    assert isinstance(mol, NNModel.Descriptors), \
+    assert isinstance(mol, context.NNModels.Descriptors), \
         'molecule object constructed as wrong type.'
 
     return

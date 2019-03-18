@@ -31,7 +31,7 @@ class get_emission_files(unittest.TestCase):
 class get_absorption_files(unittest.TestCase):
     def test_nonexistant_directory(self):
         """
-        Tests that a non-existant directory returns an error.  Should be 
+        Tests that a non-existant directory returns an error.  Should be
         handeled by built in python os package.
         """
         self.assertRaises(Exception, lambda:context.data_extract.\
@@ -110,7 +110,7 @@ class initiate_molecules(unittest.TestCase):
             "initiate_molecules unable to find all molecules"
         return
 
-class electgrostatic_potentials(unittest.TestCase):
+class electrostatic_potentials(unittest.TestCase):
     def test_valid_return_with_known(self):
         assert context.data_extract.electrostatic_potentials('acetic acid') \
             == 6.20, "electrostatic_potentils returns incorrect value"

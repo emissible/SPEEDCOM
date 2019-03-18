@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SPEEDCOM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
+  </style>
+</head>
+<body>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <img src="output/logo.png" alt="SPEEDCOM_LOGO" height="280" width="1300">
+  <h4>An open source python package that aims to predict the fluorescence emission and absorption spectra of small conjugated organic molecules</h4>
+</div>
+
+<div class="container" style="margin-top:30px">
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>SMILES</h2>
+      <p>e.g. C[C@@H](CC1=CC=CC=C1)NC</p>
+      <div>
+        <input  id="input" type="text" class="form-control mb-2 mr-sm-2"/>
+        <button type="button" class="btn btn-primary" id='Go' onclick="getSMILES(1,'/input')">Go</button>
+      </div>
+
+      <script type="text/javascript" src="./libs/jquery.min.js"></script>
+      <script type="text/javascript">
+      function getSMILES(act,path) {
+        var x = document.getElementById("input").value;
+        var text = "";
+        var i;
+        var pic1;
+        var pic2;;
+
+        text += x + "<br>";
+        document.getElementById("show_mo_struc").innerHTML = text;
+        
+        //Run the python
+        $.ajax({
+            url : 'http://localhost:8000' + path,
+            method : 'post',
+            headers : {
+                    'Content-Type' : 'Application/json'
+            },
+            data : JSON.stringify({
+                input : x
+            }),
+            success : function(res){
+                $('#lambda_abs').html(JSON.stringify(res['value'][0]));
+                $('#lambda_emiss').html(JSON.stringify(res['value'][1]));
+                $('#epsilon').html(JSON.stringify(res['value'][2]));
+                $('#value3').html(JSON.stringify(res['value'][3]));
+            },
+            error : function(e){
+                alert('net error');
+            }
+        })
+
+
+        //Change the images
+        if (act == 0) {
+          pic1 = "welcome.png"
+          pic2 = "welcome.png"
+        } else {
+          pic1 = "output/mo_str.png"
+          pic2 = "output/spectrum.png"
+        }
+        document.getElementById('mo_str').src = pic1;
+        document.getElementById('spectrum').src = pic2;
+      }
+      </script>
+
+      <hr>
+      
+      <h2>Molecule</h2>
+      <p id="show_mo_struc"></p>
+      <img id="mo_str" src="welcome.png" alt="molecular structure" height="300" width="300">
+    </div>
+      
+    <div class="col-sm-8">
+      <h2>Prediction Results</h2>
+        <img id="spectrum" src="welcome.png" alt="Spectrum" height="550" width="700">
+      <hr>
+    </div>
+    
+    
+    <div class="col-sm-12">
+      <h2>Characteristics</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">Characteristic</th>
+            <th>Value</th>
+            <th>Units</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2"><B>λ</B><SUB>max</SUB></td>
+            <td>Absorption</td>
+            <td id='lambda_abs'></td>
+            <td>nm</td>
+          </tr>
+          <tr>
+            <td>Emission</td>
+            <td id='lambda_emiss'></td>
+            <td>nm</td>
+          </tr>
+          <tr>
+            <td colspan="2"><B>ϵ</B></td>
+            <td id='epsilon'></td>
+            <td>M<SUP>-1</SUP>cm<SUP>-1</SUP></td>
+          </tr>
+          <tr>
+            <td colspan="2"><B>ϕ</B><SUB>f</SUB></td>
+            <td id='value3'></td>
+            <td>--</td>
+          </tr>
+        </tbody>
+      </table> 
+      
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>SPEEDCOM</p>
+</div>
+
+</body>
+</html>
+
+

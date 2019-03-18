@@ -270,13 +270,15 @@ def test_visualize():
         to a file.
     """
     test_SMILES = 'CCC'
-    data_test = [test_SMILES, 200, 1, 250, 1]
+    data_test = [test_SMILES, 200., 1., 250., 1.]
 
     try:
-        context.utilities.visualize(data_test)
+        context.utilities.visualize(data=data_test, save_dir="/tmp/")
     except Exception as e:
         assert isinstance(e, TypeError)
-    assert os.path.isfile('../data/' + str(test_SMILES) + '.png'), \
+    base_dir = os.path.dirname(os.path.realpath(__file__))
+    visual_file = '/tmp/' + test_SMILES + ".png"
+    assert os.path.isfile(visual_file), \
         "Figure hasn't been written to file, or hasn't been saved in \
         the correct directory."
 

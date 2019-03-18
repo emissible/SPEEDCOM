@@ -15,8 +15,7 @@ install:
 - travis_retry pip install -e .
 
 script:
-- py.test --pyargs SPEEDCOM --cov-report term-missing --cov=SPEEDCOM
-#- nosetests -w speedcom/tests
+- py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
 #- tox
 - coverage report
 

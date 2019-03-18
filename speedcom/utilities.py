@@ -8,6 +8,8 @@ import pandas as pd
 from rdkit import Chem
 import rdkit.Chem.Draw as draw
 
+import speedcom
+
 #import rdkit
 #from rdkit import Chem
 #from rdkit.Chem import AllChem

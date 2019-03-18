@@ -4,6 +4,7 @@ Unit tests for the context.data_extract.py file
 
 import unittest
 import speedcom.tests.context as context
+#import speedcom.speedcom
 
 #Variables for testing
 testing_dir = 'DATA_CLEAN_TEST_DIR/'
@@ -79,16 +80,6 @@ class get_peaks(unittest.TestCase):
             "1_118-96-7_X.abs.txt")
         assert len(context.data_extract.get_peaks(spectra)) == 2, \
             'get_peaks retuns improper number of peaks'
-        return
-
-class initiate_molecules(unittest.TestCase):
-    def test_proper_size(self):
-        """
-        Ensure the appropriate number of molecule objects are returned
-        upon initialization.
-        """
-        assert len(context.data_extract.initiate_molecules(testing_dir)) == 3,\
-            "initiate_molecules unable to find all molecules"
         return
 
 class electrostatic_potentials(unittest.TestCase):

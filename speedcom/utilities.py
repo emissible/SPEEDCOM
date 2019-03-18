@@ -1,17 +1,17 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import math
-import os
 import json
+import math
+import matplotlib.pyplot as plt
 import NNModels
+import numpy as np
+import os
+import pandas as pd
 from rdkit import Chem
+import rdkit.Chem.Draw as draw
 
 #import rdkit
 #from rdkit import Chem
 #from rdkit.Chem import AllChem
 # from rdkit.ForceField.rdForceField import MMFFMolProperties as properties
-# import rdkit.Chem.Draw as draw
 
 def remove_deliminators(my_strings):
     """
@@ -20,16 +20,16 @@ def remove_deliminators(my_strings):
 
     Args:
     -----
-        my_strings (list or np.array) -- list of string
+        my_strings (list or np.ndarray) -- list of string
             representations of numbers (i.e. ['1,306', '5,765']).
 
     Returns:
     --------
-        my_array (np.array) -- array of floats.
+        my_array (np.ndarray) -- array of floats.
 
     """
     # Assertions
-    assert isinstance(my_strings, (list, np.array)), \
+    assert isinstance(my_strings, (list, np.ndarray)), \
         'my_strings must be a list or a numpy array.'
     my_array = []
     for i in my_strings:
@@ -104,9 +104,9 @@ def get_l_max(wavelength_intensity):
 
     Args:
     -----
-        wavelength_intensity (np.array(2D), dtypes float64) -- a 2D
-            array where the first coloumn contains the wavelengths
-            and the second column contains the intensities.
+        wavelength_intensity (np.ndarray(2D), dtypes float)
+            -- a 2D array where the first coloumn contains the
+            wavelengths and the second column contains the intensities.
 
     Returns:
     --------
@@ -114,7 +114,7 @@ def get_l_max(wavelength_intensity):
 
     """
     # Assertions
-    assert isinstance(wavelength_intensity, np.array)
+    assert isinstance(wavelength_intensity, np.ndarray)
     # Functionality
     wavelength_intensity.view('f8,f8').sort(order=['f1'], axis = 0)
     lambda_max = wavelength_intensity[-1][0]
@@ -449,7 +449,7 @@ def broaden_spectrum(spect, sigma):
 
     Args:
     ----
-        spect (np.array) -- input array containing the peak info for
+        spect (np.ndarray) -- input array containing the peak info for
             the individual peak to be broadened.
         sigma (float) -- gaussian broadening term for the peaks given.
 
@@ -459,10 +459,10 @@ def broaden_spectrum(spect, sigma):
             values for plotting.
     """
     # Assertions
-    #assert isinstance(spect, (np.array, list)), \
-    #    'Input must be a list or a numpy array.'
-    #assert isinstane(sigma, float), \
-    #    'sigma values must be a float'
+    assert isinstance(spect, (np.ndarray, list)), \
+       'Input must be a list or a numpy array.'
+    assert isinstance(sigma, float), \
+       'sigma value must be a float'
     #min of the spectrum **FUTURE FEATURE**
     #min_x = min(spect[0]) - 50.
     min_x = spect[0] - 50
@@ -497,7 +497,7 @@ def visualize(data, sigma=5.0):
 
     Args:
     -----
-        data (list, np.array) -- input array containing the info
+        data (list, np.ndarray) -- input array containing the info
             for the molecule: [SMILES, abosrbance wavelength,
             absorbance intensity, emission wavelength, emission
             intensity]
@@ -508,11 +508,12 @@ def visualize(data, sigma=5.0):
     Returns:
     --------
     """
-    # Assertions
-    #assert isinstance(data, (list, np.array)), \
-    #    'Input data must be a list or a numpy array.'
-    #assert isinstance(sigma, float), \
-    #    'sigma value for broadening must be a float'
+    #Assertions
+    assert isinstance(data, (list, np.ndarray)), \
+       'Input data must be a list or a numpy array.'
+    assert isinstance(sigma, float), \
+       'sigma value for broadening must be a float'
+    # Functionality
     #For pretty plotting purposes
     min_x = None
     max_x = None

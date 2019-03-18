@@ -181,7 +181,7 @@ class Descriptors:
                 a given molecule's nuclear geometry in the form of a
                 2D aray.
 
-            eig (np.array) -- Outputs if the output_eigval argument
+            eig (np.ndarray) -- Outputs if the output_eigval argument
                 is True as a 1D array of the eigenvalues of the Coulomb
                 matrix.
         """
@@ -255,8 +255,6 @@ class Descriptors:
                 cartesian coordinate information for each atom within
                 a molecule.
         """
-        # Assertions
-
         # Building the benzene molecule and ADDING HYDROGENS
         molecule = Chem.AddHs(self.Molecule)
         # 'Embedding' the molecular coordinates, optimising structure

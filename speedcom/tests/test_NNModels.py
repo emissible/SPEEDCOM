@@ -1,3 +1,4 @@
+import numpy as np
 import speedcom.tests.context as context
 
 # Initialize the class with a test moleucle.
@@ -75,7 +76,7 @@ def test_get_Morgan_fingerprint():
             'Error in output: value at index ' + str(index) + \
             ' isnt an integer'
         index += 1
-    
+
     return
 
 def test_get_coulomb_matrix():
@@ -87,23 +88,23 @@ def test_get_coulomb_matrix():
         out_eig = molecule.get_coulomb_matrix(output_eigval=True)
     except Exception as e:
         assert isinstance(e, TypeError)
-    assert isinstance(out_cm, np.array), \
+    assert isinstance(out_cm, np.ndarray), \
         'Function not outputting a numpy array'
-    assert isinstance(out_eig, np.array), \
+    assert isinstance(out_eig, np.ndarray), \
         'Function not outputting a numpy array'
 
     return
 
-def test___get_charges_coords():
-    """
-    Tests the function that generates a pandas data frame of the
-        charges and coordinates of each atom in a molecule.
-    """
-    try:
-        out_charge_coords = molecule.__get_charges_coords()
-    except Exception as e:
-        assert isinstance(e, TypeError)
-    assert isinstance(out_charge_coords, pd.DataFrame), \
-        'Function not outputting a pandas DataFrame'
-
-    return
+# def test___get_charges_coords():
+#     """
+#     Tests the function that generates a pandas data frame of the
+#         charges and coordinates of each atom in a molecule.
+#     """
+#     try:
+#         out_charge_coords = molecule.__get_charges_coords()
+#     except Exception as e:
+#         assert isinstance(e, TypeError)
+#     assert isinstance(out_charge_coords, pd.DataFrame), \
+#         'Function not outputting a pandas DataFrame'
+#
+#     return

@@ -1,8 +1,9 @@
 import numpy as np
 import os
 import pandas as pd
-
 import speedcom.tests.context as context
+import rdkit.Chem.Draw as draw
+
 
 def test_remove_deliminators():
     """
@@ -15,7 +16,7 @@ def test_remove_deliminators():
     except Exception as e:
         assert isinstance(e, TypeError)
 
-    assert isinstance(my_array, np.array), \
+    assert isinstance(my_array, np.ndarray), \
         'Wrong Type: function has not returned a numpy array.'
     index = 0
     for i in my_array:
@@ -46,7 +47,7 @@ def test_remove_cations():
     # ... but should modify this one...
     test_SMILES3 = 'C1=CC2=C(C=C1N)SC3=CC(=[NH2+])C=CC3=N2.[Cl-]'
     try:
-        removed1 = remove_cations(test_SMILES)
+        removed1 = context.utilities.remove_cations(test_SMILES)
     except Exception as e:
         assert isinstance(e, TypeError)
 
@@ -62,6 +63,8 @@ def test_remove_cations():
     elif removed3 == test_SMILES3:
         raise RuntimeError("Error: function not removing \
             counterions that it should!")
+    else:
+        pass
 
     return
 
@@ -76,6 +79,10 @@ def test_draw_molecule():
         context.utilities.draw_molecule(test_SMILES, test_filename)
     except Exception as e:
         assert isinstance(e, TypeError)
+    assert os.path.isfile(test_filename), \
+        "Function hasn't written file with molecule drawing, or has not \
+        done so to the correct directory."
+    os.remove(test_filename)
 
     return
 
@@ -84,7 +91,7 @@ def test_get_l_max():
     Tests the function that returns the wavelength of maximum
         intensity from a list of wavelengths and their intensities.
     """
-    test_wl_int = [[400, 0.5], [500, 1]]
+    test_wl_int = np.array([[400, 0.5], [500, 1]])
 
     try:
         test_l_max = context.utilities.get_l_max(test_wl_int)
@@ -100,9 +107,6 @@ def test_get_em_max():
     Tests the function that retrieves the max values from existing
         files in a list of emission file names.
     """
-    # df = pd.DataFrame(
-    # column_name = 'File.1'
-    # directory =
 
     return
 
@@ -113,7 +117,6 @@ def test_pad_ndarrays():
         size of the largest original input array in the dictionary.
     """
     test_dict = {0:[1, 2, 3], 1:[1, 2, 3, 4, 5]}
-
     try:
         finger_dict = context.utilities.pad_ndarrays(test_dict)
     except Exception as e:
@@ -135,16 +138,15 @@ def test_compute_fingerprints():
     test_df = pd.DataFrame({'#':[0,1,2],\
     'SMILES':['C1=CC=CC=C1','CC1=CC=CC=C1','CC1=CC=CC=C1C']})
     test_keyname = '#'
-    filname = 'fingerprint_test.txt'
+    filename = 'fingerprint_test.txt'
 
     try:
         finger_dict = context.utilities.compute_fingerprints(test_df, \
             key_name=test_keyname)
         finger_dict_file = context.utilities.compute_features(test_df, \
-            key_name=test_keyname, output_file=filname)
+            key_name=test_keyname, output_file=filename)
     except Exception as e:
         assert isinstance(e, TypeError)
-
     assert isinstance(finger_dict, dict), \
         'Function not outputting a dictionary'
     assert len(finger_dict) == len(test_df), \
@@ -172,7 +174,7 @@ def test_compute_coulomb_matrixes():
         out_eig = context.utilities.compute_coulumb_matrixes(test_df, \
             key_name=test_keyname, use_eigval=True)
         out_cm_file = context.utilities.compute_coulumb_matrixes(test_df, \
-            key_name=test_keyname, output_file=filname)
+            key_name=test_keyname, output_file=filename)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(out_cm, dict), \
@@ -202,7 +204,7 @@ def test_compute_properties():
         out_prop = context.utilities.compute_properties(test_df, \
             index_name=test_idxname)
         out_prop_file = context.utilities.compute_properties(test_df, \
-            index_name=test_idxname, output_file=True)
+            index_name=test_idxname, output_file=filename)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(out_prop, pd.DataFrame), \
@@ -253,9 +255,12 @@ def test_broaden_spectrum():
         coords = context.utilities.broaden_spectrum(test_spect, sigma)
     except Exception as e:
         assert isinstance(e, TypeError)
-    assert min(coords[0]) == test_spect[0] - 50.0
-    assert max(coords[0]) == test_spect[0] + 50.0
-    assert np.isclose(max(coords[1])) == 1.0
+    assert min(coords[0]) == test_spect[0] - 50.0, \
+        'wavelength range not correct'
+    assert max(coords[0]) == test_spect[0] + 50.0, \
+        'wavelength range not correct'
+    assert np.isclose(max(coords[1]), 1.0), \
+        'maximum normalized intensity not correct.'
 
     return
 
@@ -271,7 +276,7 @@ def test_visualize():
         context.utilities.visualize(data_test)
     except Exception as e:
         assert isinstance(e, TypeError)
-    assert os.path.isfile('../data/' + str(SMILES) + '.png'), \
+    assert os.path.isfile('../data/' + str(test_SMILES) + '.png'), \
         "Figure hasn't been written to file, or hasn't been saved in \
         the correct directory."
 

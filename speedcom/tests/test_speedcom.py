@@ -5,7 +5,7 @@ Unit tests for the speedcom.py file
 import unittest
 import speedcom.tests.context as context
 
-testing_dir = 'DATA_CLEAN_TEST_DIR/'
+testing_dir = './speedcom/tests/DATA_CLEAN_TEST_DIR/'
 
 class initiate_molecules(unittest.TestCase):
     def test_proper_size(self):

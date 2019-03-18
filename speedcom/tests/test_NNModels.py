@@ -1,4 +1,4 @@
-import context
+import speedcom.tests.context
 
 def test__init__():
     """

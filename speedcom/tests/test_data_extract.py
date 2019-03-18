@@ -3,7 +3,7 @@ Unit tests for the context.data_extract.py file
 """
 
 import unittest
-import context
+import speedcom.tests.context
 
 #Variables for testing
 testing_dir = 'DATA_CLEAN_TEST_DIR'

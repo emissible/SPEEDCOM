@@ -2,7 +2,7 @@ import numpy as np
 import os
 import pandas as pd
 
-import speedcom.tests.context
+import speedcom.tests.context as context
 
 def test_remove_deliminators():
     """

@@ -1,5 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.com/emissible/SPEEDCOM.svg?branch=master)](https://travis-ci.com/emissible/SPEEDCOM)
+[![Coverage Status](https://coveralls.io/repos/github/emissible/SPEEDCOM/badge.svg?branch=master)](https://coveralls.io/github/emissible/SPEEDCOM?branch=master)
 
 <p align="center"><img src="doc/source/_static/logo.png" alt="SPEEDCOM" title="SPEEDCOM"/></p>
 

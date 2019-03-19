@@ -118,6 +118,10 @@ class Models:
         table: np.array
 
         """
+        assert isinstance(filename, str), \ 
+            'Filename must be a string.'
+        assert isinstance(table, np.ndarray), \
+            'table has to be np.ndarray'
         table_df = pd.DataFrame(table, columns=['lambda_abs', 'lambda_ems','epsilon', 'quantum_yield'])
         table_df.to_csv(filename, sep = '\t', index=False)
         return

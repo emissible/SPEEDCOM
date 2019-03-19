@@ -75,26 +75,33 @@ def test_predict_all():
 
 def test_save_table_file():
     """
-    
+    test if table actually saves out
     """
+    table, visual_data = test_models.predict_all(test_SMILES)
+    target_fn = 'tempdata'
     try:
-        test_model.save_table_file(input_smiles, table)
-    out_feat = context.utilities.compute_features(test_df, \
-            key_name=test_keyname)
-    out_feat_file = context.utilities.compute_features(test_df, \
-            key_name=test_keyname, output_file=filename)
+        test_model.save_table_file(target_fn, table)
     except Exception as e:
         assert isinstance(e, TypeError)
-    assert isinstance(out_feat, dict), \
-        'Function not outputting a dictionary properly.'
-    assert os.path.isfile(filename), \
+    assert os.path.isfile(target_fn), \
         "Function hasn't written feature results, or has not done so to the \
         correct directory."
-    os.remove(filename)
+    os.remove(target_fn)
 
     return
     
 def test_save_visual():
     """
-    
+    test if visualization data successfully saves out    
     """
+    table, visual_data = test_models.predict_all(test_SMILES)
+    test_name = test_SMILES
+    try:
+        models.save_visual(best_name, visual_data)
+    except Exception as e:
+        assert isinstance(e, TypeError)
+    assert os.path.isfile('%s_example_plot_data.txt' %s), \
+        "Function hasn't written feature results, or has not done so to the \
+        correct directory."
+    os.remove('%s_example_plot_data.txt' %s)
+    return

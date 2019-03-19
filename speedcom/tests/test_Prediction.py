@@ -5,13 +5,12 @@ from numpy.testing import assert_array_equal
 import speedcom.tests.context as context
 #import ontext.Prediction.Models as Models
 
-MODEL_PATH = os.path.dirname(context.Prediction.__file__)
 test_SMILES = 'C1=CC=CC=C1'
-test_model = context.Prediction.Models(MODEL_PATH)
+test_model = context.Prediction.Models()
 
 def test__init__():
     try:
-        model = context.Prediction.Models(MODEL_PATH)
+        model = context.Prediction.Models()
     except:
         raise RuntimeError('Error in constructing model')
     # Check the model is the correct type

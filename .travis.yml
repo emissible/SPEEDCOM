@@ -18,8 +18,8 @@ install:
 branches:
   only:
   - master
-before_script:
-  -"flake8 speedcom"
+#before_script:
+#  -"flake8 speedcom"
 script:
   - py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
   #- coverage run -m unittest discover

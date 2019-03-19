@@ -7,11 +7,11 @@ import speedcom.tests.context as context
 
 
 test_SMILES = 'C1=CC=CC=C1'
-test_model = context.Prediction.Models('..')
+test_model = context.Prediction.Models('speedcom')
 
 def test__init__():
     try:
-        model = context.Prediction.Models('..')
+        model = context.Prediction.Models('speedcom')
     except:
         raise RuntimeError('Error in constructing model')
     assert isinstance(model, context.Prediction.Models), \

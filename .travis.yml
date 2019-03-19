@@ -20,9 +20,9 @@ before_install:
 #pip install necessary packages
 install:
     #Source conda environment:
-    - yes|conda create --name env python='3.6'>/dev/null
-    - source activate env
-    - yes|conda install -c conda-forge keras>/dev/null
+    #- yes|conda create --name env python='3.6'>/dev/null
+    #- source activate env
+    #- yes|conda install -c conda-forge keras>/dev/null
     - yes|conda env create -f speedcom_environment.yml>/dev/null
     - source activate speedcom
 
@@ -37,7 +37,6 @@ branches:
 
 #Run Unittests
 script:
-    - which py.test
     - py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
 
 #Print coverage reports

@@ -17,8 +17,9 @@ install:
 - pip install -r requirements.txt
 
 branches:
-  only:
-  - master
+#  only:
+- master
+- tests
 #before_script:
 #  -"flake8 speedcom"
 script:

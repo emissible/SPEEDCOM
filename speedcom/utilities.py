@@ -3,8 +3,8 @@ import math
 import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
-import NNModels
-# import speedcom.NNModels as NNModels
+#import NNModels
+import speedcom.NNModels as NNModels
 import numpy as np
 import os
 import pandas as pd

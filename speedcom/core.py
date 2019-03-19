@@ -1,3 +1,4 @@
+import os
 import speedcom.utilities as utilities
 import speedcom.NNModels as NNModels
 import speedcom.data_extract as data_extract
@@ -82,8 +83,8 @@ class Molecule:
     self.file_name = flnm
 
 if __name__ =='__main__':
-    data_dir = "../data/PhotochemCAD3/PCAD3 Compd Database 2018"
-    molecule_list = initiate_molecules(data_dir)
-    print(len(molecule_list))
+#    data_dir = os.path.join(os.path.dirname(__file__),'YOUR_SPECTRA_FILE_DIR')
+#    molecule_list = initiate_molecules(data_dir)
+#    print(len(molecule_list))
 
 

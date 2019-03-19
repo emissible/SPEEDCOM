@@ -34,12 +34,12 @@
 
       <script type="text/javascript" src="./frontend/jquery.min.js"></script>
       <script type="text/javascript">
-      function getSMILES(act,path) {
+      function getSMILES(path) {
         var x = document.getElementById("input").value;
         var text = "";
         var i;
         var pic1;
-        var pic2;;
+        var pic2;
 
         text += x + "<br>";
         document.getElementById("show_mo_struc").innerHTML = text;
@@ -59,6 +59,11 @@
                 $('#lambda_emiss').html(JSON.stringify(res['value'][1]));
                 $('#epsilon').html(JSON.stringify(res['value'][2]));
                 $('#value3').html(JSON.stringify(res['value'][3]));
+                //Change the images
+                $('#mo_str').attr('src',res["pic1"]);
+                $('#spectrum').attr('src',res["pic2"]);
+                //document.getElementById('mo_str').src = pic1;
+                //document.getElementById('spectrum').src = pic2;
             },
             error : function(e){
                 alert('net error');
@@ -66,20 +71,10 @@
         })
 
 
-        //Change the images
-        if (act == 0) {
-          pic1 = "frontend/welcome.png"
-          pic2 = "frontend/welcome.png"
-        } else {
-          pic1 = "frontend/output/mo_str.png"
-          pic2 = "frontend/output/spectrum.png"
-        }
-        document.getElementById('mo_str').src = pic1;
-        document.getElementById('spectrum').src = pic2;
       }
 
       $('#Go').on('click', function(){
-        getSMILES(1,'/input')
+        getSMILES('/input')
       })
 
       </script>

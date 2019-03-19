@@ -67,5 +67,5 @@ MINOR = _version_minor
 MICRO = _version_micro
 VERSION = __version__
 PACKAGES = ["speedcom"]
-# PACKAGE_DATA = {'nets': ['speedcom/nets/*.h5']}
+PACKAGE_DATA = {'nets': ['speedcom/saved_models/*']}
 REQUIRES = []

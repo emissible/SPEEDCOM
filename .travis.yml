@@ -16,9 +16,10 @@ install:
 - pip install pytest-cov
 - pip install -r requirements.txt
 
-branches:
-  only:
-  - master
+#branches:
+#  only:
+- master
+- testing
 #before_script:
 #  -"flake8 speedcom"
 script:

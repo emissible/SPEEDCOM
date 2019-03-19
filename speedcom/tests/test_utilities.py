@@ -281,5 +281,6 @@ def test_visualize():
     assert os.path.isfile(visual_file), \
         "Figure hasn't been written to file, or hasn't been saved in \
         the correct directory."
+    os.remove(visual_file)
 
     return

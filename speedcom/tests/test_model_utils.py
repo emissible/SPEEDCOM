@@ -5,7 +5,7 @@ from sklearn.linear_model import LinearRegression
 import speedcom.tests.context as context
 # import context.Models as Models
 
-mod_util = context.ModUtil('..')
+mod_util = context.ModUtil()
 
 def test_coeff_determination():
     """
@@ -56,10 +56,10 @@ def test_combine_columns():
     """
     nd_arrays = [ np.array([5,6,7]), np.array([1,2,3]) ]
     try:
-       columns_combined = mod_util.combine_columns(nd_array)
+       columns_combined = mod_util.combine_columns(nd_arrays)
     except Exception as e:
         assert isinstance(e, TypeError)
-    assert isinstance(combine_columns, np.ndarray), \
+    assert isinstance(columns_combined, np.ndarray), \
         'Function not producing the correct output type.'
     col_dim = len(nd_arrays[0])
     assert len(columns_combined) == col_dim, \
@@ -124,8 +124,8 @@ def test_onehot_encode():
     Tests the function that encodes the y categories using the
         'one-hot' method.
     """
-    y = np.array([1, 2, 3])
-    num_class = 3
+    y = np.array([0,1,3,2])
+    num_class = 4
 
     try:
         one_hot = mod_util.onehot_encode_y(y, num_class)

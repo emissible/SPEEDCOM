@@ -1,2 +1,0 @@
-lambda_abs	lambda_ems	epsilon	quantum_yield
-222.5995	245.64473	4175.531	0.08501078

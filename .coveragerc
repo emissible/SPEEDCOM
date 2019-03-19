@@ -1,2 +1,2 @@
 [run]
-omit = speedcom/tests/*, speedcom/version.py, speedcom/__init__.py
+omit = speedcom/tests/*, speedcom/version.py, speedcom/__init__.py, speedcom/runhtml.py

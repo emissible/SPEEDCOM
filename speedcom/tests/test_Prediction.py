@@ -5,13 +5,13 @@ from numpy.testing import assert_array_equal
 import speedcom.tests.context as context
 #import ontext.Prediction.Models as Models
 
-
+MODEL_PATH = os.path.dirname(context.Prediction.__file__)
 test_SMILES = 'C1=CC=CC=C1'
-test_model = context.Prediction.Models('speedcom')
+test_model = context.Prediction.Models(MODEL_PATH)
 
 def test__init__():
     try:
-        model = context.Prediction.Models('speedcom')
+        model = context.Prediction.Models(MODEL_PATH)
     except:
         raise RuntimeError('Error in constructing model')
     assert isinstance(model, context.Prediction.Models), \
@@ -19,8 +19,8 @@ def test__init__():
 
 def test_predict_abs():
     """
-    test the output type and shape of the predicted absorption 
-        wavelength 
+    test the output type and shape of the predicted absorption
+        wavelength
     """
     output = test_model.predict_abs(test_SMILES)
     test_shape = output.shape
@@ -28,12 +28,12 @@ def test_predict_abs():
         'output has to be array'
     assert_array_equal(test_shape, (1,1), 'output shape wrong')
     return
-    
-    
+
+
 def test_predict_ems():
     """
-    test the output type and shape of the predicted 
-        emission wavelength 
+    test the output type and shape of the predicted
+        emission wavelength
     """
     output = test_model.predict_ems(test_SMILES)
     test_shape = output.shape
@@ -44,7 +44,7 @@ def test_predict_ems():
 
 def test_predict_quantum_yield():
     """
-    test the output type and shape of the predicted 
+    test the output type and shape of the predicted
         quantum yield
     """
     output = test_model.predict_quantum_yield(test_SMILES)
@@ -53,10 +53,10 @@ def test_predict_quantum_yield():
         'output has to be array'
     assert_array_equal(test_shape, (1,1), 'output shape wrong')
     return
-    
+
 def test_predict_epsilon():
     """
-    test the output type and shape of the predicted 
+    test the output type and shape of the predicted
         epsilon
     """
     output = test_model.predict_epsilon(test_SMILES)
@@ -94,10 +94,10 @@ def test_save_table_file():
     os.remove(target_fn)
 
     return
-    
+
 def test_save_visual():
     """
-    test if visualization data successfully saves out    
+    test if visualization data successfully saves out
     """
     table, visual_data = test_model.predict_all(test_SMILES)
     test_name = test_SMILES

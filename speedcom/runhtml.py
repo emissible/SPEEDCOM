@@ -1,6 +1,7 @@
 import urllib
 import json
 import webbrowser
+import numpy as np
 from os import path
 from urllib.parse import urlparse
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -86,6 +87,10 @@ class ServerHTTP(BaseHTTPRequestHandler):
 
             # prediction with default_models
             table, visual_data = DEFAULT_MODELS.predict_all(input_smiles)
+            table[0][0] = np.round(table[0][0])
+            table[0][1] = np.round(table[0][1])
+            table[0][2] = np.round(table[0][2])
+            table[0][3] = np.round(table[0][3],decimals=3)
             DEFAULT_MODELS.save_table_file(output_filepath +'characteristics.txt', table)
             visual_data[0][0] = 'spectrum_' + input_smiles
             spectrum_vil(visual_data[0], save_dir=output_filepath) 

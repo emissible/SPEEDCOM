@@ -125,7 +125,7 @@ dependencies:
   - termcolor=1.1.0
   - terminado=0.8.1
   - testpath=0.4.2
-  - theano=1.0.3
+  #- theano=1.0.3
   #- tk=8.6.9
   - tornado=5.1.1
   - traitlets=4.3.2

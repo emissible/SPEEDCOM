@@ -3,8 +3,10 @@ import math
 import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
-#import NNModels
-import speedcom.NNModels as NNModels
+try:
+    import NNModels
+except:
+    import speedcom.NNModels as NNModels
 import numpy as np
 import os
 import pandas as pd
@@ -19,10 +21,6 @@ import rdkit.Chem.Draw as draw
 #from rdkit.Chem import AllChem
 # from rdkit.ForceField.rdForceField import MMFFMolProperties as properties
 
-try:
-    import NNModels
-except:
-    import speedcom.NNModels as NNModels
 
 
 def remove_deliminators(my_strings):

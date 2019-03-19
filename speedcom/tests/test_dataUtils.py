@@ -37,20 +37,34 @@ def test_get_xy():
     Test function for get_xy
     """
 
-    data
+    data = 1
     # test assertion
     try:
-        DataUtils.get_xy(test_filename)
+        DataUtils.get_xy(data, 1, 1)
     except Exception as e:
         assert isinstance(e, AssertionError)
 
-        
+    return
+
+def test_splitData():
+    """
+    Test function for splitData
+    """
+    x = pd.DataFrame([1])
+    y = pd.DataFrame([1, 2])
+    # test assertion
+    try:
+        DataUtils.splitData(x,y)
+    except Exception as e:
+        assert isinstance(e, AssertionError)
+
+    return
+    
+    
 def test_load_wordmap_from_json():
     """
-    test function for load word map from an exsting json
+    test function for loading dictionary from json file
     """
-    with open('temp.json', 'w') as fp:
-        json.dump({1:'#',2:'!'})
     try:
         word_map = DataUtils.load_wordmap_from_json('temp.json')
     except Exception as e:
@@ -107,6 +121,38 @@ def test_numeric_encoding():
     uniform_length = 8
     numeric = DataUtils.numeric_encoding(x_list, uniform_length, word_map)
     assert len(numeric[0]) == 8
+
+    return
+
+def test_get_wordmap():
+    """
+    Test function for get_wordmap
+    """
+    SMILES = np.array(['CC'])
+    # test output file type
+    result = DataUtils.get_wordmap(SMILES)
+    assert isinstance(result, dict)
+
+    return
+
+def test_get_max_len():
+    """
+    Test function for get_max_len
+    """
+    SMILES = np.array(['CCC', 'CC'])
+    max_len = DataUtils.get_max_len(SMILES)
+    assert max_len == 3
+    return
+
+def test_onehot_encoding():
+    """
+    Test function for onehot_encoding
+    """
+    wordmap = {'C':0, '#':1, '!':2, 'E':3}
+    x = np.array(['#C!'])
+    result = DataUtils.onehot_encoding(x,5,wordmap)
+    assert result.shape == (1,5,4)
+
     return
     
     

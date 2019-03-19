@@ -3,7 +3,8 @@ import urllib
 import json
 from os import path
 from urllib.parse import urlparse
-#import function_name as pyf
+from utilities import draw_molecule
+from Prediction import Models  
 
 
 curdir = './' # current directory
@@ -22,6 +23,7 @@ mimedic = [
     ('.avi', 'video/x-msvideo'),
 ]
 
+DEFAULT_MODELS = Models() 
 
 class ServerHTTP(BaseHTTPRequestHandler):
     # http get request
@@ -70,8 +72,13 @@ class ServerHTTP(BaseHTTPRequestHandler):
         #
         #
         ######
+        output_filepath = './frontend/output/'
         if path == '/input':
-            print(data["input"])
+            input_smiles = data["input"]
+            print(input_smiles)
+            draw_molecule(input_smiles, output_filepath +'mo_str.png')
+            table, visual_data = DEFAULT_MODEL.predict_all(input_smiles)
+
             # the name of the python function
             
             # read the value of each characteristics

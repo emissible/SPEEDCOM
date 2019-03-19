@@ -98,6 +98,7 @@ def draw_molecule(SMILES, filename):
     # Functionality
     mol = Chem.MolFromSmiles(SMILES)
     Chem.Draw.MolToFile(mol, filename, kekulize=False, size=(200,200), fitimage=True)
+    print('Molecule Successfully is drawed')
 
     return
 

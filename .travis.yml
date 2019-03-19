@@ -39,8 +39,8 @@ branches:
 #Run Unittests
 script:
     - python numpyversion.py
-    - ./runtests.sh
-    #- py.test --pyargs speedcom --cov-report term-missing --cov=speedcom --cov-config .coveragerc
+    - which py.test
+    - py.test --pyargs speedcom --cov-report term-missing --cov=speedcom --cov-config .coveragerc
 
 #Print coverage reports
 after_success:

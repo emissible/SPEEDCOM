@@ -10,7 +10,15 @@ Authors: **Joe Abbott**, **Ryan Beck**, **Hang Hu**, **Yang Liu**, **Lixin Lu**.
 
 ## Overview
 
-_SPEEDCOM_ is an open source python package that aims to predict the fluorescence emission and absorption spectra of small conjugated organic molecules. These features are predicted using a neural network, implemented with [keras](https://github.com/keras-team/keras), and are trained on data from the [PhotochemCAD database](http://www.photochemcad.com/PhotochemCAD.html). The software has a graphical-user-interface (GUI) where users can input the [SMILES](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) string for a given molecule and be returned its predicted spectra and associated characteristic quantities. For further details on the background science, and the operations of our program, please see our [use cases](https://github.com/emissible/SPEEDCOM/blob/master/use_cases.md).
+_SPEEDCOM_ is an open source python package that aims to predict the fluorescence emission and absorption spectra of small conjugated organic molecules. These features are predicted using a convolutional neural network, implemented with [keras](https://github.com/keras-team/keras), and trained on data from the [PhotochemCAD database](http://www.photochemcad.com/PhotochemCAD.html). The software has a graphical-user-interface (GUI) where users can input the [SMILES](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) string for a given molecule and be returned its predicted spectra and associated characteristic quantities. For further details on the background science, and the operations of our program, please see our [use cases](https://github.com/emissible/SPEEDCOM/blob/master/use_cases.md).
+
+### GUI
+
+Below shows the spectra and characteristics prediction of an example molecule, inputted via our GUI.
+
+<p align="center"><img src="doc/source/_static/prediction_screenshot.png" alt="SPEEDCOM spectra prediction" title="SPEEDCOM spectra prediction"/></p>
+
+<p align="center"><img src="doc/source/_static/charac_screenshot.png" alt="SPEEDCOM chracteristics prediction" title="SPEEDCOM characteristics prediction"/></p>
 
 
 ## Configuration

@@ -74,8 +74,8 @@ dependencies:
   - ncurses=6.1
   - nodejs=11.11.0
   - notebook=5.7.4
-  - numpy=1.16.2
-  - numpy-base=1.16.2
+  - numpy=1.16.0
+  - numpy-base=1.16.0
   - olefile=0.46
   #- openssl=1.1.1b
   - pandas=0.24.1

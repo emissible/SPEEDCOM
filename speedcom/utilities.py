@@ -3,8 +3,8 @@ import math
 import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
-#import NNModels
-import speedcom.NNModels as NNModels
+import NNModels
+#import speedcom.NNModels as NNModels
 import numpy as np
 import os
 import pandas as pd
@@ -99,7 +99,6 @@ def draw_molecule(SMILES, filename):
     # Functionality
     mol = Chem.MolFromSmiles(SMILES)
     Chem.Draw.MolToFile(mol, filename, kekulize=False, size=(200,200), fitimage=True)
-    print('Molecule Successfully is drawed')
 
     return
 
@@ -486,7 +485,6 @@ def broaden_spectrum(spect, sigma):
             sigma ** 2))
 
     plot_vals = [x, y]
-    print('hehehe')
 
     return plot_vals
 
@@ -515,7 +513,6 @@ def visualize(data, sigma=5.0, save_dir='../data/'):
     Returns:
     --------
     """
-    print('hahaha0')
     #Assertions
     assert isinstance(data, (list, np.ndarray)), \
        'Input data must be a list or a numpy array.'
@@ -529,12 +526,9 @@ def visualize(data, sigma=5.0, save_dir='../data/'):
     #Defining the figure for plotting
     #fig, spect = plt.subplots()
     #do the absorbance (blue) if present:
-    print('hahaha1')
     if data[1]:
         x, y = broaden_spectrum([np.float64(data[1]), np.float64(data[2])], sigma)
-        print('hahaha2')
         plt.plot(x, y, 'b', label='absorption')
-        print('hahaha3')
         #For pretty plotting purposes
         min_x = min(x)
         max_x = max(x)
@@ -556,7 +550,6 @@ def visualize(data, sigma=5.0, save_dir='../data/'):
             max_y = tmp_ymax
     #Formatting for the returned figure:
     #plt.margins(x=12., y=1.)
-    print('hahaha')
     plt.xlim(left=min_x, right=max_x)
     plt.ylim(bottom=0., top=max_y*1.2)
     plt.legend()

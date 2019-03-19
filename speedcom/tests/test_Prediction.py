@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from numpy.testing import assert_array_equal
 #import speedcom.tests.context as context
 import speedcom.tests.context as context
@@ -22,6 +23,7 @@ def test_predict_abs():
         wavelength 
     """
     output = test_model.predict_abs(test_SMILES)
+    test_shape = output.shape
     assert isinstance(output, np.ndarray),\
         'output has to be array'
     assert_array_equal(test_shape, (1,1), 'output shape wrong')
@@ -34,6 +36,7 @@ def test_predict_ems():
         emission wavelength 
     """
     output = test_model.predict_ems(test_SMILES)
+    test_shape = output.shape
     assert isinstance(output, np.ndarray),\
         'output has to be array'
     assert_array_equal(test_shape, (1,1), 'output shape wrong')
@@ -44,7 +47,8 @@ def test_predict_quantum_yield():
     test the output type and shape of the predicted 
         quantum yield
     """
-    output = test_model.predict_qy(test_SMILES)
+    output = test_model.predict_quantum_yield(test_SMILES)
+    test_shape = output.shape
     assert isinstance(output, np.ndarray),\
         'output has to be array'
     assert_array_equal(test_shape, (1,1), 'output shape wrong')
@@ -55,7 +59,8 @@ def test_predict_epsilon():
     test the output type and shape of the predicted 
         epsilon
     """
-    output = test_model.predict_epsion(test_SMILES)
+    output = test_model.predict_epsilon(test_SMILES)
+    test_shape = output.shape
     assert isinstance(output, np.ndarray),\
         'output has to be array'
     assert_array_equal(test_shape, (1,1), 'output shape wrong')
@@ -69,15 +74,15 @@ def test_predict_all():
     """
     result = test_model.predict_all(test_SMILES)
     assert len(result) == 2
-    assert len(result[0]) == 4
-    assert len(result[1]) == 5
+    assert len(result[0][0]) == 4
+    assert len(result[1][0]) == 5
     return
 
 def test_save_table_file():
     """
     test if table actually saves out
     """
-    table, visual_data = test_models.predict_all(test_SMILES)
+    table, visual_data = test_model.predict_all(test_SMILES)
     target_fn = 'tempdata'
     try:
         test_model.save_table_file(target_fn, table)
@@ -94,14 +99,14 @@ def test_save_visual():
     """
     test if visualization data successfully saves out    
     """
-    table, visual_data = test_models.predict_all(test_SMILES)
+    table, visual_data = test_model.predict_all(test_SMILES)
     test_name = test_SMILES
     try:
-        models.save_visual(best_name, visual_data)
+        test_model.save_visual(test_name, visual_data)
     except Exception as e:
         assert isinstance(e, TypeError)
-    assert os.path.isfile('%s_example_plot_data.txt' %s), \
+    assert os.path.isfile('%s_example_plot_data.txt' %test_name), \
         "Function hasn't written feature results, or has not done so to the \
         correct directory."
-    os.remove('%s_example_plot_data.txt' %s)
+    os.remove('%s_example_plot_data.txt' %test_name)
     return

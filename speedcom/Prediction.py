@@ -44,14 +44,14 @@ class Models:
         model constructor with preloaded features
         """
         self.model_abs = self._load_model_weight('model_smiles_cnn.json',\
-            'weights.best.hdf5')
+            'weights.best.hdf5', relative_path)
         self.model_ems = self._load_model_weight('model_smiles_ems_dropna.json',\
-            'ems_dropna.best1.hdf5')
+            'ems_dropna.best1.hdf5', relative_path)
         self.model_epsilon = self._load_model_weight('model_smiles_epsilon_lstm.json',\
-            'epsilon.best_-1.hdf5')
+            'epsilon.best_-1.hdf5', relative_path)
         self.model_qy = self._load_model_weight('model_lstm_qy.json', \
-            'weights.qy_best.hdf5')
-        self.word_map = DataUtils.load_wordmap_from_json('smiles_wordmap.json')
+            'weights.qy_best.hdf5', relative_path)
+        self.word_map = DataUtils.load_wordmap_from_json(os.path.join(relative_path, 'smiles_wordmap.json'))
 
     def predict_abs(self, x):
         """
@@ -118,7 +118,7 @@ class Models:
         table: np.array
 
         """
-        assert isinstance(filename, str), \ 
+        assert isinstance(filename, str), \
             'Filename must be a string.'
         assert isinstance(table, np.ndarray), \
             'table has to be np.ndarray'

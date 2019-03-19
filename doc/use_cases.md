@@ -10,7 +10,7 @@ Other quantities characteristic for a certain molecule are the **molar extinctio
 
 ## Objectives
 
-The objective of _SPEEDCOM_ is simple: to use deep-learning to generate the fluorescence emission and absorption spectra of a small organic molecule quickly and accurately, without the need for running expensive and time consuming _ab intio_ calculations.
+The objective of _SPEEDCOM_ is simple: to use a convolutional neural network to generate the emission and absorption spectra of small organic molecules quickly and accurately, without the need for running expensive and time consuming _ab intio_ calculations.
 
 ## Components
 
@@ -18,7 +18,7 @@ The objective of _SPEEDCOM_ is simple: to use deep-learning to generate the fluo
 
 ### <u>Front End</u>
 
-#### GUI
+### GUI
 User interactions are handled through our Graphical User Interface (GUI). Here the user inputs a SMILES string for the molecule for which they would like to generate a spectrum. This string is passed to the data-cleaning portion of our program in the back end.
 
 The user can then choose between the generation of an emission or an absorption spectra for the fluorescence of their molecule. This is displayed in the GUI, along with the skeletal, 2D representation of their molecule. The user can check this structure to see if they are receiving the spectra for the molecule they are expecting to.
@@ -28,10 +28,22 @@ The user may also choose to download the spectra and associated calculated physi
 
 ### <u>Back End</u>
 
-#### Data Cleaning
+### Data Cleaning
 
-The SMILES string for the molecule is received from the front end GUI. Any counterions present are removed from the structures as they have no fixed coordinates relative to the molecule as a whole, and have no tangible effects on the electronic behaviour of the molecule with regard to After being converted into a 3D geometry, the nuclear coordinates and atomic charges are used to generate a _Coulomb Matrix_, which is useful representation of molecular geometry. The molecule can also be represented
+The SMILES string for the molecule is received from the front end GUI. Any counterions present are removed from the structures as they have no fixed coordinates relative to the molecule as a whole, and have no tangible effects on the electronic behaviour of the molecule with regard to its absorption and emission wavelengths.
 
-#### Neural Network
+### Neural Network
 
-Because of the complexity and quantity of the descriptors attributed to each molecule, our program involves the utilization of a neural network to build the model from the predictors and predict outputs. This is implemented with [keras](https://github.com/keras-team/keras), an open-source high-level neural-network programming interface. 
+**Descriptors for the molecule may be generated in the following ways:**
+
+1. After being converted into a 3D geometry, the nuclear coordinates and atomic charges are used to generate a _Coulomb Matrix_, which is useful representation of molecular geometry. This may be encoded and passed into a Deep Neural Network (DNN).
+
+2. Using RDKit - an open source python package used for processing chemical data - a unique 'fingerprint' for the molecule may be generated, which can be passed into a Convolutional Neural Network (CNN).
+
+3. Numerical encoding of this figerprint can be passed through a 'Long-Short-Term-Memory' Recurrent Neural Network (RNN).
+
+4. However, the model that has given us the best accuracy upon predicting the spectroscopic details of molecules in our test data has been a CNN trained on numerically-encoded SMILES strings themselves. 
+
+**Implementation:**
+
+Our CNN is implemented with [keras](https://github.com/keras-team/keras), an open-source high-level neural-network programming interface. 

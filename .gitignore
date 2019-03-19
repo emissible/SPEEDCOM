@@ -111,7 +111,7 @@ data/*
 speedcom/frontend/output/*
 
 #MAC
-./.DS_Store
+.DS_Store
 
 #Testing file:
 test_readData_temp.tsv

@@ -25,7 +25,7 @@ install:
     - conda create --yes -n test python=$TRAVIS_PYTHON_VERSION
     - source activate test
     #Source conda environment:
-    - conda env create -f speedcom/speedcom_environment.yml
+    - conda env create -f speedcom_environment.yml
     - source activate speedcom_environment
 
     #Pip installs:

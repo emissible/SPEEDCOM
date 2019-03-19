@@ -36,15 +36,36 @@ def test_get_xy():
     Test function for get_xy
     """
 
-    data
+    data = 1
     # test assertion
     try:
-        DataUtils.get_xy(test_filename)
+        DataUtils.get_xy(data, 1, 1)
     except Exception as e:
         assert isinstance(e, AssertionError)
 
+    return
 
+def test_splitData():
+    """
+    Test function for splitData
+    """
+    x = pd.DataFrame([1])
+    y = pd.DataFrame([1, 2])
+    # test assertion
+    try:
+        DataUtils.splitData(x,y)
+    except Exception as e:
+        assert isinstance(e, AssertionError)
 
+    return
 
+def test_get_wordmap():
+    """
+    Test function for splitData
+    """
+    SMILES = 'CC'
+    # test output file type
+    result = DataUtils.get_wordmap(SMILES)
+    assert isinstance(result, dict)
 
     return

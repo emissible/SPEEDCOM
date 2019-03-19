@@ -1,7 +1,7 @@
 import json
 import math
 import matplotlib.pyplot as plt
-#import NNModles
+#import NNModels
 import speedcom.NNModels as NNModels
 import numpy as np
 import os

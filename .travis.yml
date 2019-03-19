@@ -9,16 +9,22 @@ python:
 - '3.6'
 
 install:
-#- pip install -U tox-travis coverage coveralls
-- travis_retry pip install $PIP_DEPS
-- travis_retry pip install -r requirements.txt
-- travis_retry pip install -e .
+#- pip install $PIP_DEPS
+- pip install coverage
+- pip install coveralls
+- pip install flake8
+- pip install -r requirements.txt
+
 branches:
   only:
   - master
+before_script:
+  -"flake8 speedcom"
 script:
-- py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
+  - py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
+  #- coverage run -m unittest discover
 after_success:
-- coveralls
+  - coverage report
+  - coveralls
 notifications:
   email: true

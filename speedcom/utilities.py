@@ -4,22 +4,14 @@ import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 #import NNModels
-<<<<<<< HEAD
-#import speedcom.NNModels as NNModels
-=======
 import speedcom.NNModels as NNModels
->>>>>>> tests
 import numpy as np
 import os
 import pandas as pd
 from rdkit import Chem
 import rdkit.Chem.Draw as draw
-<<<<<<< HEAD
-# import speedcom
-=======
 
 #import speedcom
->>>>>>> tests
 #import core
 
 #import rdkit

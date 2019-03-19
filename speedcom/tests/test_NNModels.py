@@ -13,6 +13,7 @@ def test__init__():
         mol = context.NNModels.Descriptors()
     except:
         raise RuntimeError('Error in constructing molecule')
+    # Checking that the model object is the correct type
     assert isinstance(mol, context.NNModels.Descriptors), \
         'molecule object constructed as wrong type.'
 
@@ -37,14 +38,28 @@ def test_get_properties():
     """
     try:
         test_props = molecule.get_properties()
+        test_indiv = molecule.get_properties(property_name='exactmw')
+        test_list = molecule.get_properties(property_name=['exactmw','NumRings'])
     except Exception as e:
         assert isinstance(e, TypeError)
+    # Checking that each element in the list is a float
     index = 0
     for prop_val in test_props.values():
         assert isinstance(prop_val, float), \
             "Error in output dictionary; value at index " \
             + str(index) + " isn't a float."
         index += 1
+    # Checking that the individual property returned is correct
+    assert isinstance(test_indiv, float), \
+        'exactmw must be a float'
+    assert test_indiv == 78.046950192 , \
+        "exactmw doesn't match that of benzene"
+    assert isinstance(test_list, dict), \
+        'Ouput of function upon imputting a list must be a dict'
+    assert test_list['exactmw'] == 78.046950192, \
+        'Output of function for these exactmw not correct'
+    assert test_list['NumRings'] == 1.0, \
+        'Output of function for these exactmw not correct'
 
     return
 
@@ -70,6 +85,7 @@ def test_get_Morgan_fingerprint():
         test_fp = molecule.get_Morgan_fingerprint(use_feat=test_usefeat)
     except Exception as e:
         assert isinstance(e, TypeError)
+    # Checking that each element in the list is a float
     index = 0
     for i in test_fp:
         assert isinstance(i, int), \
@@ -94,17 +110,3 @@ def test_get_coulomb_matrix():
         'Function not outputting a numpy array'
 
     return
-
-# def test___get_charges_coords():
-#     """
-#     Tests the function that generates a pandas data frame of the
-#         charges and coordinates of each atom in a molecule.
-#     """
-#     try:
-#         out_charge_coords = molecule.__get_charges_coords()
-#     except Exception as e:
-#         assert isinstance(e, TypeError)
-#     assert isinstance(out_charge_coords, pd.DataFrame), \
-#         'Function not outputting a pandas DataFrame'
-#
-#     return

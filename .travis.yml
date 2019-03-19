@@ -1,8 +1,9 @@
 language: python
 sudo: false
 
-#env:
-  #global:
+env:
+  global:
+  - KERAS_BACKEND=tensorflow
   #- PIP_DEPS="pytest coveralls pytest-cov flake8"
 
 python:

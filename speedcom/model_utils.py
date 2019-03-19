@@ -19,7 +19,6 @@ class ModelUtils:
         -----
         R_square (float)
         """
-        assert len(y_true) == len(y_pred)
         from keras import backend as K
         SS_res =  K.sum(K.square( y_true-y_pred ))
         SS_tot = K.sum(K.square( y_true - K.mean(y_true) ) )
@@ -150,24 +149,6 @@ class ModelUtils:
           one_hot[index, int(cls)] = 1
         return one_hot
 
-    @staticmethod  
-    def coeff_determination(y_true, y_pred):
-        """
-        calculates R square from y actual and y predict
-        Args:
-        -----
-        y_true: np.array
-        y_pred: np.array
-
-        return:
-        -----
-        R_square: float
-        """
-        assert y_true.shape[0] = y_pred.shape[0]
-        from keras import backend as K
-        SS_res =  K.sum(K.square( y_true-y_pred ))
-        SS_tot = K.sum(K.square( y_true - K.mean(y_true)))
-        return ( 1 - SS_res/(SS_tot + K.epsilon()))
     
     @staticmethod
     def get_lr_metric(optimizer):

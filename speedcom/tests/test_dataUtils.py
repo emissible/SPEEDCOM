@@ -62,12 +62,31 @@ def test_splitData():
 
 def test_get_wordmap():
     """
-    Test function for splitData
+    Test function for get_wordmap
     """
-    SMILES = 'CC'
+    SMILES = np.array(['CC'])
     # test output file type
     result = DataUtils.get_wordmap(SMILES)
     assert isinstance(result, dict)
-    
+
     return
 
+def test_get_max_len():
+    """
+    Test function for get_max_len
+    """
+    SMILES = np.array(['CCC', 'CC'])
+    max_len = DataUtils.get_max_len(SMILES)
+    assert max_len == 3
+    return
+
+def test_onehot_encoding():
+    """
+    Test function for onehot_encoding
+    """
+    wordmap = {'C':0, '#':1, '!':2, 'E':3}
+    x = np.array(['#C!'])
+    result = DataUtils.onehot_encoding(x,5,wordmap)
+    assert result.shape == (1,5,4)
+
+    return

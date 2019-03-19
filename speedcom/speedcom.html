@@ -29,7 +29,7 @@
       <p>e.g. C[C@@H](CC1=CC=CC=C1)NC</p>
       <div>
         <input  id="input" type="text" class="form-control mb-2 mr-sm-2"/>
-        <button type="button" class="btn btn-primary" id='Go' onclick="getSMILES(1,'/input')">Go</button>
+        <button type="button" class="btn btn-primary" id='Go'>Go</button>
       </div>
 
       <script type="text/javascript" src="./frontend/jquery.min.js"></script>
@@ -77,6 +77,11 @@
         document.getElementById('mo_str').src = pic1;
         document.getElementById('spectrum').src = pic2;
       }
+
+      $('#Go').on('click', function(){
+        getSMILES(1,'/input')
+      })
+
       </script>
 
       <hr>

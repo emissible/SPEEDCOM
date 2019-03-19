@@ -1,32 +1,49 @@
 language: python
 sudo: false
 
-env:
-  global:
-  - PIP_DEPS="pytest coveralls pytest-cov flake8"
+#env:
+  #global:
+  #- PIP_DEPS="pytest coveralls pytest-cov flake8"
 
 python:
-- '3.6'
+    - '3.6'
 
+#creating conda environment:
+before_install:
+    #install miniconda
+    - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+    - chmod +x miniconda.sh
+    - ./miniconda.sh -b -p "$PWD/miniconda/"
+    - export PATH="$PWD/miniconda/bin/:$PATH"
+    - yes|conda update conda>/dev/null
+
+#pip install necessary packages
 install:
-#- pip install $PIP_DEPS
-- pip install coverage
-- pip install coveralls
-- pip install flake8
-- pip install pytest-cov
-- pip install -r requirements.txt
+    #Source conda environment:
+    - yes|conda create --name env python='3.6'>/dev/null
+    - source activate env
+    - yes|conda install -c conda-forge keras>/dev/null
+    - yes|conda env create -f speedcom_environment.yml>/dev/null
+    - source activate speedcom
 
+#only test on master and tests branches
 branches:
-#  only:
-- master
-- tests
+    - master
+    - tests
+
+#lintr
 #before_script:
-#  -"flake8 speedcom"
+#    -"flake8 speedcom"
+
+#Run Unittests
 script:
-  - py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
-  #- coverage run -m unittest discover
+    - py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
+
+#Print coverage reports
 after_success:
-  - coverage report
-  - coveralls
+    - coverage report
+    - coveralls
+
+#Annoy @jwa7
 notifications:
-  email: true
+    email: true

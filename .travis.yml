@@ -26,16 +26,8 @@ install:
     - yes|conda env create -f speedcom_environment.yml>/dev/null
     - source activate speedcom
 
-    #Pip installs:
-    #- pip install coverage
-    #- pip install coveralls
-    #- pip install flake8
-    #- pip install pytest-cov
-    #- pip install -r requirements.txt
-
 #only test on master and tests branches
 branches:
-#  only:
     - master
     - tests
 
@@ -46,7 +38,6 @@ branches:
 #Run Unittests
 script:
     - py.test --pyargs speedcom --cov-report term-missing --cov=speedcom
-    #- coverage run -m unittest discover
 
 #Print coverage reports
 after_success:

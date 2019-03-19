@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from utilities import draw_molecule
 from utilities import visualize as spectrum_vil
+from utilities import remove_cations
 from Prediction import Models  
 
 
@@ -75,7 +76,7 @@ class ServerHTTP(BaseHTTPRequestHandler):
         ######
         output_filepath = './frontend/output/'
         if path == '/input':
-            input_smiles = data["input"].upper()
+            input_smiles = remove_cations(data["input"].upper())
             print('Input SMILES: ' + input_smiles)
             
             # draw molecules and cache the image

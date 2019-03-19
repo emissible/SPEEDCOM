@@ -1,13 +1,13 @@
 """
 Unit tests for the data_extract.py file
 """
-
+import os
 import unittest
 import speedcom.tests.context as context
 #import speedcom.speedcom
 
 #Variables for testing
-testing_dir = './speedcom/tests/DATA_CLEAN_TEST_DIR/'
+testing_dir = os.path.join(os.path.dirname(__file__), 'DATA_CLEAN_TEST_DIR/')
 cid_test = "ZZZ_64-17-5_ethanol.txt"
 name_test = "ZZZ_ethanol_ZZZ.txt"
 

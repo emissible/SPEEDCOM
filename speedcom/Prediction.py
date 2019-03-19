@@ -8,6 +8,8 @@ from dataUtils import DataUtils
 from keras.models import model_from_json
 from scipy.special import inv_boxcox
 
+MODEL_PATH = os.path.dirname(__file__)
+MODEL_PATH = os.path.join(MODEL_PATH, 'saved_models')
 class Models:
     """
     A wrapper class using keras pre-trained models for 
@@ -18,7 +20,7 @@ class Models:
     Attributes:
     -----
         Models
-        _load_model_weight
+        __load_model_weight
         UNIFORM_LENGTH
 
     Methods:
@@ -30,28 +32,29 @@ class Models:
         predict_all
         save_table_file
         save_visual
-        _predict
-        _reshapeX
-        _load_model_weight
+        __predict
+        __reshapeX
+        __load_model_weight
 
     """
     
     # set uniform length for all SMILES string
     UNIFORM_LENGTH = 279
     
-    def __init__(self, relative_path = '.'):
+    def __init__(self):
         """
         model constructor with preloaded features
         """
-        self.model_abs = self._load_model_weight('model_smiles_cnn.json',\
-            'weights.best.hdf5', relative_path)
-        self.model_ems = self._load_model_weight('model_smiles_ems_dropna.json',\
-            'ems_dropna.best1.hdf5', relative_path)
-        self.model_epsilon = self._load_model_weight('model_smiles_epsilon_lstm.json',\
-            'epsilon.best_-1.hdf5', relative_path)
-        self.model_qy = self._load_model_weight('model_lstm_qy.json', \
-            'weights.qy_best.hdf5', relative_path)
-        self.word_map = DataUtils.load_wordmap_from_json(os.path.join(relative_path, 'smiles_wordmap.json'))
+        # find the model path
+        self.model_abs = self.__load_model_weight('model_smiles_cnn.json',\
+            'weights.best.hdf5')
+        self.model_ems = self.__load_model_weight('model_smiles_ems_dropna.json',\
+            'ems_dropna.best1.hdf5')
+        self.model_epsilon = self.__load_model_weight('model_smiles_epsilon_lstm.json',\
+            'epsilon.best_-1.hdf5')
+        self.model_qy = self.__load_model_weight('model_lstm_qy.json', \
+            'weights.qy_best.hdf5')
+        self.word_map = DataUtils.load_wordmap_from_json(os.path.join(MODEL_PATH, 'smiles_wordmap.json'))
 
     def predict_abs(self, x):
         """
@@ -59,7 +62,7 @@ class Models:
         Args:
         x -- SMILES(str)
         """
-        return self._predict(self.model_abs, x)
+        return self.__predict(self.model_abs, x)
 
     def predict_ems(self, x):
         """
@@ -67,7 +70,7 @@ class Models:
         Args:
         x -- SMILES(str)
         """
-        return self._predict(self.model_ems, x)
+        return self.__predict(self.model_ems, x)
         
     def predict_quantum_yield(self, x):
         """
@@ -75,7 +78,7 @@ class Models:
         Args:
         x -- SMILES(str)
         """
-        return self._predict(self.model_qy, x)
+        return self.__predict(self.model_qy, x)
 
     def predict_epsilon(self, x, boxcox_lambda=0.2):
         """
@@ -84,7 +87,7 @@ class Models:
         x -- SMILES(str)
         boxcox_lambda -- int/float(preset to 0.2 for preloaded model)
         """
-        y = self._predict(self.model_epsilon, x)
+        y = self.__predict(self.model_epsilon, x)
         return inv_boxcox(y, boxcox_lambda)
 
         
@@ -139,7 +142,7 @@ class Models:
         plot_df.to_csv('%s_example_plot_data.txt' % x, sep = '\t', index=False)
         return
     
-    def _predict(self, model, x):
+    def __predict(self, model, x):
         """
         prediction
         Args:
@@ -149,17 +152,17 @@ class Models:
         return:
         np.array(float/int)
         """
-        x_array = self._reshapeX(x)
+        x_array = self.__reshapeX(x)
         x_numeric = DataUtils.numeric_encoding(x_array, self.UNIFORM_LENGTH, self.word_map) 
         return model.predict(x_numeric)
 
-    def _reshapeX(self, x):
+    def __reshapeX(self, x):
         """
         expand dimension
         """
         return np.array([x])
 
-    def _load_model_weight(self, model_file, weight_file, relative_path = '.'):
+    def __load_model_weight(self, model_file, weight_file):
         """
         load model and its weight
         Args:
@@ -169,8 +172,8 @@ class Models:
         loaded_model: keras.model
 
         """
-        model_file = os.path.join(relative_path,model_file)
-        weight_file = os.path.join(relative_path,weight_file)
+        model_file = os.path.join(MODEL_PATH,model_file)
+        weight_file = os.path.join(MODEL_PATH,weight_file)
         json_file = open(model_file, 'r')
         loaded_model_json = json_file.read()
         json_file.close()
@@ -182,7 +185,7 @@ if __name__ == '__main__':
     models = Models()
     input_smiles = 'C1=CC=CC=C1'
     table, visual_data = models.predict_all(input_smiles)
-    models.save_table_file(input_smiles, table)
-    models.save_visual(input_smiles, visual_data)
+    #models.save_table_file(input_smiles, table)
+    #models.save_visual(input_smiles, visual_data)
     print(table)
     print(visual_data)

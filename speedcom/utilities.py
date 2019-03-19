@@ -159,7 +159,7 @@ def get_em_max(clean_df, em_file_colname, prefix_dir):
     emission=[]
     for x in clean_df[em_file_colname].astype(str): #cast dtype to string
         if x != 'nan':
-            em_max = get_l_max(get_peaks(get_spectra(os.path.join(prefix_dir, x))))
+            em_max = get_l_max(get_peaks(get_spectra(os.path.join(prefix_dir,x))))
             emission.append(em_max)
         else:
             emission.append(None)
@@ -201,8 +201,8 @@ def pad_ndarrays(input_dict):
 
     return input_dict
 
-def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
-                         nBits=2048, use_features=False, padding=True,
+def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2, \
+                         nBits=2048, use_features=False, padding=True, \
                          output_file=None):
     """
     Compute the fingerprints for an input dataframe with all the SMILES, and
@@ -253,7 +253,6 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
 
     # Functionality
     spD_engine = NNModels.Descriptors() # Initializing the Descriptors class
-
     fps_dict = {}
     for rowi_idx, rowi in df.iterrows():
         spD_engine.set_molecule(rowi[SMILES_column])
@@ -272,8 +271,8 @@ def compute_fingerprints(df,SMILES_column='SMILES',key_name=None,radius=2,
     else:
         return fps_dict
 
-def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None,
-                            use_eigval=False, eig_sort=True, padding=True,
+def compute_coulumb_matrixes(df,SMILES_column='SMILES', key_name=None, \
+                            use_eigval=False, eig_sort=True, padding=True, \
                             output_file=None):
     """
     Compute the fingerprints for an input dataframe with all the SMILES,
@@ -538,7 +537,7 @@ def visualize(data, sigma=5.0, save_dir='../data/'):
         min_x = min(x)
         max_x = max(x)
         max_y = max(y)
-    
+
     #do the emission (orange color) if present:
     if data[3]:
         x, y = broaden_spectrum([np.float64(data[3]), np.float64(data[4])], sigma)

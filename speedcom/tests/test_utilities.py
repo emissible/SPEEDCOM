@@ -4,6 +4,7 @@ import pandas as pd
 import speedcom.tests.context as context
 import rdkit.Chem.Draw as draw
 
+TESTING_DIR = os.path.join(os.path.dirname(__file__), 'DATA_CLEAN_TEST_DIR/')
 
 def test_remove_deliminators():
     """
@@ -107,6 +108,16 @@ def test_get_em_max():
     Tests the function that retrieves the max values from existing
         files in a list of emission file names.
     """
+    em_name = 'ems'
+    test_df = pd.DataFrame({em_name:['1_118-96-7_X.ems.txt']})
+
+    try:
+        print(TESTING_DIR)
+        emiss = context.utilities.get_em_max(test_df, em_name, TESTING_DIR)
+    except Exception as e:
+        assert isinstance(e, TypeError)
+    assert isinstance(emiss, list), \
+        'Function not outputting a list'
 
     return
 

@@ -36,6 +36,7 @@ def test_get_properties():
     """
     Tests the function that returns a molecule's properties.
     """
+    molecule.set_molecule(test_SMILES)
     try:
         test_props = molecule.get_properties()
         test_indiv = molecule.get_properties(property_name='exactmw')
@@ -69,9 +70,11 @@ def test_get_features():
         given molecule.
     """
     try:
-        molecule.get_features()
+        feats = molecule.get_features()
     except Exception as e:
         assert isinstance(e, TypeError)
+    assert isinstance(feats, dict), \
+        'Function should be outputting a dict'
 
     return
 
@@ -104,6 +107,7 @@ def test_get_coulomb_matrix():
         out_eig = molecule.get_coulomb_matrix(output_eigval=True)
     except Exception as e:
         assert isinstance(e, TypeError)
+    # Checking outputs
     assert isinstance(out_cm, np.ndarray), \
         'Function not outputting a numpy array'
     assert isinstance(out_eig, np.ndarray), \

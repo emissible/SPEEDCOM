@@ -224,6 +224,8 @@ class DataUtils:
         -----
         dict
         """
+        assert os.path.exists(json_fname), \
+            'json_fname does not exist'
         with open(json_fname, 'r') as f:
             word_map_loaded = json.load(f)
         return word_map_loaded

@@ -5,7 +5,7 @@
 
 Authors: **Joe Abbott**, **Ryan Beck**, **Hang Hu**, **Yang Liu**, **Lixin Lu**.
 
-<span style="color:red"> _**SPEEDCOM** is currently under development. We should be up and running soon._ </span>
+<span style="color:red"> _*Discontinued Branch, Only for testing of the visualization function.  All relevant scripts wrapped into master*_ </span>
 
 ## Overview
 

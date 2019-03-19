@@ -3,7 +3,9 @@ from keras.models import model_from_json
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import speedcom.tests.context as context
-from context import Models as Models
+# import context.Models as Models
+
+mod_util = context.ModUtil('..')
 
 def test_coeff_determination():
     """
@@ -54,7 +56,7 @@ def test_combine_columns():
     """
     nd_arrays = [ np.array([5,6,7]), np.array([1,2,3]) ]
     try:
-       columns_combined = combine_columns(nd_array)
+       columns_combined = mod_util.combine_columns(nd_array)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(combine_columns, np.ndarray), \
@@ -73,7 +75,7 @@ def test_get_y_category():
     y_actual = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
     try:
-        disc = get_y_category(y_actual, 1, 10)
+        disc = mod_util.get_y_category(y_actual, 1, 10)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert len(disc) == len(y_actual), \
@@ -88,7 +90,7 @@ def test_get_class_count():
     """
     categories = np.array([0, 0, 1, 1, 2, 2, 3, 3, 4, 4])
     try:
-        counts = get_class_count(categories)
+        counts = mod_util.get_class_count(categories)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert isinstance(counts, dict), \
@@ -103,11 +105,11 @@ def test_subsampling():
     Tests the function that subsamples an array of data to ensure
         even distribution amongst classes.
     """
-    dataset = array([[1,0],[2,0],[3,0],[3,0],[3,0],[3,0],[3,0],[4,1],\
+    dataset = np.array([[1,0],[2,0],[3,0],[3,0],[3,0],[3,0],[3,0],[4,1],\
                     [5,1],[6,1],[7,2],[8,2],[9,2],[10,3]])
     counts = {0: 7, 1: 3, 2: 3, 3: 1}
     try:
-        ss_data = subsampling(dataset, 1, 3, counts)
+        ss_data = mod_util.subsampling(dataset, 1, 3, counts)
     except Exception as e:
         assert isinstance(e, TypeError)
     assert len(ss_data) <= len(dataset), \
@@ -126,11 +128,10 @@ def test_onehot_encode():
     num_class = 3
 
     try:
-        one_hot = onehot_encode_y(y, num_class)
+        one_hot = mod_util.onehot_encode_y(y, num_class)
     except Exception as e:
         assert isinstance(e, TypeError)
-    assert isinstance(one_hot, np.ndarray) \
+    assert isinstance(one_hot, np.ndarray), \
         'Function not outputting a numpy ndarray'
 
     return
-    

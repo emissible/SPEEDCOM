@@ -1,11 +1,12 @@
-import numpy as np 
+import numpy as np
 import pandas as pd
 import json
+import os
 from sklearn.model_selection import train_test_split
 
 class DataUtils:
 
-  
+
     @staticmethod
     def readData(fname,sep='\t'):
         """
@@ -17,14 +18,16 @@ class DataUtils:
 
         return:
         -----
-        np.array    
+        np.array
         """
         assert os.path.exists(fname)
+        assert fname.endswith('.tsv'), \
+            'file must be a .tsv'
         dset = pd.read_csv(fname, sep=sep)
         assert len(dset) >0
         print(dset.head())
         return dset.values
-  
+
     @staticmethod
     def get_xy(dataset, x_col_index, y_col_index):
         """
@@ -41,9 +44,9 @@ class DataUtils:
         x: np.array
         y: np.array
         """
-        assert isinstance(dataset, np.array)
+        assert isinstance(dataset, np.ndarray)
         return dataset[:,x_col_index], dataset[:,y_col_index]
-  
+
     @staticmethod
     def splitData(x, y, ratio=0.1, random_state=42):
         """
@@ -66,12 +69,12 @@ class DataUtils:
         assert x.shape[0] == y.shape[0]
         return train_test_split(x, y,test_size=ratio,random_state=random_state)
 
-  
+
     @staticmethod
     def get_wordmap(x_smiles):
         """
         get numeric map for characters
-        return dict of this map      
+        return dict of this map
         start and end as "!" and "E"
         need to sort it to keep consistency of wordmap
         as trained models are sensitive to numeric encoding
@@ -85,8 +88,8 @@ class DataUtils:
         charset = sorted(list(set(''.join(x_smiles.flatten()) + "!E")))
         char_to_int = dict((c,i) for i,c in enumerate(charset))
         return char_to_int
-  
-    @staticmethod  
+
+    @staticmethod
     def get_max_len(x_smiles):
         """
         find the max length of smiles of all cases
@@ -99,7 +102,7 @@ class DataUtils:
         max_len: int
         """
         return max(map(lambda x: len(x), x_smiles.flatten()))
-  
+
     @staticmethod
     def onehot_encoding(x_list, uniform_length, word_map):
         """
@@ -125,15 +128,15 @@ class DataUtils:
                 one_hot[i,j+1,word_map[c]] = 1
                #Encode endchar
             one_hot[i,len(item)+1:,word_map["E"]] = 1
-            
+
         return one_hot
 
-  
+
     @staticmethod
     def numeric_encoding(x_list, uniform_length, word_map):
         """
         Encode the input smiles with numerical encoding
-        according to the word map and pad them to 
+        according to the word map and pad them to
         uniform length
         Args:
         -----
@@ -181,7 +184,7 @@ class DataUtils:
         -----
         numeric_smiles_list: np.array (dtypes: int)
         rev_wordmap: dict (dtypes {int: char})
-        
+
         return:
         -----
         np.array (dtype: str)
@@ -210,7 +213,7 @@ class DataUtils:
         """
         with open(json_fname, 'w') as fp:
             json.dump(wordmap, fp)
-            
+
     @staticmethod
     def load_wordmap_from_json(json_fname):
         """
@@ -223,6 +226,8 @@ class DataUtils:
         -----
         dict
         """
+        assert os.path.exists(json_fname), \
+            'json_fname does not exist'
         with open(json_fname, 'r') as f:
             word_map_loaded = json.load(f)
         return word_map_loaded

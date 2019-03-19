@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
+import os
 
+from utilities import visualize
 from scipy.stats import boxcox
 from dataUtils import DataUtils
 from keras.models import model_from_json
@@ -37,19 +39,19 @@ class Models:
     # set uniform length for all SMILES string
     UNIFORM_LENGTH = 279
     
-    def __init__(self):
+    def __init__(self, relative_path = '.'):
         """
         model constructor with preloaded features
         """
         self.model_abs = self._load_model_weight('model_smiles_cnn.json',\
-            'weights.best.hdf5')
+            'weights.best.hdf5', relative_path)
         self.model_ems = self._load_model_weight('model_smiles_ems_dropna.json',\
-            'ems_dropna.best1.hdf5')
+            'ems_dropna.best1.hdf5', relative_path)
         self.model_epsilon = self._load_model_weight('model_smiles_epsilon_lstm.json',\
-            'epsilon.best_-1.hdf5')
+            'epsilon.best_-1.hdf5', relative_path)
         self.model_qy = self._load_model_weight('model_lstm_qy.json', \
-            'weights.qy_best.hdf5')
-        self.word_map = DataUtils.load_wordmap_from_json('smiles_wordmap.json')
+            'weights.qy_best.hdf5', relative_path)
+        self.word_map = DataUtils.load_wordmap_from_json(os.path.join(relative_path, 'smiles_wordmap.json'))
 
     def predict_abs(self, x):
         """
@@ -108,7 +110,7 @@ class Models:
         data_plot = np.column_stack([np.array(x), abs_l[0], [1.0], ems_l[0],[1.0]])
         return table, data_plot
     
-    def save_table_file(self, x, table):
+    def save_table_file(self, filename, table):
         """
         save table to file as txt with smiles name
         Args:
@@ -116,8 +118,12 @@ class Models:
         table: np.array
 
         """
+        assert isinstance(filename, str), \
+            'Filename must be a string.'
+        assert isinstance(table, np.ndarray), \
+            'table has to be np.ndarray'
         table_df = pd.DataFrame(table, columns=['lambda_abs', 'lambda_ems','epsilon', 'quantum_yield'])
-        table_df.to_csv('%s_example_table.txt' %x, sep = '\t', index=False)
+        table_df.to_csv(filename, sep = '\t', index=False)
         return
     
     def save_visual(self, x, data_for_plot):
@@ -153,7 +159,7 @@ class Models:
         """
         return np.array([x])
 
-    def _load_model_weight(self, model_file, weight_file):
+    def _load_model_weight(self, model_file, weight_file, relative_path = '.'):
         """
         load model and its weight
         Args:
@@ -163,6 +169,8 @@ class Models:
         loaded_model: keras.model
 
         """
+        model_file = os.path.join(relative_path,model_file)
+        weight_file = os.path.join(relative_path,weight_file)
         json_file = open(model_file, 'r')
         loaded_model_json = json_file.read()
         json_file.close()

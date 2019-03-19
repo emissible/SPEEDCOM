@@ -245,7 +245,7 @@ class ModelUtils:
           one_hot[index, int(cls)] = 1
 
         return one_hot
-
+    
     @staticmethod
     def get_lr_metric(optimizer):
         """

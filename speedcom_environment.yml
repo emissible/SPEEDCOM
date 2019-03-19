@@ -99,6 +99,9 @@ dependencies:
   - pygpu=0.7.6
   - pyparsing=2.3.1
   #- pyqt=5.6.0
+  - pytest
+  - pytest-cov
+  - testpath
   - python=3.6.7
   - python-dateutil=2.8.0
   - pytz=2018.9
@@ -135,5 +138,4 @@ dependencies:
   - yaml=0.1.7
   - zeromq=4.3.1
   - zlib=1.2.11
-prefix: "/Volumes/Beck/Google Drive/CHEM 546/SPEEDCOM/"
 

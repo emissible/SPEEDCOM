@@ -1,2 +1,0 @@
-SMILES	abs_wl_max	abs_intensity	ems_wl_max	ems_intensity
-C1=CC=CC=C1	222.5995	1.0	245.64473	1.0

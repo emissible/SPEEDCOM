@@ -1,9 +1,13 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
 import urllib
 import json
+import webbrowser
 from os import path
 from urllib.parse import urlparse
-#import function_name as pyf
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from utilities import draw_molecule
+from utilities import visualize as spectrum_vil
+from Prediction import Models  
+
 
 
 curdir = './' # current directory
@@ -68,18 +72,30 @@ class ServerHTTP(BaseHTTPRequestHandler):
         #
         # Run the python function
         #
-        #
         ######
+        output_filepath = './frontend/output/'
         if path == '/input':
-            print(data["input"])
-            # the name of the python function
+            input_smiles = data["input"]
+            print('Input SMILES: ' + input_smiles)
+            
+            # draw molecules and cache the image
+            pic1 = output_filepath + 'mo_str_' + input_smiles + '.png'
+            draw_molecule(input_smiles, pic1)
+            print('Molecule successfully drawed')
+
+            # prediction with default_models
+            table, visual_data = DEFAULT_MODELS.predict_all(input_smiles)
+            DEFAULT_MODELS.save_table_file(output_filepath +'characteristics.txt', table)
+            visual_data[0][0] = 'spectrum_' + input_smiles
+            spectrum_vil(visual_data[0], save_dir=output_filepath) 
+            pic2 = output_filepath + visual_data[0][0] + '.png'
+            print('Spectrum and Characteristics updated')
             
             # read the value of each characteristics
             fvalue = open("frontend/output/characteristics.txt", 'r')
             lvalue = fvalue.readlines()
             fvalue.close()
             lvalue = lvalue[-1].split('\t')
-            print(lvalue)
             value = []
             for i in range(len(lvalue)):
                 if lvalue[i] == '\n':
@@ -99,7 +115,9 @@ class ServerHTTP(BaseHTTPRequestHandler):
         # use json.dumps to format
         response = json.dumps({
             "input" : data["input"],
-            "value" : value
+            "value" : value,
+            "pic1" : pic1,
+            "pic2" : pic2
         }).encode()
         # send
         self.wfile.write(response)
@@ -112,4 +130,6 @@ def start_server(port):
 
 
 if __name__ == "__main__":
+    DEFAULT_MODELS = Models() 
+    webbrowser.open_new_tab('http://localhost:8000/speedcom.html')
     start_server(8000)

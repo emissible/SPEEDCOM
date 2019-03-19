@@ -1,8 +1,8 @@
 import json
 import math
 import matplotlib.pyplot as plt
-import NNModels
-# import speedcom.NNModels as NNModels
+#import NNModels
+import speedcom.NNModels as NNModels
 import numpy as np
 import os
 import pandas as pd

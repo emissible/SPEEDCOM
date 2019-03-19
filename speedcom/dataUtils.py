@@ -41,7 +41,7 @@ class DataUtils:
         x: np.array
         y: np.array
         """
-        assert isinstance(dataset, np.array)
+        assert isinstance(dataset, np.ndarray)
         return dataset[:,x_col_index], dataset[:,y_col_index]
   
     @staticmethod

@@ -1,11 +1,12 @@
 import numpy as np
 from numpy.testing import assert_array_equal
 #import speedcom.tests.context as context
-import context.Prediction.Models as Models
+import speedcom.tests.context as context
+#import ontext.Prediction.Models as Models
 
 
 test_SMILES = 'C1=CC=CC=C1'
-test_model = Models()
+test_model = context.Prediction.Models()
 
 def test__init__():
     try:
@@ -41,7 +42,22 @@ def test_predict_ems():
 def test_predict_quantum_yield():
     """
     test the output type and shape of the predicted 
-        emission wavelength 
+        quantum yield
     """
+    output = test_model.predict_qy(test_SMILES)
+    assert isinstance(output, np.ndarray),\
+        'output has to be array'
+    assert_array_equal(test_shape, (1,1), 'output shape wrong')
+    return
+    
+def test_predict_epsilon():
+    """
+    test the output type and shape of the predicted 
+        epsilon
+    """
+    output = test_model.predict_epsion(test_SMILES)
+    assert isinstance(output, np.ndarray),\
+        'output has to be array'
+    assert_array_equal(test_shape, (1,1), 'output shape wrong')
     return
     

@@ -21,6 +21,8 @@ class DataUtils:
         np.array
         """
         assert os.path.exists(fname)
+        assert fname.endswith('.tsv'), \
+            'file must be a .tsv'
         dset = pd.read_csv(fname, sep=sep)
         assert len(dset) >0
         print(dset.head())

@@ -2,24 +2,45 @@
 Unit tests for the dataUtils.py file
 """
 import json
+import pandas as pd
+import numpy as np
+import os
 import speedcom.tests.context as context
-from context.dataUtils import DataUtils
+#from context import dataUtils.DataUtils as DataUtils
 
-test_filename = 'random_files'
-if os.path.exists(test_filename):
-    os.romove
-
-
-
+DataUtils =  context.dataUtils.DataUtils()
 
 def test_readData():
     """
     Test function for readData
     """
-    # test raise exception for random names
+    test_filename = 'test_readData_temp.tsv'
+    if os.path.exists(test_filename):
+        os.remove(test_filename)
 
+    # test raise exception for random names
     try:
-        DataUtils.readData('ARandomFile')
+        DataUtils.readData(test_filename)
+    except Exception as e:
+        assert isinstance(e, AssertionError)
+
+    test_df = pd.DataFrame([1,2])
+    test_df.to_csv(test_filename)
+
+    # test outout type
+    df_read = DataUtils.readData(test_filename)
+    assert isinstance(df_read, np.ndarray)
+    return
+
+def test_get_xy():
+    """
+    Test function for get_xy
+    """
+
+    data
+    # test assertion
+    try:
+        DataUtils.get_xy(test_filename)
     except Exception as e:
         assert isinstance(e, AssertionError)
 
@@ -33,5 +54,4 @@ def test_load_wordmap_from_json():
     try:
         word_map = DataUtils.load_wordmap_from_json('temp.json')
     except AssertionError as e:
-        
-        
+    return

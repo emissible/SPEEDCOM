@@ -14,17 +14,15 @@ before_install:
     - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
     - chmod +x miniconda.sh
     - ./miniconda.sh -b -p "$PWD/miniconda/"
-    - ls -lhtr
     - export PATH="$PWD/miniconda/bin/:$PATH"
-    - echo $PATH
-    - pwd
-    #- conda update --yes conda
+    - conda update --yes conda
 
 #pip install necessary packages
 install:
-    - conda create --yes -n test python=$TRAVIS_PYTHON_VERSION
-    - source activate test
     #Source conda environment:
+    - conda create --name env python='3.6'
+    - source activate env
+    - conda install -c conda-forge keras
     - conda env create -f speedcom_environment.yml
     - source activate speedcom_environment
 

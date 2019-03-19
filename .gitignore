@@ -110,5 +110,6 @@ data/*
 # frontend outputs
 speedcom/frontend/output/*
 
-
+#MAC
+.DS_Store
 

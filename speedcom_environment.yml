@@ -47,7 +47,7 @@ dependencies:
   - keras-applications=1.0.4
   - keras-preprocessing=1.0.2
   - kiwisolver=1.0.1
-  - libcxx=7.0.0
+  #- libcxx=7.0.0
   - libffi=3.2.1
   - libgfortran=3.0.
   - libgpuarray=0.7.6

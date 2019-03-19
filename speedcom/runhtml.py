@@ -75,7 +75,7 @@ class ServerHTTP(BaseHTTPRequestHandler):
         ######
         output_filepath = './frontend/output/'
         if path == '/input':
-            input_smiles = data["input"]
+            input_smiles = data["input"].upper()
             print('Input SMILES: ' + input_smiles)
             
             # draw molecules and cache the image

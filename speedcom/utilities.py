@@ -1,15 +1,15 @@
 import json
 import math
 import matplotlib.pyplot as plt
-#import NNModels
-import speedcom.NNModels as NNModels
+import NNModels
+# import speedcom.NNModels as NNModels
 import numpy as np
 import os
 import pandas as pd
 from rdkit import Chem
 import rdkit.Chem.Draw as draw
 
-import speedcom
+# import speedcom
 #import core
 
 #import rdkit
@@ -97,7 +97,7 @@ def draw_molecule(SMILES, filename):
 
     # Functionality
     mol = Chem.MolFromSmiles(SMILES)
-    Chem.Draw.MolToFile(mol, filename, kekulize=False)
+    Chem.Draw.MolToFile(mol, filename, kekulize=False, size=(200,200), fitimage=True)
 
     return
 

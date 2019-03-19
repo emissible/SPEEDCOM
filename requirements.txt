@@ -1,6 +1,6 @@
-keras
-matplotlib
 numpy
-scipy
-tensorflow
-  
+pubchempy
+pandas
+matplotlib
+rdkit
+keras

@@ -106,3 +106,9 @@ venv.bak/
 # ignore data profiles
 DATA/*
 data/*
+
+# frontend outputs
+speedcom/frontend/output/*
+
+
+

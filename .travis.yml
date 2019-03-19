@@ -22,7 +22,7 @@ install:
     #Source conda environment:
     - conda create --name env python='3.6'
     - source activate env
-    - conda install -c conda-forge keras
+    - conda install -yc conda-forge keras
     - conda env create -yf speedcom_environment.yml
     - source activate speedcom_environment
 

@@ -1,5 +1,7 @@
 import json
 import math
+import matplotlib
+matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 import NNModels
 # import speedcom.NNModels as NNModels
@@ -8,7 +10,6 @@ import os
 import pandas as pd
 from rdkit import Chem
 import rdkit.Chem.Draw as draw
-
 # import speedcom
 #import core
 
@@ -464,10 +465,10 @@ def broaden_spectrum(spect, sigma):
             values for plotting.
     """
     # Assertions
-    assert isinstance(spect, (np.ndarray, list)), \
-       'Input must be a list or a numpy array.'
-    assert isinstance(sigma, float), \
-       'sigma value must be a float'
+#    assert isinstance(spect, (np.ndarray, list)), \
+#       'Input must be a list or a numpy array.'
+#    assert isinstance(sigma, float), \
+#       'sigma value must be a float'
     #min of the spectrum **FUTURE FEATURE**
     #min_x = min(spect[0]) - 50.
     min_x = spect[0] - 50
@@ -485,6 +486,7 @@ def broaden_spectrum(spect, sigma):
             sigma ** 2))
 
     plot_vals = [x, y]
+    print('hehehe')
 
     return plot_vals
 
@@ -513,6 +515,7 @@ def visualize(data, sigma=5.0, save_dir='../data/'):
     Returns:
     --------
     """
+    print('hahaha0')
     #Assertions
     assert isinstance(data, (list, np.ndarray)), \
        'Input data must be a list or a numpy array.'
@@ -526,17 +529,20 @@ def visualize(data, sigma=5.0, save_dir='../data/'):
     #Defining the figure for plotting
     #fig, spect = plt.subplots()
     #do the absorbance (blue) if present:
+    print('hahaha1')
     if data[1]:
-        x, y = broaden_spectrum([data[1], data[2]], sigma)
+        x, y = broaden_spectrum([np.float64(data[1]), np.float64(data[2])], sigma)
+        print('hahaha2')
         plt.plot(x, y, 'b', label='absorption')
+        print('hahaha3')
         #For pretty plotting purposes
         min_x = min(x)
         max_x = max(x)
         max_y = max(y)
-
+    
     #do the emission (orange color) if present:
     if data[3]:
-        x, y = broaden_spectrum([data[3], data[4]], sigma)
+        x, y = broaden_spectrum([np.float64(data[3]), np.float64(data[4])], sigma)
         plt.plot(x, y, color='#FF8C00', label='emission')
         #For pretty plotting purposes
         tmp_xmax = max(x)
@@ -550,6 +556,7 @@ def visualize(data, sigma=5.0, save_dir='../data/'):
             max_y = tmp_ymax
     #Formatting for the returned figure:
     #plt.margins(x=12., y=1.)
+    print('hahaha')
     plt.xlim(left=min_x, right=max_x)
     plt.ylim(bottom=0., top=max_y*1.2)
     plt.legend()
@@ -560,18 +567,18 @@ def visualize(data, sigma=5.0, save_dir='../data/'):
     #format.
     plt.savefig(save_dir + str(data[0]) + ".png", dpi=300)
     plt.close()
-    #Save the data to file
-    fo = open(save_dir + str(data[0]) + '_peaks.txt', 'w')
-    fo.write("Absorption\tIntensitiy\n")
-    #**FUTURE FEATURE**
-    #for i in range(len(data[1]):
-    #  fo.write(str(data[1][i]) + '\t' + str(data[2][i]))
-    fo.write(str(data[1]) + '\t' + str(data[2]))
-    fo.write("\nEmission\tIntensity\n")
-    #**FUTURE FEATURE**
-    #for i in range(len(data[3]):
-    #  fo.write(str(data[3][i]) + '\t' + str(data[4][i]))
-    fo.write(str(data[3]) + '\t' + str(data[4]))
-    fo.close
+#    #Save the data to file
+#    fo = open(save_dir + str(data[0]) + '_peaks.txt', 'w')
+#    fo.write("Absorption\tIntensitiy\n")
+#    #**FUTURE FEATURE**
+#    #for i in range(len(data[1]):
+#    #  fo.write(str(data[1][i]) + '\t' + str(data[2][i]))
+#    fo.write(str(data[1]) + '\t' + str(data[2]))
+#    fo.write("\nEmission\tIntensity\n")
+#    #**FUTURE FEATURE**
+#    #for i in range(len(data[3]):
+#    #  fo.write(str(data[3][i]) + '\t' + str(data[4][i]))
+#    fo.write(str(data[3]) + '\t' + str(data[4]))
+#    fo.close
 
-    return
+    return 1

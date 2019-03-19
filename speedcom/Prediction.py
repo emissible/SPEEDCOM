@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+from utilities import visualize
 from scipy.stats import boxcox
 from dataUtils import DataUtils
 from keras.models import model_from_json
@@ -108,7 +109,7 @@ class Models:
         data_plot = np.column_stack([np.array(x), abs_l[0], [1.0], ems_l[0],[1.0]])
         return table, data_plot
     
-    def save_table_file(self, x, table):
+    def save_table_file(self, filename, table):
         """
         save table to file as txt with smiles name
         Args:
@@ -117,7 +118,7 @@ class Models:
 
         """
         table_df = pd.DataFrame(table, columns=['lambda_abs', 'lambda_ems','epsilon', 'quantum_yield'])
-        table_df.to_csv('%s_example_table.txt' %x, sep = '\t', index=False)
+        table_df.to_csv(filename, sep = '\t', index=False)
         return
     
     def save_visual(self, x, data_for_plot):

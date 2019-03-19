@@ -4,7 +4,10 @@ import json
 from os import path
 from urllib.parse import urlparse
 from utilities import draw_molecule
+from utilities import visualize as spectrum_vil
 from Prediction import Models  
+
+
 
 
 curdir = './' # current directory
@@ -77,8 +80,13 @@ class ServerHTTP(BaseHTTPRequestHandler):
             input_smiles = data["input"]
             print(input_smiles)
             draw_molecule(input_smiles, output_filepath +'mo_str.png')
-            table, visual_data = DEFAULT_MODEL.predict_all(input_smiles)
-
+            table, visual_data = DEFAULT_MODELS.predict_all(input_smiles)
+            DEFAULT_MODELS.save_table_file(output_filepath +'characteristics.txt', table)
+            visual_data[0][0] = 'spectrum'
+            print(type(visual_data[0]))
+#            DEFAULT_MODELS.output_visual(visual_data[0],output_filepath)
+            spectrum_vil(visual_data[0], save_dir=output_filepath) 
+            print('spectrum updated')
             # the name of the python function
             
             # read the value of each characteristics
@@ -86,7 +94,6 @@ class ServerHTTP(BaseHTTPRequestHandler):
             lvalue = fvalue.readlines()
             fvalue.close()
             lvalue = lvalue[-1].split('\t')
-            print(lvalue)
             value = []
             for i in range(len(lvalue)):
                 if lvalue[i] == '\n':
@@ -106,7 +113,9 @@ class ServerHTTP(BaseHTTPRequestHandler):
         # use json.dumps to format
         response = json.dumps({
             "input" : data["input"],
-            "value" : value
+            "value" : value,
+            "pic1" : "frontend/output/mo_str.png",
+            "pic2" : "frontend/output/spectrum.png"
         }).encode()
         # send
         self.wfile.write(response)

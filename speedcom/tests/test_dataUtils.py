@@ -1,6 +1,7 @@
 """
 Unit tests for the dataUtils.py file
 """
+import json
 import pandas as pd
 import numpy as np
 import os
@@ -67,5 +68,6 @@ def test_get_wordmap():
     # test output file type
     result = DataUtils.get_wordmap(SMILES)
     assert isinstance(result, dict)
-
+    
     return
+

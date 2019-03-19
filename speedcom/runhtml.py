@@ -75,7 +75,7 @@ class ServerHTTP(BaseHTTPRequestHandler):
             # the name of the python function
             
             # read the value of each characteristics
-            fvalue = open("output/characteristics.txt", 'r')
+            fvalue = open("frontend/output/characteristics.txt", 'r')
             lvalue = fvalue.readlines()
             fvalue.close()
             lvalue = lvalue[-1].split('\t')

@@ -1,9 +1,9 @@
 language: python
 sudo: false
 
-env:
-  global:
-  - PIP_DEPS="pytest coveralls pytest-cov flake8"
+#env:
+  #global:
+  #- PIP_DEPS="pytest coveralls pytest-cov flake8"
 
 python:
 - '3.6'
@@ -16,9 +16,9 @@ install:
 - pip install pytest-cov
 - pip install -r requirements.txt
 
-branches:
-  only:
-  - master
+#branches:
+#  only:
+#  - master
 #before_script:
 #  -"flake8 speedcom"
 script:

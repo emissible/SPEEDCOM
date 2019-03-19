@@ -122,6 +122,7 @@ class ModelUtils:
         for i in nd_arrays:
             assert isinstance(i, np.ndarray), \
                 'Each element in list must be a numpy ndarray'
+
         l_prev = len(nd_arrays[0])
         for i in range(1, len(nd_arrays)):
             l = len(nd_arrays[i])
@@ -227,7 +228,8 @@ class ModelUtils:
         Args:
         -----
             y (np.ndarray)  --  the y values
-            num_class (int) --  the number of classes y is divided into
+            num_class (int) --  the number of unique classes y is
+                divided into.
 
         return:
             one_hot (np.array) -- an array that contains the encoded y
@@ -242,10 +244,10 @@ class ModelUtils:
         # Functionality
         one_hot = np.zeros((y.shape[0],num_class),dtype=np.int8)
         for index, cls in enumerate(y):
-          one_hot[index, int(cls)] = 1
+            one_hot[index, int(cls)] = 1
 
         return one_hot
-    
+
     @staticmethod
     def get_lr_metric(optimizer):
         """

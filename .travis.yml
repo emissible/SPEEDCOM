@@ -15,15 +15,15 @@ before_install:
     - chmod +x miniconda.sh
     - ./miniconda.sh -b -p "$PWD/miniconda/"
     - export PATH="$PWD/miniconda/bin/:$PATH"
-    - yes|conda update conda
+    - yes|conda update conda>/dev/null
 
 #pip install necessary packages
 install:
     #Source conda environment:
-    - yes|conda create --name env python='3.6'
+    - yes|conda create --name env python='3.6'>/dev/null
     - source activate env
-    - yes|conda install -c conda-forge keras
-    - yes|conda env create -f speedcom_environment.yml
+    - yes|conda install -c conda-forge keras>/dev/null
+    - yes|conda env create -f speedcom_environment.yml>/dev/null
     - source activate speedcom_environment
 
     #Pip installs:

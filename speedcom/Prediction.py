@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import os
 
 from utilities import visualize
 from scipy.stats import boxcox
@@ -38,7 +39,7 @@ class Models:
     # set uniform length for all SMILES string
     UNIFORM_LENGTH = 279
     
-    def __init__(self):
+    def __init__(self, relative_path = '.'):
         """
         model constructor with preloaded features
         """
@@ -117,6 +118,10 @@ class Models:
         table: np.array
 
         """
+        assert isinstance(filename, str), \ 
+            'Filename must be a string.'
+        assert isinstance(table, np.ndarray), \
+            'table has to be np.ndarray'
         table_df = pd.DataFrame(table, columns=['lambda_abs', 'lambda_ems','epsilon', 'quantum_yield'])
         table_df.to_csv(filename, sep = '\t', index=False)
         return
@@ -154,7 +159,7 @@ class Models:
         """
         return np.array([x])
 
-    def _load_model_weight(self, model_file, weight_file):
+    def _load_model_weight(self, model_file, weight_file, relative_path = '.'):
         """
         load model and its weight
         Args:
@@ -164,6 +169,8 @@ class Models:
         loaded_model: keras.model
 
         """
+        model_file = os.path.join(relative_path,model_file)
+        weight_file = os.path.join(relative_path,weight_file)
         json_file = open(model_file, 'r')
         loaded_model_json = json_file.read()
         json_file.close()

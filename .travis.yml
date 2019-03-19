@@ -19,7 +19,7 @@ install:
 #branches:
 #  only:
 - master
-- testing
+- tests
 #before_script:
 #  -"flake8 speedcom"
 script:

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module dataUtils</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>dataUtils</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Volumes/Beck/Google%20Drive/CHEM%20546/SPEEDCOM/speedcom/dataUtils.py">/Volumes/Beck/Google Drive/CHEM 546/SPEEDCOM/speedcom/dataUtils.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="dataUtils.html#DataUtils">DataUtils</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DataUtils">class <strong>DataUtils</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Static methods defined here:<br>
+<dl><dt><a name="DataUtils-decode_num_smiles"><strong>decode_num_smiles</strong></a>(numeric_smiles_list, rev_wordmap)</dt><dd><tt>given&nbsp;numeric&nbsp;encoded&nbsp;smiles&nbsp;arrays,&nbsp;decode&nbsp;the&nbsp;numeric<br>
+back&nbsp;into&nbsp;its&nbsp;corresponding&nbsp;char&nbsp;and&nbsp;reconstruct&nbsp;the&nbsp;smiles<br>
+Args:<br>
+-----<br>
+numeric_smiles_list:&nbsp;np.array&nbsp;(dtypes:&nbsp;int)<br>
+rev_wordmap:&nbsp;dict&nbsp;(dtypes&nbsp;{int:&nbsp;char})<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+np.array&nbsp;(dtype:&nbsp;str)</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-get_max_len"><strong>get_max_len</strong></a>(x_smiles)</dt><dd><tt>find&nbsp;the&nbsp;max&nbsp;length&nbsp;of&nbsp;smiles&nbsp;of&nbsp;all&nbsp;cases<br>
+Args:<br>
+-----<br>
+x_smiles:<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+max_len:&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-get_wordmap"><strong>get_wordmap</strong></a>(x_smiles)</dt><dd><tt>get&nbsp;numeric&nbsp;map&nbsp;for&nbsp;characters<br>
+return&nbsp;dict&nbsp;of&nbsp;this&nbsp;map<br>
+start&nbsp;and&nbsp;end&nbsp;as&nbsp;"!"&nbsp;and&nbsp;"E"<br>
+need&nbsp;to&nbsp;sort&nbsp;it&nbsp;to&nbsp;keep&nbsp;consistency&nbsp;of&nbsp;wordmap<br>
+as&nbsp;trained&nbsp;models&nbsp;are&nbsp;sensitive&nbsp;to&nbsp;numeric&nbsp;encoding<br>
+Args:<br>
+-----<br>
+x_smiles:&nbsp;np.array&nbsp;of&nbsp;str<br>
+return:<br>
+-----<br>
+char_to_int:&nbsp;dict&nbsp;{char&nbsp;:&nbsp;int}</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-get_xy"><strong>get_xy</strong></a>(dataset, x_col_index, y_col_index)</dt><dd><tt>select&nbsp;x,&nbsp;y&nbsp;from&nbsp;the&nbsp;nd&nbsp;array&nbsp;dataset,&nbsp;return&nbsp;two&nbsp;arrays<br>
+x&nbsp;and&nbsp;y<br>
+Args:<br>
+-----<br>
+dataset:&nbsp;np.array<br>
+x_col_index:&nbsp;int<br>
+y_col_index:&nbsp;int<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+x:&nbsp;np.array<br>
+y:&nbsp;np.array</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-load_wordmap_from_json"><strong>load_wordmap_from_json</strong></a>(json_fname)</dt><dd><tt>load&nbsp;saved&nbsp;word&nbsp;map&nbsp;from&nbsp;json<br>
+Args:<br>
+-----<br>
+json_fname:&nbsp;str<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+dict</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-numeric_encoding"><strong>numeric_encoding</strong></a>(x_list, uniform_length, word_map)</dt><dd><tt>Encode&nbsp;the&nbsp;input&nbsp;smiles&nbsp;with&nbsp;numerical&nbsp;encoding<br>
+according&nbsp;to&nbsp;the&nbsp;word&nbsp;map&nbsp;and&nbsp;pad&nbsp;them&nbsp;to<br>
+uniform&nbsp;length<br>
+Args:<br>
+-----<br>
+x_list:&nbsp;np.array<br>
+uniform_length:&nbsp;int<br>
+word_map:&nbsp;dict<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+ret:&nbsp;np.array</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-onehot_encoding"><strong>onehot_encoding</strong></a>(x_list, uniform_length, word_map)</dt><dd><tt>Encode&nbsp;the&nbsp;input&nbsp;with&nbsp;one-hot&nbsp;encoding&nbsp;and&nbsp;pad&nbsp;it&nbsp;to<br>
+uniform&nbsp;length&nbsp;each&nbsp;row<br>
+Args:<br>
+-----<br>
+x_list:&nbsp;np.array&nbsp;of&nbsp;str<br>
+uniform_length:&nbsp;int<br>
+word_map:&nbsp;dict<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+np.array</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-readData"><strong>readData</strong></a>(fname, sep='\t')</dt><dd><tt>Read&nbsp;data&nbsp;from&nbsp;a&nbsp;file,&nbsp;print&nbsp;first&nbsp;couple&nbsp;lines<br>
+and&nbsp;return&nbsp;the&nbsp;nd&nbsp;array&nbsp;of&nbsp;the&nbsp;data<br>
+Args:<br>
+-----<br>
+fname:&nbsp;str<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+np.array</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-reverse_wordmap"><strong>reverse_wordmap</strong></a>(word_map)</dt><dd><tt>based&nbsp;on&nbsp;char-to-int&nbsp;to&nbsp;get&nbsp;the&nbsp;map&nbsp;of<br>
+int-to-char<br>
+Args:<br>
+-----<br>
+word_map:&nbsp;{char:&nbsp;int}<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+rev_wordmap:&nbsp;{int:&nbsp;char}</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-save_wordmap_json"><strong>save_wordmap_json</strong></a>(wordmap, json_fname)</dt><dd><tt>save&nbsp;wordmap&nbsp;dictionary&nbsp;to&nbsp;json&nbsp;file<br>
+Args:<br>
+-----<br>
+word_map:&nbsp;dict<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+json_fname:&nbsp;str</tt></dd></dl>
+
+<dl><dt><a name="DataUtils-splitData"><strong>splitData</strong></a>(x, y, ratio=0.1, random_state=42)</dt><dd><tt>Split&nbsp;data&nbsp;for&nbsp;training&nbsp;and&nbsp;testing<br>
+Args:<br>
+-----<br>
+x:&nbsp;np.array<br>
+y:&nbsp;np.array<br>
+ratio:&nbsp;float&nbsp;(0&nbsp;&lt;&nbsp;ratio&nbsp;&lt;&nbsp;1)<br>
+random_state:&nbsp;int<br>
+&nbsp;<br>
+return:<br>
+-----<br>
+X_train:&nbsp;np.array<br>
+X_test:&nbsp;np.array<br>
+y_train:&nbsp;np.array<br>
+y_test:&nbsp;np.array</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

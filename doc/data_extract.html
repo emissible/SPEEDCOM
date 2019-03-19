@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module data_extract</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>data_extract</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Volumes/Beck/Google%20Drive/CHEM%20546/SPEEDCOM/speedcom/data_extract.py">/Volumes/Beck/Google Drive/CHEM 546/SPEEDCOM/speedcom/data_extract.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pubchempy.html">pubchempy</a><br>
+</td><td width="25%" valign=top><a href="scipy.html">scipy</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-electrostatic_potentials"><strong>electrostatic_potentials</strong></a>(file_name)</dt><dd><tt>Returns&nbsp;the&nbsp;dielectic&nbsp;constant&nbsp;for&nbsp;the&nbsp;various&nbsp;solvents&nbsp;within&nbsp;the<br>
+database.&nbsp;&nbsp;If&nbsp;a&nbsp;solvent&nbsp;is&nbsp;not&nbsp;in&nbsp;the&nbsp;list&nbsp;will&nbsp;return&nbsp;1.&nbsp;Takes&nbsp;a&nbsp;<br>
+string&nbsp;and&nbsp;returns&nbsp;a&nbsp;double<br>
+&nbsp;<br>
+Sources:&nbsp;<br>
+acetic&nbsp;acid&nbsp;to&nbsp;water&nbsp;(pH&nbsp;7):&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;https://www.organicdivision.org/wp-content/uploads/2016/12/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;organic_solvents.html<br>
+Glycerol&nbsp;-&nbsp;Sulfuric&nbsp;Acid:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.appliedmc.com/content/images/Dielectric_Constants.pdf">http://www.appliedmc.com/content/images/Dielectric_Constants.pdf</a><br>
+Chloronaphthalene&nbsp;-&nbsp;<a href="http://www.stenutz.eu/chem/solv6.php">http://www.stenutz.eu/chem/solv6.php</a>?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name=1-chloronaphthalene<br>
+3-methylpentante&nbsp;-&nbsp;https://journals.aps.org/pra/pdf/10.1103/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysRevA.42.4735<br>
+PBS&nbsp;-&nbsp;<a href="http://www.materials-talks.com/blog/2015/03/09/how-to-get-the">http://www.materials-talks.com/blog/2015/03/09/how-to-get-the</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-latest-software-for-the-zetasizer-nano/<br>
+Borate&nbsp;Buffer&nbsp;-&nbsp;https://www.honeywellprocess.com/library/marketing/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tech-specs/Dielectric%20Constant%20Table.pdf<br>
+Sodium&nbsp;Hydroxide&nbsp;-&nbsp;<a href="http://www.microkat.gr/msdspd90-99/Sodium%20">http://www.microkat.gr/msdspd90-99/Sodium%20</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hydroxide.html</tt></dd></dl>
+ <dl><dt><a name="-get_absorption_files"><strong>get_absorption_files</strong></a>(data_dir)</dt><dd><tt>Get&nbsp;the&nbsp;total&nbsp;files&nbsp;containing&nbsp;absorption&nbsp;spectra.&nbsp;&nbsp;Expects&nbsp;the&nbsp;files&nbsp;to<br>
+be&nbsp;of&nbsp;type&nbsp;*.txt&nbsp;and&nbsp;have&nbsp;the&nbsp;naming&nbsp;convention&nbsp;*.abs.txt&nbsp;will&nbsp;return&nbsp;a&nbsp;<br>
+list&nbsp;of&nbsp;strings&nbsp;to&nbsp;be&nbsp;parsed&nbsp;later.</tt></dd></dl>
+ <dl><dt><a name="-get_emission_files"><strong>get_emission_files</strong></a>(data_dir)</dt><dd><tt>Get&nbsp;the&nbsp;total&nbsp;files&nbsp;containing&nbsp;emission&nbsp;spectra.&nbsp;&nbsp;Expects&nbsp;the&nbsp;files&nbsp;to&nbsp;<br>
+be&nbsp;of&nbsp;type&nbsp;*.ems.txt&nbsp;and&nbsp;have&nbsp;the&nbsp;naming&nbsp;convention&nbsp;*.ems.txt&nbsp;will&nbsp;return<br>
+a&nbsp;list&nbsp;of&nbsp;strings&nbsp;to&nbsp;be&nbsp;parsed&nbsp;later.</tt></dd></dl>
+ <dl><dt><a name="-get_molecule_cid"><strong>get_molecule_cid</strong></a>(file_name)</dt><dd><tt>Take&nbsp;a&nbsp;file_name,&nbsp;remove&nbsp;the&nbsp;ending&nbsp;and&nbsp;prefix&nbsp;and&nbsp;return&nbsp;the&nbsp;pubchem<br>
+molecule&nbsp;object.&nbsp;&nbsp;If&nbsp;the&nbsp;file_name&nbsp;does&nbsp;not&nbsp;have&nbsp;the&nbsp;cas&nbsp;number,&nbsp;try&nbsp;the&nbsp;<br>
+name&nbsp;of&nbsp;the&nbsp;system,&nbsp;&nbsp;&nbsp;else&nbsp;return&nbsp;None&nbsp;so&nbsp;as&nbsp;to&nbsp;disreguard&nbsp;the&nbsp;molecule<br>
+from&nbsp;training.</tt></dd></dl>
+ <dl><dt><a name="-get_peaks"><strong>get_peaks</strong></a>(spectra)</dt></dl>
+ <dl><dt><a name="-get_spectra"><strong>get_spectra</strong></a>(file_name)</dt><dd><tt>Iterates&nbsp;through&nbsp;the&nbsp;file&nbsp;and&nbsp;pulls&nbsp;out&nbsp;the&nbsp;normalized&nbsp;spectrum&nbsp;contained<br>
+within.&nbsp;&nbsp;The&nbsp;X&nbsp;is&nbsp;in&nbsp;wavelentgh,&nbsp;and&nbsp;the&nbsp;intensity&nbsp;is&nbsp;normalized&nbsp;to&nbsp;the<br>
+most&nbsp;intense&nbsp;peak.</tt></dd></dl>
+</td></tr></table>
+</body></html>

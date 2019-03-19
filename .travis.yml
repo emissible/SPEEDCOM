@@ -28,6 +28,7 @@ install:
 
 #only test on master and tests branches
 branches:
+    only:
     - master
     - tests
 

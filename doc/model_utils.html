@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module model_utils</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>model_utils</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Volumes/Beck/Google%20Drive/CHEM%20546/SPEEDCOM/speedcom/model_utils.py">/Volumes/Beck/Google Drive/CHEM 546/SPEEDCOM/speedcom/model_utils.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="matplotlib.html">matplotlib</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+</td><td width="25%" valign=top><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="model_utils.html#ModelUtils">ModelUtils</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ModelUtils">class <strong>ModelUtils</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Static methods defined here:<br>
+<dl><dt><a name="ModelUtils-coeff_determination"><strong>coeff_determination</strong></a>(y_true, y_pred)</dt><dd><tt>Calculates&nbsp;the&nbsp;R&nbsp;squared&nbsp;of&nbsp;true&nbsp;value&nbsp;and&nbsp;predicted&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;keras&nbsp;backend.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y_true&nbsp;(np.ndarray)&nbsp;--&nbsp;an&nbsp;array&nbsp;of&nbsp;actual&nbsp;y-values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y_pred&nbsp;(np.ndarray)&nbsp;--&nbsp;an&nbsp;array&nbsp;of&nbsp;predicted&nbsp;y-values<br>
+&nbsp;<br>
+Returns:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;R_squared&nbsp;(float)&nbsp;--&nbsp;the&nbsp;R&nbsp;squared&nbsp;value&nbsp;between&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input&nbsp;arrays.</tt></dd></dl>
+
+<dl><dt><a name="ModelUtils-combine_columns"><strong>combine_columns</strong></a>(nd_arrays)</dt><dd><tt>Combine&nbsp;the&nbsp;columns&nbsp;from&nbsp;an&nbsp;array&nbsp;of&nbsp;arrays&nbsp;into&nbsp;arrays<br>
+&nbsp;&nbsp;&nbsp;&nbsp;themselves.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nd_arrays&nbsp;(np.ndarray)&nbsp;--&nbsp;an&nbsp;array&nbsp;of&nbsp;arrays&nbsp;of&nbsp;rows<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;combined&nbsp;into&nbsp;columns.<br>
+&nbsp;<br>
+Returns:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;columns_combined&nbsp;(np.array)&nbsp;--&nbsp;an&nbsp;array&nbsp;of&nbsp;arrays&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;combined&nbsp;columns.</tt></dd></dl>
+
+<dl><dt><a name="ModelUtils-get_class_count"><strong>get_class_count</strong></a>(Y_category)</dt><dd><tt>Get&nbsp;counts&nbsp;of&nbsp;each&nbsp;class&nbsp;and&nbsp;returns&nbsp;it&nbsp;as&nbsp;dictionary.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Y_category&nbsp;(np.array)&nbsp;--&nbsp;the&nbsp;actual&nbsp;y&nbsp;values&nbsp;divided<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;into&nbsp;categrories.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cls_counts&nbsp;(dict)&nbsp;--&nbsp;{class(key):&nbsp;counts(value)}</tt></dd></dl>
+
+<dl><dt><a name="ModelUtils-get_lr_metric"><strong>get_lr_metric</strong></a>(optimizer)</dt><dd><tt>Returns&nbsp;the&nbsp;learning&nbsp;rate&nbsp;from&nbsp;optimizer.<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;optimizer&nbsp;(keras.optimizer)&nbsp;--&nbsp;helps&nbsp;to&nbsp;optimize&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compiling&nbsp;of&nbsp;the&nbsp;keras&nbsp;model.<br>
+return:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lr&nbsp;(float)&nbsp;--&nbsp;the&nbsp;learning&nbsp;rate&nbsp;of&nbsp;the&nbsp;optimizer</tt></dd></dl>
+
+<dl><dt><a name="ModelUtils-get_y_category"><strong>get_y_category</strong></a>(y_actual, min_edge, bin_width)</dt><dd><tt>Divide&nbsp;continuous&nbsp;y_actual&nbsp;into&nbsp;discrete&nbsp;classes/bins.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y_actual&nbsp;(np.ndarray)&nbsp;--&nbsp;the&nbsp;y&nbsp;values&nbsp;to&nbsp;be&nbsp;discretized<br>
+&nbsp;&nbsp;&nbsp;&nbsp;min_edge&nbsp;(int/float)&nbsp;&nbsp;--&nbsp;the&nbsp;value&nbsp;at&nbsp;which&nbsp;to&nbsp;start&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discretization.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bin_width&nbsp;(int/foat)&nbsp;&nbsp;--&nbsp;the&nbsp;width&nbsp;of&nbsp;the&nbsp;bins.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Y_category&nbsp;(np.ndarray)&nbsp;--&nbsp;the&nbsp;actual&nbsp;y&nbsp;values&nbsp;divided<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discrete&nbsp;classes.</tt></dd></dl>
+
+<dl><dt><a name="ModelUtils-onehot_encode_y"><strong>onehot_encode_y</strong></a>(y, num_class)</dt><dd><tt>One-hot&nbsp;encoding&nbsp;of&nbsp;the&nbsp;categories&nbsp;y<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;(np.ndarray)&nbsp;&nbsp;--&nbsp;&nbsp;the&nbsp;y&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;num_class&nbsp;(int)&nbsp;--&nbsp;&nbsp;the&nbsp;number&nbsp;of&nbsp;unique&nbsp;classes&nbsp;y&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divided&nbsp;into.<br>
+&nbsp;<br>
+return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;one_hot&nbsp;(np.array)&nbsp;--&nbsp;an&nbsp;array&nbsp;that&nbsp;contains&nbsp;the&nbsp;encoded&nbsp;y<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.<br>
+-----</tt></dd></dl>
+
+<dl><dt><a name="ModelUtils-plot_model_error"><strong>plot_model_error</strong></a>(x_train, x_test, y_train, y_test, model, save_fig_fname, label)</dt><dd><tt>Plots&nbsp;the&nbsp;training&nbsp;and&nbsp;test&nbsp;data,&nbsp;and&nbsp;the&nbsp;associated&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;produced&nbsp;by&nbsp;a&nbsp;certain&nbsp;model.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;x_train&nbsp;(np.ndarray)&nbsp;--&nbsp;the&nbsp;training&nbsp;x&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;x_test&nbsp;(np.ndarray)&nbsp;--&nbsp;the&nbsp;testing&nbsp;x&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y_train&nbsp;(np.ndarray)&nbsp;--&nbsp;the&nbsp;training&nbsp;y&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;y_test&nbsp;(np.ndarray)&nbsp;--&nbsp;the&nbsp;testing&nbsp;y&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;model&nbsp;(<a href="builtins.html#object">object</a>&nbsp;i.e.&nbsp;Keras.model)&nbsp;--&nbsp;the&nbsp;model&nbsp;that&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;used&nbsp;to&nbsp;generate&nbsp;the&nbsp;predicted&nbsp;values.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;save_fig_fname&nbsp;(str)&nbsp;--&nbsp;the&nbsp;desired&nbsp;output&nbsp;filename.&nbsp;Must<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include&nbsp;the&nbsp;.png&nbsp;extension.&nbsp;If&nbsp;None,&nbsp;will&nbsp;just&nbsp;show<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;plot&nbsp;rather&nbsp;than&nbsp;saving&nbsp;it&nbsp;to&nbsp;file.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;label&nbsp;(str)&nbsp;--&nbsp;the&nbsp;context&nbsp;of&nbsp;the&nbsp;data&nbsp;being&nbsp;plotted<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.e.&nbsp;'Absorption'&nbsp;or&nbsp;'Emission'<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Either&nbsp;an&nbsp;output&nbsp;.png&nbsp;file&nbsp;containing&nbsp;the&nbsp;plot&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;save_fig_fname&nbsp;is&nbsp;specified,&nbsp;else&nbsp;no&nbsp;return&nbsp;(just<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shows&nbsp;the&nbsp;plot).</tt></dd></dl>
+
+<dl><dt><a name="ModelUtils-subsampling"><strong>subsampling</strong></a>(dataset, class_column_index, class_max_count, class_dict)</dt><dd><tt>Subsamples&nbsp;each&nbsp;class&nbsp;to&nbsp;ensure&nbsp;even&nbsp;distribution&nbsp;amongst<br>
+&nbsp;&nbsp;&nbsp;&nbsp;classes.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dataset&nbsp;(nd.array)&nbsp;--&nbsp;includes&nbsp;x&nbsp;column,&nbsp;y(category)&nbsp;etc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;class_column_index&nbsp;(int)&nbsp;--&nbsp;index&nbsp;of&nbsp;the&nbsp;category&nbsp;data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;dataset.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;class_max_count&nbsp;(int)&nbsp;--&nbsp;maximum&nbsp;number&nbsp;of&nbsp;counts<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allowed&nbsp;in&nbsp;each&nbsp;class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;class_dict&nbsp;(dict)&nbsp;--&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;the&nbsp;form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{class:&nbsp;count}.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ss_data&nbsp;(np.ndarray)&nbsp;--&nbsp;an&nbsp;array&nbsp;containing&nbsp;the&nbsp;subsampled<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

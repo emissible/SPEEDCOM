@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module utilities</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>utilities</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Volumes/Beck/Google%20Drive/CHEM%20546/SPEEDCOM/speedcom/utilities.py">/Volumes/Beck/Google Drive/CHEM 546/SPEEDCOM/speedcom/utilities.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="rdkit.Chem.html">rdkit.Chem</a><br>
+<a href="NNModels.html">NNModels</a><br>
+<a href="rdkit.Chem.Draw.html">rdkit.Chem.Draw</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+<a href="math.html">math</a><br>
+<a href="matplotlib.html">matplotlib</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+<a href="os.html">os</a><br>
+<a href="pandas.html">pandas</a><br>
+</td><td width="25%" valign=top><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-broaden_spectrum"><strong>broaden_spectrum</strong></a>(spect, sigma)</dt><dd><tt>Broadens&nbsp;a&nbsp;peak&nbsp;defined&nbsp;in&nbsp;spect&nbsp;by&nbsp;the&nbsp;sigma&nbsp;factor&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;returns&nbsp;the&nbsp;x&nbsp;and&nbsp;y&nbsp;data&nbsp;to&nbsp;plot.<br>
+&nbsp;<br>
+Args:<br>
+----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;spect&nbsp;(np.ndarray)&nbsp;--&nbsp;input&nbsp;array&nbsp;containing&nbsp;the&nbsp;peak&nbsp;info&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;individual&nbsp;peak&nbsp;to&nbsp;be&nbsp;broadened.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sigma&nbsp;(float)&nbsp;--&nbsp;gaussian&nbsp;broadening&nbsp;term&nbsp;for&nbsp;the&nbsp;peaks&nbsp;given.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;plot_vals&nbsp;(list)&nbsp;--&nbsp;a&nbsp;2D&nbsp;array&nbsp;containing&nbsp;the&nbsp;x&nbsp;and&nbsp;y<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values&nbsp;for&nbsp;plotting.</tt></dd></dl>
+ <dl><dt><a name="-compute_coulumb_matrixes"><strong>compute_coulumb_matrixes</strong></a>(df, SMILES_column='SMILES', key_name=None, use_eigval=False, eig_sort=True, padding=True, output_file=None)</dt><dd><tt>Compute&nbsp;the&nbsp;fingerprints&nbsp;for&nbsp;an&nbsp;input&nbsp;dataframe&nbsp;with&nbsp;all&nbsp;the&nbsp;SMILES,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;output&nbsp;the&nbsp;results&nbsp;as&nbsp;an&nbsp;dictionary&nbsp;with&nbsp;json&nbsp;txt&nbsp;format.<br>
+&nbsp;<br>
+Sources:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Using&nbsp;Coulomb&nbsp;matrix&nbsp;for&nbsp;machine&nbsp;learning&nbsp;on&nbsp;chemical&nbsp;context:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Grégoire&nbsp;Montavon&nbsp;et&nbsp;al&nbsp;2013&nbsp;New&nbsp;J.&nbsp;Phys.&nbsp;15&nbsp;095003<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;df&nbsp;(pandas.DataFrame)&nbsp;--&nbsp;an&nbsp;input&nbsp;dataframe&nbsp;with&nbsp;SMILES&nbsp;info<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SMILES_column&nbsp;(str)&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;column&nbsp;name&nbsp;of&nbsp;SMILES<br>
+&nbsp;&nbsp;&nbsp;&nbsp;key_name&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;column&nbsp;name&nbsp;for&nbsp;output&nbsp;dict&nbsp;key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;use_eigval&nbsp;(bool)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;(Default&nbsp;True)&nbsp;If&nbsp;true,&nbsp;will&nbsp;return<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;just&nbsp;the&nbsp;eigenvalues&nbsp;of&nbsp;the&nbsp;coulomb&nbsp;matrix&nbsp;for&nbsp;each<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;molecule.&nbsp;If&nbsp;False,&nbsp;returns&nbsp;the&nbsp;Coulomb&nbsp;matrix&nbsp;itself.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;eig_sort&nbsp;(bool)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;If&nbsp;True&nbsp;(default),&nbsp;sort&nbsp;the&nbsp;coulomb<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrices&nbsp;with&nbsp;their&nbsp;eigenvalues.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;padding&nbsp;(bool)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;If&nbsp;True&nbsp;(default),&nbsp;pad&nbsp;all&nbsp;the&nbsp;coulomb<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrices&nbsp;to&nbsp;the&nbsp;maxium&nbsp;length&nbsp;in&nbsp;the&nbsp;dictionary&nbsp;with&nbsp;zeros.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_file&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;If&nbsp;None,&nbsp;return&nbsp;a&nbsp;dict.&nbsp;Otherwise,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;a&nbsp;json&nbsp;txt&nbsp;file&nbsp;of&nbsp;the&nbsp;name&nbsp;given&nbsp;by&nbsp;the&nbsp;string.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fps_dict&nbsp;(dict)&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;an&nbsp;dictionary&nbsp;whose&nbsp;values&nbsp;are&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fingerprints&nbsp;of&nbsp;the&nbsp;molecules,&nbsp;and&nbsp;the&nbsp;keys&nbsp;are&nbsp;the&nbsp;index<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;names&nbsp;of&nbsp;the&nbsp;molecules.</tt></dd></dl>
+ <dl><dt><a name="-compute_features"><strong>compute_features</strong></a>(df, SMILES_column='SMILES', key_name=None, output_file=None)</dt><dd><tt>Compute&nbsp;the&nbsp;fingerprints&nbsp;for&nbsp;an&nbsp;input&nbsp;dataframe&nbsp;with&nbsp;all&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SMILES,&nbsp;and&nbsp;output&nbsp;the&nbsp;results&nbsp;as&nbsp;a&nbsp;csv&nbsp;txt&nbsp;file&nbsp;(exported<br>
+&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;pandas).<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;df&nbsp;(pandas.DataFrame)&nbsp;--&nbsp;an&nbsp;input&nbsp;dataframe&nbsp;with&nbsp;SMILES&nbsp;info<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SMILES_column&nbsp;(str)&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;column&nbsp;name&nbsp;of&nbsp;SMILES<br>
+&nbsp;&nbsp;&nbsp;&nbsp;key_name&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;column&nbsp;name&nbsp;for&nbsp;output&nbsp;dict&nbsp;key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_file&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;string&nbsp;represntation&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;desired&nbsp;file&nbsp;output&nbsp;name.&nbsp;If&nbsp;None,&nbsp;return&nbsp;a&nbsp;dictionary.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;output&nbsp;an&nbsp;json&nbsp;txt&nbsp;file.<br>
+&nbsp;<br>
+Returns&nbsp;(if&nbsp;output_file&nbsp;not&nbsp;specified):<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;feats_dict&nbsp;(dict)&nbsp;--&nbsp;a&nbsp;dictionary&nbsp;containing&nbsp;all&nbsp;the&nbsp;molecule's<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;features.</tt></dd></dl>
+ <dl><dt><a name="-compute_fingerprints"><strong>compute_fingerprints</strong></a>(df, SMILES_column='SMILES', key_name=None, radius=2, nBits=2048, use_features=False, padding=True, output_file=None)</dt><dd><tt>Compute&nbsp;the&nbsp;fingerprints&nbsp;for&nbsp;an&nbsp;input&nbsp;dataframe&nbsp;with&nbsp;all&nbsp;the&nbsp;SMILES,&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;returns&nbsp;the&nbsp;results&nbsp;as&nbsp;a&nbsp;dictionary&nbsp;or&nbsp;as&nbsp;a&nbsp;json&nbsp;txt&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;df&nbsp;(pandas.DataFrame)&nbsp;&nbsp;--&nbsp;an&nbsp;input&nbsp;dataframe&nbsp;with&nbsp;SMILES&nbsp;info<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SMILES_column&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;column&nbsp;name&nbsp;of&nbsp;SMILES<br>
+&nbsp;&nbsp;&nbsp;&nbsp;key_name&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;column&nbsp;name&nbsp;for&nbsp;output&nbsp;dict&nbsp;key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;(int)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;passed&nbsp;to&nbsp;the&nbsp;rdkit&nbsp;function,&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;represents&nbsp;the&nbsp;the&nbsp;number&nbsp;of&nbsp;atomic&nbsp;neighbours&nbsp;the&nbsp;finger-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;is&nbsp;evaluated&nbsp;for.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nBits&nbsp;(int)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;maxium&nbsp;number&nbsp;of&nbsp;bits&nbsp;for&nbsp;fingerprints<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;computation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;use_features&nbsp;(bool)&nbsp;--&nbsp;If&nbsp;True&nbsp;(default&nbsp;as&nbsp;False),&nbsp;use&nbsp;features&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compute&nbsp;fingerprints<br>
+&nbsp;&nbsp;&nbsp;&nbsp;padding&nbsp;(bool)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;If&nbsp;True&nbsp;(default),&nbsp;pad&nbsp;all&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fingerprints&nbsp;to&nbsp;the&nbsp;maxium&nbsp;length&nbsp;in&nbsp;the&nbsp;dictionary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;zeros<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_file&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;If&nbsp;None,&nbsp;return&nbsp;a&nbsp;dict.&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returns&nbsp;a&nbsp;json&nbsp;.txt&nbsp;file&nbsp;of&nbsp;filename&nbsp;given&nbsp;by&nbsp;the&nbsp;string.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fps_dict&nbsp;(dict)&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;an&nbsp;dictionary&nbsp;contains&nbsp;the&nbsp;fingerprints<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;name&nbsp;or&nbsp;index&nbsp;of&nbsp;the&nbsp;molecules<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-compute_properties"><strong>compute_properties</strong></a>(df, SMILES_column='SMILES', index_name=None, output_file=None)</dt><dd><tt>Compute&nbsp;the&nbsp;fingerprints&nbsp;for&nbsp;an&nbsp;input&nbsp;dataframe&nbsp;with&nbsp;all&nbsp;the&nbsp;SMILES,&nbsp;and<br>
+output&nbsp;the&nbsp;results&nbsp;as&nbsp;a&nbsp;csv&nbsp;txt&nbsp;file&nbsp;(exported&nbsp;by&nbsp;pandas)<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;df&nbsp;(pandas.DataFrame)&nbsp;--&nbsp;an&nbsp;input&nbsp;dataframe&nbsp;with&nbsp;SMILES&nbsp;info<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SMILES_column&nbsp;(str)&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;column&nbsp;name&nbsp;of&nbsp;SMILES<br>
+&nbsp;&nbsp;&nbsp;&nbsp;index_name&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;the&nbsp;index&nbsp;name&nbsp;for&nbsp;output&nbsp;DataFrame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_file&nbsp;(str)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;string&nbsp;representing&nbsp;the&nbsp;desired&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;the&nbsp;output&nbsp;file.&nbsp;If&nbsp;None,&nbsp;return&nbsp;a&nbsp;dataframe.&nbsp;Otherwise,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputs&nbsp;as&nbsp;a&nbsp;txt&nbsp;file&nbsp;(must&nbsp;include&nbsp;.txt&nbsp;extension&nbsp;in&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name),&nbsp;where&nbsp;values&nbsp;are&nbsp;comma&nbsp;separated.<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prop_df&nbsp;(pandas.DataFrame)&nbsp;--&nbsp;data&nbsp;frame&nbsp;containing&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;molecule's&nbsp;properties.</tt></dd></dl>
+ <dl><dt><a name="-draw_molecule"><strong>draw_molecule</strong></a>(SMILES, filename)</dt><dd><tt>Draws&nbsp;the&nbsp;2D&nbsp;skeletal&nbsp;structure&nbsp;of&nbsp;a&nbsp;molecule&nbsp;using&nbsp;the&nbsp;rdkit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;package,&nbsp;returning&nbsp;the&nbsp;output&nbsp;to&nbsp;a&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SMILES&nbsp;(str)&nbsp;&nbsp;&nbsp;--&nbsp;a&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;molecule.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filename&nbsp;(str)&nbsp;--&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;desired&nbsp;output&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containing&nbsp;the&nbsp;.png&nbsp;file&nbsp;extension.&nbsp;This&nbsp;file&nbsp;type&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;required&nbsp;for&nbsp;implementation&nbsp;in&nbsp;the&nbsp;front&nbsp;end.</tt></dd></dl>
+ <dl><dt><a name="-get_em_max"><strong>get_em_max</strong></a>(clean_df, em_file_colname, prefix_dir)</dt><dd><tt>Retrieves&nbsp;the&nbsp;lambda&nbsp;max&nbsp;values&nbsp;from&nbsp;existing&nbsp;files&nbsp;in&nbsp;a&nbsp;list&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;emission&nbsp;file&nbsp;names&nbsp;and&nbsp;appends&nbsp;them&nbsp;to&nbsp;a&nbsp;list,&nbsp;filling&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;if&nbsp;the&nbsp;file&nbsp;dosn't&nbsp;exist.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;clean_df&nbsp;(pandas.DataFrame)&nbsp;--&nbsp;a&nbsp;df&nbsp;containing&nbsp;the&nbsp;cleaned&nbsp;data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;em_file_colname&nbsp;(str)&nbsp;--&nbsp;the&nbsp;name&nbsp;of&nbsp;column&nbsp;that&nbsp;contains&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emission&nbsp;filenames.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefix_dir&nbsp;(str)&nbsp;--&nbsp;string&nbsp;representing&nbsp;the&nbsp;directory&nbsp;in&nbsp;which<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;original&nbsp;PhotoChemCAD&nbsp;data&nbsp;is&nbsp;contained.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;emission&nbsp;(list)&nbsp;--&nbsp;a&nbsp;list&nbsp;containing&nbsp;the&nbsp;lambda&nbsp;max&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-get_l_max"><strong>get_l_max</strong></a>(wavelength_intensity)</dt><dd><tt>Identifies&nbsp;and&nbsp;returns&nbsp;the&nbsp;wavelength&nbsp;of&nbsp;maximum&nbsp;intensity&nbsp;in&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2D&nbsp;array&nbsp;of&nbsp;wavelengths&nbsp;and&nbsp;intensities.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;wavelength_intensity&nbsp;(np.ndarray(2D),&nbsp;dtypes&nbsp;float)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;a&nbsp;2D&nbsp;array&nbsp;where&nbsp;the&nbsp;first&nbsp;coloumn&nbsp;contains&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavelengths&nbsp;and&nbsp;the&nbsp;second&nbsp;column&nbsp;contains&nbsp;the&nbsp;intensities.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lambda_max&nbsp;(float)&nbsp;--&nbsp;the&nbsp;wavelength&nbsp;of&nbsp;maximum&nbsp;intensity</tt></dd></dl>
+ <dl><dt><a name="-pad_ndarrays"><strong>pad_ndarrays</strong></a>(input_dict)</dt><dd><tt>Pads&nbsp;out&nbsp;all&nbsp;arrays&nbsp;in&nbsp;the&nbsp;given&nbsp;input&nbsp;dictionary&nbsp;of&nbsp;arrays<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;zeros&nbsp;so&nbsp;that&nbsp;they&nbsp;are&nbsp;all&nbsp;the&nbsp;same&nbsp;size&nbsp;and&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;largest&nbsp;input&nbsp;array.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;input_dict&nbsp;(dict)&nbsp;--&nbsp;input&nbsp;dictionary&nbsp;of&nbsp;arrays<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;input_dict&nbsp;(dict)&nbsp;--&nbsp;the&nbsp;modified&nbsp;input&nbsp;dictionary,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;all&nbsp;arrays&nbsp;have&nbsp;been&nbsp;padded&nbsp;out.</tt></dd></dl>
+ <dl><dt><a name="-remove_cations"><strong>remove_cations</strong></a>(SMILES)</dt><dd><tt>Removes&nbsp;periodic&nbsp;table&nbsp;group&nbsp;1&nbsp;and&nbsp;7&nbsp;counterions&nbsp;from&nbsp;the&nbsp;SMILES<br>
+&nbsp;&nbsp;&nbsp;&nbsp;strings.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SMILES&nbsp;(str)&nbsp;--&nbsp;the&nbsp;SMILES&nbsp;string&nbsp;representation&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;molecule.<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SMILES&nbsp;(str)&nbsp;--&nbsp;the&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;molecule&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;counterions&nbsp;omitted.</tt></dd></dl>
+ <dl><dt><a name="-remove_deliminators"><strong>remove_deliminators</strong></a>(my_strings)</dt><dd><tt>Remove&nbsp;deliminators&nbsp;from&nbsp;numbers&nbsp;(i.e.&nbsp;commas)&nbsp;so&nbsp;as&nbsp;to&nbsp;be&nbsp;able<br>
+to&nbsp;process&nbsp;numbers&nbsp;as&nbsp;int&nbsp;or&nbsp;float&nbsp;types&nbsp;in&nbsp;place&nbsp;of&nbsp;strings.<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;my_strings&nbsp;(list&nbsp;or&nbsp;np.ndarray)&nbsp;--&nbsp;list&nbsp;of&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;representations&nbsp;of&nbsp;numbers&nbsp;(i.e.&nbsp;['1,306',&nbsp;'5,765']).<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;my_array&nbsp;(np.ndarray)&nbsp;--&nbsp;array&nbsp;of&nbsp;floats.</tt></dd></dl>
+ <dl><dt><a name="-visualize"><strong>visualize</strong></a>(data, sigma=5.0, save_dir='../data/')</dt><dd><tt>Generate&nbsp;the&nbsp;displayed&nbsp;emission&nbsp;and&nbsp;abosrbance&nbsp;plot&nbsp;from&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;informationpredicted&nbsp;by&nbsp;the&nbsp;model.&nbsp;Saves&nbsp;two&nbsp;&nbsp;files&nbsp;called<br>
+&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;the&nbsp;frontend,&nbsp;by&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;input&nbsp;smiles&nbsp;string&nbsp;which<br>
+&nbsp;&nbsp;&nbsp;&nbsp;contain&nbsp;the&nbsp;absorption/emission&nbsp;spectrum&nbsp;as&nbsp;well&nbsp;as&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;absorption&nbsp;and&nbsp;emission&nbsp;peaks.&nbsp;**NOTE**&nbsp;This&nbsp;takes&nbsp;in&nbsp;only&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;row&nbsp;of&nbsp;a&nbsp;data&nbsp;frame&nbsp;at&nbsp;a&nbsp;time&nbsp;(only&nbsp;one&nbsp;molecule&nbsp;can&nbsp;be&nbsp;plotted<br>
+&nbsp;&nbsp;&nbsp;&nbsp;at&nbsp;once,&nbsp;hence&nbsp;the&nbsp;declared&nbsp;numpy&nbsp;array&nbsp;as&nbsp;input&nbsp;will&nbsp;work<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;any&nbsp;list&nbsp;object&nbsp;as&nbsp;well&nbsp;as&nbsp;long&nbsp;as&nbsp;it&nbsp;follows&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;structure&nbsp;detailed&nbsp;in&nbsp;the&nbsp;Args&nbsp;section&nbsp;below).<br>
+&nbsp;<br>
+Args:<br>
+-----<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;(list,&nbsp;np.ndarray)&nbsp;--&nbsp;input&nbsp;array&nbsp;containing&nbsp;the&nbsp;info<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;the&nbsp;molecule:&nbsp;[SMILES,&nbsp;abosrbance&nbsp;wavelength,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;absorbance&nbsp;intensity,&nbsp;emission&nbsp;wavelength,&nbsp;emission<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;intensity]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sigma&nbsp;(float)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;(Default&nbsp;5.0&nbsp;nm)&nbsp;float&nbsp;designating<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;gaussian&nbsp;broadening&nbsp;term&nbsp;applied&nbsp;to&nbsp;the&nbsp;peaks&nbsp;given<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;the&nbsp;input&nbsp;peak.<br>
+&nbsp;<br>
+Returns:<br>
+--------</tt></dd></dl>
+</td></tr></table>
+</body></html>

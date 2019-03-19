@@ -24,7 +24,7 @@ install:
     - source activate env
     - yes|conda install -c conda-forge keras>/dev/null
     - yes|conda env create -f speedcom_environment.yml>/dev/null
-    - source activate speedcom_environment
+    - source activate speedcom
 
     #Pip installs:
     #- pip install coverage

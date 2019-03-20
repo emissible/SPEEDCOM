@@ -12,13 +12,6 @@ python:
 
 #creating conda environment:
 before_install:
-    #libcuda for tensorflow
-    #- sudo apt-get purge nvidia*
-    #- sudo add-apt-repository ppa:graphics-drivers -y
-    #- sudo apt-get update -q
-    #- sudo apt-get install -y nvidia-driver-361
-    #- LD_LIBRARY_PATH=$(sudo find /usr/ -name 'libcuda.so.1')
-    #- echo $LD_LIBRARY_PATH
     #install miniconda
     - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
     - chmod +x miniconda.sh
@@ -32,8 +25,14 @@ install:
     - yes|conda env create -f speedcom_environment.yml>/dev/null
     - source activate speedcom
     #pip install
-    - pip install --user tensorflow
-    - pip install --user keras
+    - pip uninstall -y keras_applications
+    - pip uninstall -y keras_preprocessing
+    - pip uninstall -y keras
+    - pip uninstall -y tensorflow
+    - pip install --user tensorflow==1.10.0
+    - pip install --user keras_applications==1.0.6
+    - pip install --user keras_preprocessing==1.0.5
+    - pip install --user keras==2.2.4
 
 #only test on master and tests branches
 branches:

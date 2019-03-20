@@ -10,6 +10,18 @@ Authors: **Joe Abbott**, **Ryan Beck**, **Hang Hu**, **Yang Liu**, **Lixin Lu**.
 
 _SPEEDCOM_ is an open source python package that aims to predict the fluorescence emission and absorption spectra of small conjugated organic molecules. These features are predicted using a convolutional neural network, implemented with [keras](https://github.com/keras-team/keras), and trained on data from the [PhotochemCAD database](http://www.photochemcad.com/PhotochemCAD.html). The software has a graphical-user-interface (GUI) where users can input the [SMILES](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) string for a given molecule and be returned its predicted spectra and associated characteristic quantities. For further details on the background science, and the operations of our program, please see our [use cases](https://github.com/emissible/SPEEDCOM/blob/master/use_cases.md).
 
+## Current Features
+* Input vaild SMILES of small organic molecules as input for prediction
+* Predictions on the maximum absorption/emission peak
+* Wrapper functions for a numerial encoding of SMILES and common descriptors generation
+* GUI on local host
+
+## Incoming Featrues
+* Sanitize SMILES input; add alternative input options
+* Predictions on multiple peaks of absorption/emission spectra
+* Customization of model training with user input data
+* Pipelining predictions to facilitate fluorophore design 
+
 ### GUI
 
 Below shows the spectra and characteristics prediction of an example molecule, inputted via our GUI.
@@ -27,7 +39,7 @@ Below shows the spectra and characteristics prediction of an example molecule, i
 * conda version 4.6.8 or later
 * GitHub 
 
-### Installation
+### Installation & Usage Instructions
 
 You can execute the following ``commands`` from your computer's terminal application: 
 

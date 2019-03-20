@@ -86,5 +86,4 @@ if __name__ =='__main__':
 #    data_dir = os.path.join(os.path.dirname(__file__),'YOUR_SPECTRA_FILE_DIR')
 #    molecule_list = initiate_molecules(data_dir)
 #    print(len(molecule_list))
-
-
+    pass

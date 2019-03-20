@@ -34,6 +34,7 @@ branches:
 before_script:
 #    -"flake8 speedcom"
     - export KERAS_BACKEND=tensorflow
+    - export CUDA_VISIBLE_DEVICES=''
 
 #Run Unittests
 script:

@@ -6,21 +6,29 @@
 
 Authors: **Joe Abbott**, **Ryan Beck**, **Hang Hu**, **Yang Liu**, **Lixin Lu**.
 
-## Overview
+----
+
+### Overview
 
 _SPEEDCOM_ is an open source python package that aims to predict the fluorescence emission and absorption spectra of small conjugated organic molecules. These features are predicted using a convolutional neural network, implemented with [keras](https://github.com/keras-team/keras), and trained on data from the [PhotochemCAD database](http://www.photochemcad.com/PhotochemCAD.html). The software has a graphical-user-interface (GUI) where users can input the [SMILES](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) string for a given molecule and be returned its predicted spectra and associated characteristic quantities. For further details on the background science, and the operations of our program, please see our [use cases](https://github.com/emissible/SPEEDCOM/blob/master/use_cases.md).
 
-## Current Features
+----
+
+### Current Features
 * Input vaild SMILES of small organic molecules as input for prediction
 * Predictions on the maximum absorption/emission peak
 * Wrapper functions for a numerial encoding of SMILES and common descriptors generation
 * GUI on local host
 
-## Incoming Featrues
+----
+
+### Incoming Featrues
 * Sanitize SMILES input; add alternative input options
 * Predictions on multiple peaks of absorption/emission spectra
 * Customization of model training with user input data
 * Pipelining predictions to facilitate fluorophore design 
+
+----
 
 ### GUI
 
@@ -30,16 +38,17 @@ Below shows the spectra and characteristics prediction of an example molecule, i
 
 <p align="center"><img src="doc/source/_static/charac_screenshot.png" alt="SPEEDCOM chracteristics prediction" title="SPEEDCOM characteristics prediction"/></p>
 
+----
 
-## Configuration
+### Configuration
 
-### Pre-requirements:
+#### Pre-requirements:
 
 * Python version 3.6.7 or later
 * conda version 4.6.8 or later
 * GitHub 
 
-### Installation & Usage Instructions
+#### Installation & Usage Instructions
 
 You can execute the following ``commands`` from your computer's terminal application: 
 
@@ -61,7 +70,9 @@ You can execute the following ``commands`` from your computer's terminal applica
 
 5. Find the isomeric SMILES string for the moelcule you want the spectra for and input it into the GUI!
 
-## Directory Structure
+----
+
+### Directory Structure
 
 	SPEEDCOM (master)  
     |---data  
@@ -131,12 +142,12 @@ You can execute the following ``commands`` from your computer's terminal applica
 
 ----
 
-
-## Contributions
+### Contributions
 
 Any contributions to the project are warmly welcomed! If you discover any bugs, please report them in the [issues section](https://github.com/emissible/SPEEDCOM/issues) of this repository and we'll work to sort them out as soon as possible. If you have data that you think will be good to train our model on, please contact one of the authors. 
 
+----
 
-## License
+### License
 
 SPEEDCOM is licensed under the [MIT license](https://github.com/emissible/SPEEDCOM/blob/master/LICENSE).

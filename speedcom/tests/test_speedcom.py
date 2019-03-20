@@ -14,7 +14,7 @@ class initiate_molecules(unittest.TestCase):
         upon initialization.
         """
         mol_list_len = len(context.core.initiate_molecules(testing_dir))
-        assert mol_list_len == 3, "initiate_molecules unable to find all \
+        assert mol_list_len == 5, "initiate_molecules unable to find all \
             molecules, len = %f" %(mol_list_len)
         return
 

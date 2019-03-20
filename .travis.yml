@@ -12,6 +12,10 @@ python:
 
 #creating conda environment:
 before_install:
+    #libcuda for tensorflow
+    - sudo apt install -y nvidia-361-dev
+    #- LD_LIBRARY_PATH=$(sudo find /usr/ -name 'libcuda.so.1')
+    - echo $LD_LIBRARY_PATH
     #install miniconda
     - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
     - chmod +x miniconda.sh
@@ -21,9 +25,6 @@ before_install:
 
 #install necessary packages
 install:
-    #libcuda for tensorflow
-    yes|sudo apt install nvidia-361-dev
-    LD_LIBRARY_PATH=$(sudo find /usr/ -name 'libcuda.so.1')
     #pip install
     - pip install tensorflow
     - pip install keras

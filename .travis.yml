@@ -19,8 +19,11 @@ before_install:
     - export PATH="$PWD/miniconda/bin/:$PATH"
     - yes|conda update conda>/dev/null
 
-#pip install necessary packages
+#install necessary packages
 install:
+    #pip install
+    - pip install tensorflow
+    - pip install keras
     #Source conda environment:
     - yes|conda env create -f speedcom_environment.yml>/dev/null
     - source activate speedcom

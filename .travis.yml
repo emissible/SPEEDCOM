@@ -1,5 +1,5 @@
 language: python
-sudo: false
+sudo: yes
 
 env:
   global:
@@ -21,6 +21,9 @@ before_install:
 
 #install necessary packages
 install:
+    #libcuda for tensorflow
+    sudo apt install nvidia-361-dev
+    LD_LIBRARY_PATH=$(sudo find /usr/ -name 'libcuda.so.1')
     #pip install
     - pip install tensorflow
     - pip install keras

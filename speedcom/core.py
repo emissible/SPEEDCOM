@@ -5,7 +5,7 @@ import speedcom.data_extract as data_extract
 
 #import speedcom
 
-def initiate_molecules(data_dir):
+def initiate_molecules(data_dir, test=False):
     """
     Takes in the directory containing all of the data files and returns a list
     of populated molecule objects.
@@ -28,6 +28,10 @@ def initiate_molecules(data_dir):
             my_molecules.append(Molecule(absorp, cid, columb, emiss, \
                 smiles, weight, file_name))
             my_added_molecules.append(cid)
+            if test:
+                print("ems cid: ", cid)
+            else:
+                pass
         else:
            pass
        #For all applicable absorption spectra put properties into molecule 
@@ -39,6 +43,10 @@ def initiate_molecules(data_dir):
             #it does, does it already have valid absorption peaks:
             if pubchem_molecule:
                 cid = pubchem_molecule.cid
+                if test:
+                    print("abs cid: ", cid)
+                else:
+                    pass
                 if cid in my_added_molecules:
                     found = 1
                     mol_index = my_added_molecules.index(cid)

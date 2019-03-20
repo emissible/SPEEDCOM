@@ -33,6 +33,7 @@ install:
     - pip install --user keras_applications==1.0.6
     - pip install --user keras_preprocessing==1.0.5
     - pip install --user keras==2.2.4
+    - pip install --user coveralls
 
 #only test on master and tests branches
 branches:
@@ -49,7 +50,7 @@ before_script:
 #Run Unittests
 script:
     - python numpyversion.py
-    - py.test --pyargs speedcom --cov-report term-missing --cov=speedcom --cov-config .coveragerc
+    - py.test -s --pyargs speedcom --cov-report term-missing --cov=speedcom --cov-config .coveragerc
 
 #Print coverage reports
 after_success:

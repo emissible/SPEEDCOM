@@ -13,7 +13,8 @@ class initiate_molecules(unittest.TestCase):
         Ensure the appropriate number of molecule objects are returned
         upon initialization.
         """
-        mol_list_len = len(context.core.initiate_molecules(testing_dir))
+        mol_list_len = len(context.core.initiate_molecules(testing_dir, \
+            test=True))
         assert mol_list_len == 5, "initiate_molecules unable to find all \
             molecules, len = %f" %(mol_list_len)
         return

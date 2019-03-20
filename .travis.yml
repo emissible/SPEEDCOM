@@ -21,7 +21,7 @@ before_install:
 #pip install necessary packages
 install:
     #Source conda environment:
-    - yes|conda env create -f speedcom_environment.yml>/dev/null
+    - yes|conda env create -f speedcom_environment.yml
     - source activate speedcom
 
 #only test on master and tests branches
@@ -33,7 +33,7 @@ branches:
 #lintr
 before_script:
 #    -"flake8 speedcom"
-    - echo "Keras backend = $KERAS_BACKEND"
+    - echo $KERAS_BACKEND
 
 #Run Unittests
 script:

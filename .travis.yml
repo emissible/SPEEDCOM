@@ -13,7 +13,9 @@ python:
 #creating conda environment:
 before_install:
     #libcuda for tensorflow
-    - sudo apt install -y nvidia-361-dev
+    - sudo add-apt-repository ppa:graphics-drivers/ppa
+    - sudo apt-get update
+    - sudo apt-get install -y nvidia-361
     #- LD_LIBRARY_PATH=$(sudo find /usr/ -name 'libcuda.so.1')
     - echo $LD_LIBRARY_PATH
     #install miniconda

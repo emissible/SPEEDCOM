@@ -28,12 +28,12 @@ before_install:
 
 #install necessary packages
 install:
-    #pip install
-    - pip install --user tensorflow
-    - pip install --user keras
     #Source conda environment:
     - yes|conda env create -f speedcom_environment.yml>/dev/null
     - source activate speedcom
+    #pip install
+    - pip install --user tensorflow
+    - pip install --user keras
 
 #only test on master and tests branches
 branches:

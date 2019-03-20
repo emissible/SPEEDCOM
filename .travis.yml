@@ -16,7 +16,7 @@ before_install:
     #- sudo apt-get purge nvidia*
     - sudo add-apt-repository ppa:graphics-drivers -y
     - sudo apt-get update -q
-    - sudo apt-get install -y nvidia-drive-361
+    - sudo apt-get install -y nvidia-driver-361
     #- LD_LIBRARY_PATH=$(sudo find /usr/ -name 'libcuda.so.1')
     - echo $LD_LIBRARY_PATH
     #install miniconda

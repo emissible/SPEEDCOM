@@ -28,7 +28,7 @@ def get_absorption_files(data_dir):
     """
     return [fn for fn in os.listdir(data_dir) if fn.endswith(".abs.txt")]
 
-def get_molecule_cid(file_name):
+def get_molecule_cid(file_name, test=False):
     """ 
     Take a file_name, remove the ending and prefix and return the pubchem
     molecule object.  If the file_name does not have the cas number, try the 
@@ -38,6 +38,10 @@ def get_molecule_cid(file_name):
     my_file = file_name.split("_")
     #try to get the cas # if not then try name.
     cas = my_file[1]
+    if test:
+        print("Get CID, CAS: ", cas)
+    else:
+        pass
     try:
         cid = pcp.get_compounds(cas, 'name')[0]
     except:
@@ -50,6 +54,8 @@ def get_molecule_cid(file_name):
         except:
             cid = None
     finally:
+        if test:
+            print("Get CID, CID: ", cid)
         return cid
 
 def get_spectra(file_name):

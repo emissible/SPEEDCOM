@@ -15,7 +15,7 @@ def initiate_molecules(data_dir, test=False):
     #For all applicable emission spectra put properties into molecule objects,
     #and place objects into list for molecules.
     for ems_file in data_extract.get_emission_files(data_dir):
-        pubchem_molecule = data_extract.get_molecule_cid(ems_file) 
+        pubchem_molecule = data_extract.get_molecule_cid(ems_file,test) 
         if pubchem_molecule:
             cid = pubchem_molecule.cid
             spectra = data_extract.get_spectra(data_dir + "/" + ems_file)
@@ -36,38 +36,42 @@ def initiate_molecules(data_dir, test=False):
            pass
        #For all applicable absorption spectra put properties into molecule 
        #objects, and place objects into list for molecules.
-        for abs_file in data_extract.get_absorption_files(data_dir):
-            found = 0
-            pubchem_molecule = data_extract.get_molecule_cid(abs_file)
-            #Check to see if the molecule already exists in the list, and if 
-            #it does, does it already have valid absorption peaks:
-            if pubchem_molecule:
-                cid = pubchem_molecule.cid
-                if test:
-                    print("abs cid: ", cid)
-                else:
-                    pass
-                if cid in my_added_molecules:
-                    found = 1
-                    mol_index = my_added_molecules.index(cid)
-                    spectra = data_extract.get_spectra(data_dir + "/" + \
-                        abs_file)
-                    my_molecules[mol_index].absorption_peaks = \
-                        data_extract.get_peaks(spectra)
-                    break
-                else:
-                  pass
-                if not found:
-                    spectra = data_extract.get_spectra(data_dir + "/" + \
-                        abs_file)
-                    absorp = data_extract.get_peaks(spectra)
-                    columb = None
-                    emiss = None
-                    smiles = pubchem_molecule.isomeric_smiles
-                    weight = pubchem_molecule.molecular_weight
-                    file_name = abs_file.split(".")[0]
-                    my_molecules.append(Molecule(absorp, cid, \
-                        columb, emiss, smiles, weight, file_name))
+    for abs_file in data_extract.get_absorption_files(data_dir):
+        found = 0
+        if test:
+            print("ABS_FILE: ", abs_file)
+        else:
+            pass
+        pubchem_molecule = data_extract.get_molecule_cid(abs_file, test)
+        #Check to see if the molecule already exists in the list, and if 
+        #it does, does it already have valid absorption peaks:
+        if pubchem_molecule:
+            cid = pubchem_molecule.cid
+            if test:
+                print("abs cid: ", cid)
+            else:
+                pass
+            if cid in my_added_molecules:
+                found = 1
+                mol_index = my_added_molecules.index(cid)
+                spectra = data_extract.get_spectra(data_dir + "/" + \
+                    abs_file)
+                my_molecules[mol_index].absorption_peaks = \
+                    data_extract.get_peaks(spectra)
+                continue
+            else:
+              pass
+            if not found:
+                spectra = data_extract.get_spectra(data_dir + "/" + \
+                    abs_file)
+                absorp = data_extract.get_peaks(spectra)
+                columb = None
+                emiss = None
+                smiles = pubchem_molecule.isomeric_smiles
+                weight = pubchem_molecule.molecular_weight
+                file_name = abs_file.split(".")[0]
+                my_molecules.append(Molecule(absorp, cid, \
+                    columb, emiss, smiles, weight, file_name))
     return my_molecules
 
 class Molecule:

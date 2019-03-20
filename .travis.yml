@@ -33,7 +33,7 @@ branches:
 #lintr
 before_script:
 #    -"flake8 speedcom"
-    - echo $KERAS_BACKEND
+    - export KERAS_BACKEND=tensorflow
 
 #Run Unittests
 script:

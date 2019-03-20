@@ -44,8 +44,8 @@ dependencies:
   - jupyter_console=6.0.0
   - jupyter_core=4.4.0
   - keras=2.2.4
-  - keras-applications=1.0.4
-  - keras-preprocessing=1.0.2
+  - keras-applications=1.0.6
+  - keras-preprocessing=1.0.5
   - kiwisolver=1.0.1
   #- libcxx=7.0.0
   - libffi=3.2.1

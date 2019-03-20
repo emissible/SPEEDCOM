@@ -21,7 +21,7 @@ before_install:
 #pip install necessary packages
 install:
     #Source conda environment:
-    - yes|conda env create -f speedcom_environment.yml
+    - yes|conda env create -f speedcom_environment.yml>/dev/null
     - source activate speedcom
 
 #only test on master and tests branches

@@ -4,6 +4,7 @@ sudo: false
 env:
   global:
   - KERAS_BACKEND=tensorflow
+  - CUDA_VISIBLE_DEVICES=''
   #- PIP_DEPS="pytest coveralls pytest-cov flake8"
 
 python:

@@ -1,5 +1,5 @@
 language: python
-sudo: yes
+sudo: no
 
 env:
   global:
@@ -14,11 +14,11 @@ python:
 before_install:
     #libcuda for tensorflow
     #- sudo apt-get purge nvidia*
-    - sudo add-apt-repository ppa:graphics-drivers -y
-    - sudo apt-get update -q
-    - sudo apt-get install -y nvidia-driver-361
+    #- sudo add-apt-repository ppa:graphics-drivers -y
+    #- sudo apt-get update -q
+    #- sudo apt-get install -y nvidia-driver-361
     #- LD_LIBRARY_PATH=$(sudo find /usr/ -name 'libcuda.so.1')
-    - echo $LD_LIBRARY_PATH
+    #- echo $LD_LIBRARY_PATH
     #install miniconda
     - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
     - chmod +x miniconda.sh
